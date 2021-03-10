@@ -1,6 +1,7 @@
-import React, { memo } from 'react';
+import React, { FC, memo, useCallback } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
+
+import { Counter, PressableButton } from './components';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,16 +12,18 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 30,
+    marginBottom: 10,
   },
 });
 
-const App = () => {
-  const name = 'T2';
+const App: FC = () => {
+  const onPress = useCallback(() => {
+    alert('onPress Props');
+  }, []);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>My name is {name}</Text>
-      <StatusBar style="auto" />
+      <Counter />
     </View>
   );
 };

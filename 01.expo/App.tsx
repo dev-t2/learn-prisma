@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { FC, memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const App = () => {
+const App: FC = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>React Native</Text>
