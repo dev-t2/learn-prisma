@@ -1,7 +1,7 @@
-import React, { FC, memo, useCallback } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { FC, memo } from 'react';
+import { StyleSheet, View } from 'react-native';
 
-import { Counter, PressableButton } from './components';
+import { EventButton } from './components';
 
 const styles = StyleSheet.create({
   container: {
@@ -17,13 +17,9 @@ const styles = StyleSheet.create({
 });
 
 const App: FC = () => {
-  const onPress = useCallback(() => {
-    alert('onPress Props');
-  }, []);
-
   return (
     <View style={styles.container}>
-      <Counter />
+      <EventButton />
     </View>
   );
 };

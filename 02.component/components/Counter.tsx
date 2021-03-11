@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from 'react';
+import React, { FC, memo, useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { PressableButton } from '.';
 
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Counter = () => {
+const Counter: FC = () => {
   const [count, setCount] = useState(0);
   const [doubleCount, setDoubleCount] = useState(0);
 
