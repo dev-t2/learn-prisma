@@ -1,7 +1,7 @@
 import React, { FC, memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { EventButton, EventInput } from './components';
+import { EventButton } from './components';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,8 +19,7 @@ const styles = StyleSheet.create({
 const App: FC = () => {
   return (
     <View style={styles.container}>
-      <EventButton />
-      <EventInput />
+      <EventButton title="Pressable" />
     </View>
   );
 };

@@ -3,18 +3,22 @@ import { Pressable, StyleSheet, Text } from 'react-native';
 
 const styles = StyleSheet.create({
   pressable: {
-    backgroundColor: '#f1c40f',
-    padding: 16,
-    margin: 8,
-    borderRadius: 8,
+    backgroundColor: '#1abc9c',
+    padding: 8,
   },
   text: {
-    color: '#fff',
-    fontSize: 24,
+    padding: 8,
+    fontSize: 32,
   },
 });
 
-const EventButton: FC = () => {
+interface IEventButton {
+  title: string;
+}
+
+const pressRetentionOffset = { top: 50, right: 50, bottom: 50, left: 50 };
+
+const EventButton: FC<IEventButton> = ({ title }) => {
   const onPressIn = useCallback(() => {
     console.log('onPressIn');
   }, []);
@@ -39,8 +43,10 @@ const EventButton: FC = () => {
       onPress={onPress}
       delayLongPress={3000}
       onLongPress={onLongPress}
+      pressRetentionOffset={pressRetentionOffset}
+      hitSlop={50}
     >
-      <Text>Press</Text>
+      <Text style={styles.text}>{title}</Text>
     </Pressable>
   );
 };
