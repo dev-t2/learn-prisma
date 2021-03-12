@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
 const App: FC = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Inline Styling - Text</Text>
+      <Text style={[styles.text, { color: 'green' }]}>Inline Styling - Text</Text>
     </View>
   );
 };
