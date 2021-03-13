@@ -1,12 +1,15 @@
 import React, { FC, memo } from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 
-import { textStyles, viewStyles } from './src/styles';
+import { viewStyles } from './src/styles';
+import { Contents, Footer, Header } from './src/components';
 
 const App: FC = () => {
   return (
     <View style={viewStyles.container}>
-      <Text style={textStyles.text}>Inline Styling - Text</Text>
+      <Header />
+      <Contents />
+      <Footer />
     </View>
   );
 };
