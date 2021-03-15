@@ -6,7 +6,7 @@ interface IStyledPressable {
 }
 
 const StyledPressable = styled.Pressable<IStyledPressable>`
-  background-color: ${({ title }) => (title === 'React Native' ? '#3498db' : '#9b59b6')};
+  background-color: ${({ theme, title }) => (title === 'React Native' ? theme.blue : theme.purple)};
   border-radius: 15px;
   padding: 15px 40px;
   margin: 10px 0;
@@ -15,15 +15,14 @@ const StyledPressable = styled.Pressable<IStyledPressable>`
 
 const StyledText = styled.Text`
   font-size: 20px;
-  font-weight: 600;
-  color: #fff;
+  color: ${({ theme }) => theme.text};
 `;
 
-interface IStyledButton {
+interface IButton {
   title: string;
 }
 
-const StyledButton: FC<IStyledButton> = ({ title }) => {
+const Button: FC<IButton> = ({ title }) => {
   return (
     <StyledPressable title={title}>
       <StyledText>{title}</StyledText>
@@ -31,4 +30,4 @@ const StyledButton: FC<IStyledButton> = ({ title }) => {
   );
 };
 
-export default memo(StyledButton);
+export default memo(Button);
