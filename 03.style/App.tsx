@@ -1,7 +1,7 @@
 import React, { FC, memo } from 'react';
 import styled from 'styled-components/native';
 
-import Button from './src/components/Button';
+import { StyledButton } from './src/components';
 
 const StyledView = styled.View`
   flex: 1;
@@ -13,7 +13,7 @@ const StyledView = styled.View`
 const App: FC = () => {
   return (
     <StyledView>
-      <Button title="React Native" />
+      <StyledButton title="React Native" />
     </StyledView>
   );
 };

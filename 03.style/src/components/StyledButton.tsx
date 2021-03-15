@@ -19,7 +19,7 @@ interface IButton {
   title: string;
 }
 
-const Button: FC<IButton> = ({ title }) => {
+const StyledButton: FC<IButton> = ({ title }) => {
   return (
     <StyledPressable>
       <StyledText>{title}</StyledText>
@@ -27,4 +27,4 @@ const Button: FC<IButton> = ({ title }) => {
   );
 };
 
-export default memo(Button);
+export default memo(StyledButton);
