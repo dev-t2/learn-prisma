@@ -14,6 +14,7 @@ const App: FC = () => {
   return (
     <StyledView>
       <StyledButton title="React Native" />
+      <StyledButton title="Styled Components" />
     </StyledView>
   );
 };

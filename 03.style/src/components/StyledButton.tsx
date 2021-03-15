@@ -1,8 +1,12 @@
 import React, { FC, memo } from 'react';
 import styled from 'styled-components/native';
 
-const StyledPressable = styled.Pressable`
-  background-color: #9b59b6;
+interface IStyledPressable {
+  title: string;
+}
+
+const StyledPressable = styled.Pressable<IStyledPressable>`
+  background-color: ${({ title }) => (title === 'React Native' ? '#3498db' : '#9b59b6')};
   border-radius: 15px;
   padding: 15px 40px;
   margin: 10px 0;
@@ -15,13 +19,13 @@ const StyledText = styled.Text`
   color: #fff;
 `;
 
-interface IButton {
+interface IStyledButton {
   title: string;
 }
 
-const StyledButton: FC<IButton> = ({ title }) => {
+const StyledButton: FC<IStyledButton> = ({ title }) => {
   return (
-    <StyledPressable>
+    <StyledPressable title={title}>
       <StyledText>{title}</StyledText>
     </StyledPressable>
   );
