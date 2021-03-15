@@ -1,7 +1,7 @@
 import React, { FC, memo } from 'react';
 import styled from 'styled-components/native';
 
-import { StyledButton } from './src/components';
+import { StyledButton, TextInput } from './src/components';
 
 const StyledView = styled.View`
   flex: 1;
@@ -15,6 +15,9 @@ const App: FC = () => {
     <StyledView>
       <StyledButton title="React Native" />
       <StyledButton title="Styled Components" />
+
+      <TextInput borderColor="#3497db" />
+      <TextInput borderColor="#9b59b6" />
     </StyledView>
   );
 };
