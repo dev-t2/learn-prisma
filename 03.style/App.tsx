@@ -1,14 +1,20 @@
 import React, { FC, memo } from 'react';
-import { View } from 'react-native';
+import styled from 'styled-components/native';
 
-import { viewStyles } from './src/styles';
-import ShadowBox from './src/components/ShadowBox';
+import Button from './src/components/Button';
+
+const StyledView = styled.View`
+  flex: 1;
+  background-color: #fff;
+  align-items: center;
+  justify-content: center;
+`;
 
 const App: FC = () => {
   return (
-    <View style={viewStyles.container}>
-      <ShadowBox />
-    </View>
+    <StyledView>
+      <Button title="React Native" />
+    </StyledView>
   );
 };
 
