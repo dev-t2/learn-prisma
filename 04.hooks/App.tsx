@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import styled from 'styled-components/native';
-import { Form } from './src/components';
+import Length from './src/components/Length';
 
 const StyledView = styled.View({
   flex: 1,
@@ -12,7 +12,7 @@ const StyledView = styled.View({
 const App = () => {
   return (
     <StyledView>
-      <Form />
+      <Length />
     </StyledView>
   );
 };
