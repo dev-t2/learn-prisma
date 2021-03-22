@@ -1,5 +1,7 @@
 import React, { memo, useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components/native';
+
+import { GetLengthType } from '../index';
 import Button from './Button';
 
 const StyledText = styled.Text({
@@ -10,9 +12,7 @@ const LIST = ['TypeScript', 'Expo', 'Expo', 'React Native'];
 
 let index = 0;
 
-type IGetLength = (text: string) => number;
-
-const getLength: IGetLength = text => {
+const getLength: GetLengthType = text => {
   console.log(`Target Text: ${text}`);
 
   return text.length;

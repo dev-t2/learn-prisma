@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import styled from 'styled-components/native';
-import Length from './src/components/Length';
+
+import { Dog } from './src/components';
 
 const StyledView = styled.View({
   flex: 1,
@@ -12,7 +13,7 @@ const StyledView = styled.View({
 const App = () => {
   return (
     <StyledView>
-      <Length />
+      <Dog />
     </StyledView>
   );
 };
