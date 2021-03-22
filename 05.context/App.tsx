@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
-import { Text } from 'react-native';
 import styled from 'styled-components/native';
+
+import { User } from './src/components';
 
 const StyledView = styled.View({
   flex: 1,
@@ -12,7 +13,7 @@ const StyledView = styled.View({
 const App = () => {
   return (
     <StyledView>
-      <Text>Open up App.tsx to start working on your app!</Text>
+      <User />
     </StyledView>
   );
 };

@@ -24,5 +24,6 @@ module.exports = {
     'import/prefer-default-export': 0,
     'import/no-unresolved': 0,
     'import/extensions': 0,
+    'react/jsx-one-expression-per-line': 0,
   },
 };
