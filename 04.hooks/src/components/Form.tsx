@@ -1,4 +1,5 @@
-import React, { memo, useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { TextInput } from 'react-native';
 import styled from 'styled-components/native';
 
 const StyledText = styled.Text({
@@ -21,14 +22,23 @@ const Form = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
+  const refName = useRef<TextInput>(null);
+  const refEmail = useRef<TextInput>(null);
+
   useEffect(() => {
     console.log('===== Form Component Mount =====');
+
+    refName.current?.focus();
 
     return () => console.log('===== Form Component Unmount =====');
   }, []);
 
   const onChangeName = useCallback(text => {
     setName(text);
+  }, []);
+
+  const onSubmitName = useCallback(() => {
+    refEmail.current?.focus();
   }, []);
 
   const onChangeEmail = useCallback(text => {
@@ -41,12 +51,17 @@ const Form = () => {
       <StyledText>Email: {email}</StyledText>
 
       <StyledTextInput
+        ref={refName}
         value={name}
+        returnKeyType="next"
         placeholder="name"
         onChangeText={onChangeName}
+        onSubmitEditing={onSubmitName}
       />
       <StyledTextInput
+        ref={refEmail}
         value={email}
+        returnKeyType="done"
         placeholder="email"
         onChangeText={onChangeEmail}
       />
