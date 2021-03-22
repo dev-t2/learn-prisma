@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import styled from 'styled-components/native';
-import Counter from './src/components/Counter';
+import { Form } from './src/components';
 
 const StyledView = styled.View({
   flex: 1,
@@ -12,7 +12,7 @@ const StyledView = styled.View({
 const App = () => {
   return (
     <StyledView>
-      <Counter />
+      <Form />
     </StyledView>
   );
 };
