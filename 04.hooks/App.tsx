@@ -1,12 +1,20 @@
-import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { Text, View } from 'react-native';
+import React, { memo } from 'react';
+import styled from 'styled-components/native';
+import Counter from './src/components/Counter';
 
-export default function App() {
+const StyledView = styled.View({
+  flex: 1,
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: '#fff',
+});
+
+const App = () => {
   return (
-    <View>
-      <StatusBar />
-      <Text>Open up App.tsx to start working on your app!</Text>
-    </View>
+    <StyledView>
+      <Counter />
+    </StyledView>
   );
-}
+};
+
+export default memo(App);
