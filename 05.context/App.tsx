@@ -1,10 +1,20 @@
-import React from 'react';
-import { Text, View } from 'react-native';
+import React, { memo } from 'react';
+import { Text } from 'react-native';
+import styled from 'styled-components/native';
 
-export default function App() {
+const StyledView = styled.View({
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+  background: '#fff',
+});
+
+const App = () => {
   return (
-    <View>
+    <StyledView>
       <Text>Open up App.tsx to start working on your app!</Text>
-    </View>
+    </StyledView>
   );
-}
+};
+
+export default memo(App);
