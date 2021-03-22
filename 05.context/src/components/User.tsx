@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import styled from 'styled-components/native';
 
-import { UserContext } from '../contexts';
+import { UserConsumer } from '../contexts/User';
 
 const StyledText = styled.Text({
   fontSize: 24,
@@ -10,9 +10,9 @@ const StyledText = styled.Text({
 
 const User = () => {
   return (
-    <UserContext.Consumer>
-      {value => <StyledText>Name: {value.name}</StyledText>}
-    </UserContext.Consumer>
+    <UserConsumer>
+      {({ user }) => <StyledText>Name: {user.name}</StyledText>}
+    </UserConsumer>
   );
 };
 

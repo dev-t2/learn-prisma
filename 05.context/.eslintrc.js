@@ -25,5 +25,9 @@ module.exports = {
     'import/no-unresolved': 0,
     'import/extensions': 0,
     'react/jsx-one-expression-per-line': 0,
+    'react/prop-types': 0,
+    'no-undef': 0,
+    'no-unused-vars': 0,
+    'object-curly-newline': 0,
   },
 };
