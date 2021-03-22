@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import styled from 'styled-components/native';
 
-import { User } from './src/components';
+import { Input, User } from './src/components';
 import { UserProvider } from './src/contexts/User';
 
 const StyledView = styled.View({
@@ -16,6 +16,7 @@ const App = () => {
     <UserProvider>
       <StyledView>
         <User />
+        <Input />
       </StyledView>
     </UserProvider>
   );

@@ -1,7 +1,7 @@
-import React, { memo } from 'react';
+import React, { memo, useContext } from 'react';
 import styled from 'styled-components/native';
 
-import { UserConsumer } from '../contexts/User';
+import UserContext from '../contexts/User';
 
 const StyledText = styled.Text({
   fontSize: 24,
@@ -9,11 +9,9 @@ const StyledText = styled.Text({
 });
 
 const User = () => {
-  return (
-    <UserConsumer>
-      {({ user }) => <StyledText>Name: {user.name}</StyledText>}
-    </UserConsumer>
-  );
+  const { user } = useContext(UserContext);
+
+  return <StyledText>Name: {user.name}</StyledText>;
 };
 
 export default memo(User);
