@@ -1,6 +1,9 @@
-import React, { memo, useCallback } from 'react';
+import React, { FC, memo, useCallback } from 'react';
 import { Pressable, Text } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import styled from 'styled-components/native';
+
+import { StackParamList } from '../navigations/Stack';
 
 const StyledView = styled.View({
   flex: 1,
@@ -19,12 +22,18 @@ const items = [
   { id: 3, name: 'React Navigation' },
 ];
 
-const List = () => {
+interface IList {
+  navigation: StackNavigationProp<StackParamList, 'List'>;
+}
+
+const List: FC<IList> = ({ navigation }) => {
   const onPress = useCallback(
     (item: { id: number; name: string }) => () => {
-      console.log(item);
+      const { id, name } = item;
+
+      navigation.navigate('Item', { id, name });
     },
-    []
+    [navigation]
   );
 
   return (
