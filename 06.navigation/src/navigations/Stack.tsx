@@ -11,9 +11,11 @@ export type StackParamList = {
 
 const Stack = createStackNavigator<StackParamList>();
 
+const screenOptions = { cardStyle: { backgroundColor: '#fff' } };
+
 const StackNavigation = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={screenOptions}>
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Item" component={Item} />
       <Stack.Screen name="List" component={List} />
