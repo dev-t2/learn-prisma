@@ -1,15 +1,14 @@
 import React, { memo } from 'react';
-import styled from 'styled-components/native';
+import { NavigationContainer } from '@react-navigation/native';
 
-const StyledView = styled.View({
-  flex: 1,
-  justifyContent: 'center',
-  alignItems: 'center',
-  background: '#fff',
-});
+import StackNavigation from './src/navigations/Stack';
 
 const App = () => {
-  return <StyledView />;
+  return (
+    <NavigationContainer>
+      <StackNavigation />
+    </NavigationContainer>
+  );
 };
 
 export default memo(App);

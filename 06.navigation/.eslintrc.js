@@ -20,5 +20,11 @@ module.exports = {
     'arrow-body-style': 0,
     'react/jsx-filename-extension': 0,
     'arrow-parens': 0,
+    'linebreak-style': 0,
+    'no-console': 0,
+    'comma-dangle': 0,
+    'import/prefer-default-export': 0,
+    'import/no-unresolved': 0,
+    'import/extensions': 0,
   },
 };
