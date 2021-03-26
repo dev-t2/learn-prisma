@@ -3,6 +3,7 @@ import {
   createStackNavigator,
   StackNavigationOptions,
 } from '@react-navigation/stack';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { Home, Item, List } from '../screens';
 
@@ -14,6 +15,8 @@ export type StackParamList = {
 
 const Stack = createStackNavigator<StackParamList>();
 
+const style = { color: '#fff', fontSize: 24 };
+
 const screenOptions: StackNavigationOptions = {
   cardStyle: { backgroundColor: '#fff' },
   headerStyle: {
@@ -22,8 +25,8 @@ const screenOptions: StackNavigationOptions = {
     borderBottomWidth: 4,
     borderBottomColor: '#34495e',
   },
-  headerTitleStyle: { color: '#fff', fontSize: 24 },
   headerTitleAlign: 'center',
+  headerTitle: () => <MaterialCommunityIcons name="react" style={style} />,
 };
 
 const StackNavigation = () => {
