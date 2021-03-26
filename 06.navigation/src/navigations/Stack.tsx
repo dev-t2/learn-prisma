@@ -29,16 +29,18 @@ const screenOptions: StackNavigationOptions = {
   headerTitle: () => <MaterialCommunityIcons name="react" style={style} />,
 };
 
+const options = {
+  headerTitle: 'List Screen',
+  headerBackTitleVisible: true,
+  headerBackTitle: 'Prev',
+};
+
 const StackNavigation = () => {
   return (
     <Stack.Navigator screenOptions={screenOptions}>
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Detail" component={Item} />
-      <Stack.Screen
-        name="List"
-        component={List}
-        options={{ headerTitle: 'List Screen' }}
-      />
+      <Stack.Screen name="List" component={List} options={options} />
     </Stack.Navigator>
   );
 };
