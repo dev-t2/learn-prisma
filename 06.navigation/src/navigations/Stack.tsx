@@ -1,5 +1,8 @@
 import React, { memo } from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import {
+  createStackNavigator,
+  StackNavigationOptions,
+} from '@react-navigation/stack';
 
 import { Home, Item, List } from '../screens';
 
@@ -11,7 +14,17 @@ export type StackParamList = {
 
 const Stack = createStackNavigator<StackParamList>();
 
-const screenOptions = { cardStyle: { backgroundColor: '#fff' } };
+const screenOptions: StackNavigationOptions = {
+  cardStyle: { backgroundColor: '#fff' },
+  headerStyle: {
+    height: 110,
+    backgroundColor: '#95a5a6',
+    borderBottomWidth: 4,
+    borderBottomColor: '#34495e',
+  },
+  headerTitleStyle: { color: '#fff', fontSize: 24 },
+  headerTitleAlign: 'center',
+};
 
 const StackNavigation = () => {
   return (
