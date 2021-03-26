@@ -31,7 +31,7 @@ const List: FC<IList> = ({ navigation }) => {
     (item: { id: number; name: string }) => () => {
       const { id, name } = item;
 
-      navigation.navigate('Item', { id, name });
+      navigation.navigate('Detail', { id, name });
     },
     [navigation]
   );

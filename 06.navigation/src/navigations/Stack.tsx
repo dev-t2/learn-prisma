@@ -5,7 +5,7 @@ import { Home, Item, List } from '../screens';
 
 export type StackParamList = {
   Home: undefined;
-  Item: { id: number; name: string };
+  Detail: { id: number; name: string };
   List: undefined;
 };
 
@@ -17,8 +17,12 @@ const StackNavigation = () => {
   return (
     <Stack.Navigator screenOptions={screenOptions}>
       <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Item" component={Item} />
-      <Stack.Screen name="List" component={List} />
+      <Stack.Screen name="Detail" component={Item} />
+      <Stack.Screen
+        name="List"
+        component={List}
+        options={{ headerTitle: 'List Screen' }}
+      />
     </Stack.Navigator>
   );
 };
