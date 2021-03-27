@@ -5,10 +5,12 @@ const StyledView = styled.View({
   flex: 1,
   justifyContent: 'center',
   alignItems: 'center',
+  backgroundColor: '#54b7f9',
 });
 
 const StyledText = styled.Text({
   fontSize: 30,
+  color: '#fff',
 });
 
 export const Settings = () => {
