@@ -56,7 +56,11 @@ const options = {
 const StackNavigation = () => {
   return (
     <Stack.Navigator screenOptions={screenOptions}>
-      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen name="Detail" component={Item} />
       <Stack.Screen name="List" component={List} options={options} />
     </Stack.Navigator>
