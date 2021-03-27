@@ -29,5 +29,6 @@ module.exports = {
     'react/prop-types': 0,
     'react/jsx-one-expression-per-line': 0,
     'import/no-extraneous-dependencies': 0,
+    'no-shadow': 0,
   },
 };

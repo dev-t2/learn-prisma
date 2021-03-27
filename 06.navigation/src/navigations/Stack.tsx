@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { Platform } from 'react-native';
 import {
   createStackNavigator,
   StackNavigationOptions,
@@ -33,6 +34,23 @@ const options = {
   headerTitle: 'List Screen',
   headerBackTitleVisible: true,
   headerBackTitle: 'Prev',
+  headerTitleStyle: { fontSize: 24 },
+  headerTintColor: '#e74c3c',
+  headerBackImage: ({ tintColor }: { tintColor: string }) => {
+    const style = {
+      marginRight: 5,
+      marginLeft: Platform.OS === 'ios' ? 11 : 0,
+    };
+
+    return (
+      <MaterialCommunityIcons
+        name="keyboard-backspace"
+        size={30}
+        color={tintColor}
+        style={style}
+      />
+    );
+  },
 };
 
 const StackNavigation = () => {
