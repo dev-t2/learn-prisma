@@ -18,11 +18,14 @@ const TabIcon = ({ name, size, color }: ITabIcon) => {
 
 const TabNavigation = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      tabBarOptions={{ labelPosition: 'beside-icon', showLabel: false }}
+    >
       <Tab.Screen
         name="Mail"
         component={Mail}
         options={{
+          tabBarLabel: 'Inbox',
           tabBarIcon: props => TabIcon({ ...props, name: 'email' }),
         }}
       />
