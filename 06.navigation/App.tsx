@@ -1,12 +1,12 @@
 import React, { memo } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
-import StackNavigation from './src/navigations/Stack';
+import TabNavigation from './src/navigations/Tab';
 
 const App = () => {
   return (
     <NavigationContainer>
-      <StackNavigation />
+      <TabNavigation />
     </NavigationContainer>
   );
 };
