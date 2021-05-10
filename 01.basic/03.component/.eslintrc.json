@@ -19,6 +19,10 @@
     "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
     "no-use-before-define": "off",
     "arrow-parens": "off",
-    "react/style-prop-object": "off"
+    "react/style-prop-object": "off",
+    "linebreak-style": "off",
+    "implicit-arrow-linebreak": "off",
+    "import/no-unresolved": "off",
+    "import/extensions": "off"
   }
 }
