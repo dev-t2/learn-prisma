@@ -1,21 +1,16 @@
 import React, { memo } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+import { ArrowComponent, ClassComponent } from './src/screens';
 
 const App = () => (
-  <View style={styles.container}>
-    <Text>Open up App.tsx to start working on your app!</Text>
+  <SafeAreaView>
     <StatusBar style="auto" />
-  </View>
+
+    <ClassComponent />
+    <ArrowComponent />
+  </SafeAreaView>
 );
 
 export default memo(App);

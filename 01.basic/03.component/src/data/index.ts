@@ -1,4 +1,4 @@
-export * from './createRandomPerson';
+export { default as createRandomPerson } from './createRandomPerson';
 export * from './faker';
-export * from './IPerson';
+export { default as IPerson } from './IPerson';
 export * from './util';
