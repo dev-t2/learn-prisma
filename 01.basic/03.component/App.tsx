@@ -1,20 +1,24 @@
 import React, { memo } from 'react';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
-import { ArrowComponent, ClassComponent, Person } from './src/screens';
+import { Person } from './src/screens';
 import * as D from './src/data';
 
-const person = D.createRandomPerson();
+const people = D.makeArray(100).map(D.createRandomPerson);
 
-const App = () => (
-  <SafeAreaView>
-    <StatusBar style="auto" />
+const App = () => {
+  const children = people.map(person => (
+    <Person key={person.id} person={person} />
+  ));
 
-    <ClassComponent />
-    <ArrowComponent />
-    <Person person={person} />
-  </SafeAreaView>
-);
+  return (
+    <SafeAreaView>
+      <StatusBar style="auto" />
+
+      <ScrollView>{children}</ScrollView>
+    </SafeAreaView>
+  );
+};
 
 export default memo(App);
