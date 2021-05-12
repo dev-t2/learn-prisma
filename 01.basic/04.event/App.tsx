@@ -2,6 +2,7 @@ import React, { memo, useCallback } from 'react';
 import {
   Alert,
   Button,
+  Pressable,
   SafeAreaView,
   Text,
   TouchableHighlight,
@@ -24,6 +25,10 @@ const App = () => {
       <TouchableHighlight onPress={onPress}>
         <Text>TouchableHighlight</Text>
       </TouchableHighlight>
+
+      <Pressable onPress={onPress}>
+        <Text>Pressable</Text>
+      </Pressable>
     </SafeAreaView>
   );
 };
