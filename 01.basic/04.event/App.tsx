@@ -1,14 +1,18 @@
-import React, { memo } from 'react';
-import { Text, View } from 'react-native';
+import React, { memo, useCallback } from 'react';
+import { Alert, Button, SafeAreaView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
 const App = () => {
+  const onPress = useCallback(() => {
+    Alert.alert('Home Pressed', 'message');
+  }, []);
+
   return (
-    <View>
+    <SafeAreaView>
       <StatusBar />
 
-      <Text>Open up App.tsx to start working on your app!</Text>
-    </View>
+      <Button title="Home" onPress={onPress} />
+    </SafeAreaView>
   );
 };
 
