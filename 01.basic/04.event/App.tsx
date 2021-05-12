@@ -5,6 +5,7 @@ import {
   Pressable,
   SafeAreaView,
   Text,
+  TextInput,
   TouchableHighlight,
   TouchableOpacity,
 } from 'react-native';
@@ -12,6 +13,18 @@ import {
 const App = () => {
   const onPress = useCallback(() => {
     Alert.alert('Home Pressed', 'message');
+  }, []);
+
+  const onFocus = useCallback(() => {
+    console.log('onFocus');
+  }, []);
+
+  const onBlur = useCallback(() => {
+    console.log('onBlur');
+  }, []);
+
+  const onEndEditing = useCallback(() => {
+    console.log('onEndEditing');
   }, []);
 
   return (
@@ -29,6 +42,14 @@ const App = () => {
       <Pressable onPress={onPress}>
         <Text>Pressable</Text>
       </Pressable>
+
+      <TextInput
+        placeholder="Enter your name"
+        onChangeText={console.log}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        onEndEditing={onEndEditing}
+      />
     </SafeAreaView>
   );
 };

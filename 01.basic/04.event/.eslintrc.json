@@ -19,6 +19,7 @@
     "arrow-parens": "off",
     "no-use-before-define": "off",
     "arrow-body-style": "off",
-    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }]
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
+    "no-console": "off"
   }
 }
