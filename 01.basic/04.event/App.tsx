@@ -1,6 +1,12 @@
 import React, { memo, useCallback } from 'react';
-import { Alert, Button, SafeAreaView } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
+import {
+  Alert,
+  Button,
+  SafeAreaView,
+  Text,
+  TouchableHighlight,
+  TouchableOpacity,
+} from 'react-native';
 
 const App = () => {
   const onPress = useCallback(() => {
@@ -9,9 +15,15 @@ const App = () => {
 
   return (
     <SafeAreaView>
-      <StatusBar />
-
       <Button title="Home" onPress={onPress} />
+
+      <TouchableOpacity onPress={onPress}>
+        <Text>TouchableOpacity</Text>
+      </TouchableOpacity>
+
+      <TouchableHighlight onPress={onPress}>
+        <Text>TouchableHighlight</Text>
+      </TouchableHighlight>
     </SafeAreaView>
   );
 };
