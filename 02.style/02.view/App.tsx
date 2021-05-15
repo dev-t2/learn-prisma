@@ -9,6 +9,7 @@ const StyledSafeAreaView = styled.SafeAreaView({
   backgroundColor: Colors.blue900,
   flex: 1,
   margin: 10,
+  paddingLeft: Platform.select({ ios: 0, android: 20 }),
 });
 
 const StyledText = styled.Text({
@@ -20,6 +21,7 @@ const StyledText = styled.Text({
 const StyledView = styled.View({
   height: 100,
   backgroundColor: Colors.lime500,
+  marginLeft: Platform.select({ ios: 20, android: 0 }),
   marginBottom: 10,
   borderWidth: 10,
   borderColor: Colors.black,
