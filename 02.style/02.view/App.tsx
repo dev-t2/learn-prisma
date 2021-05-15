@@ -1,20 +1,21 @@
 import React, { memo } from 'react';
-import { Platform, StatusBar, useWindowDimensions } from 'react-native';
+import { Dimensions, Platform, StatusBar } from 'react-native';
 import { Colors } from 'react-native-paper';
 import styled from 'styled-components/native';
 
+const { width, height } = Dimensions.get('window');
+
 const StyledSafeAreaView = styled.SafeAreaView({
-  backgroundColor: Colors.blue200,
+  backgroundColor: Colors.blue900,
+  height,
 });
 
 const StyledText = styled.Text({
   fontSize: 24,
-  color: Colors.blue900,
+  color: '#ffffff',
 });
 
 const App = () => {
-  const { width, height } = useWindowDimensions();
-
   return (
     <StyledSafeAreaView>
       <StatusBar />
