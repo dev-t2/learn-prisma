@@ -7,7 +7,7 @@ const { width, height } = Dimensions.get('window');
 
 const StyledSafeAreaView = styled.SafeAreaView({
   backgroundColor: Colors.blue900,
-  height,
+  flex: 1,
 });
 
 const StyledText = styled.Text({
