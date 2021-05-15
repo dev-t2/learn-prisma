@@ -8,11 +8,14 @@ const { width, height } = Dimensions.get('window');
 const StyledSafeAreaView = styled.SafeAreaView({
   backgroundColor: Colors.blue900,
   flex: 1,
+  margin: '10%',
 });
 
 const StyledText = styled.Text({
-  fontSize: 24,
+  fontSize: 16,
   color: '#ffffff',
+  marginHorizontal: 8,
+  marginVertical: 4,
 });
 
 const App = () => {
