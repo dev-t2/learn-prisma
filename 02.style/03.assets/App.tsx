@@ -1,17 +1,10 @@
 import React, { memo, useCallback, useState } from 'react';
 import { ImageSourcePropType, StatusBar } from 'react-native';
 import AppLoading from 'expo-app-loading';
-import {
-  useFonts,
-  DancingScript_400Regular,
-  DancingScript_500Medium,
-  DancingScript_600SemiBold,
-  DancingScript_700Bold,
-} from '@expo-google-fonts/dancing-script';
 import styled from 'styled-components/native';
 
 import * as D from './src/data';
-import { cacheIcons, cacheImages } from './src/lib';
+import { cacheFonts, cacheImages } from './src/lib';
 
 const StyledSafeAreaView = styled.SafeAreaView({
   flex: 1,
@@ -38,8 +31,7 @@ const StyledRegularText = styled.Text({
   fontSize: 24,
   color: '#ffffff',
   marginBottom: 10,
-  fontWeight: 400,
-  fontFamily: 'DancingScript_400Regular',
+  fontFamily: 'DancingScript-Regular',
 });
 
 const StyledMediumText = styled.Text({
@@ -47,8 +39,7 @@ const StyledMediumText = styled.Text({
   fontSize: 24,
   color: '#ffffff',
   marginBottom: 10,
-  fontWeight: 500,
-  fontFamily: 'DancingScript_500Medium',
+  fontFamily: 'DancingScript-Medium',
 });
 
 const StyledSemiBoldText = styled.Text({
@@ -56,8 +47,7 @@ const StyledSemiBoldText = styled.Text({
   fontSize: 24,
   color: '#ffffff',
   marginBottom: 10,
-  fontWeight: 600,
-  fontFamily: 'DancingScript_600SemiBold',
+  fontFamily: 'DancingScript-SemiBold',
 });
 
 const StyledBoldText = styled.Text({
@@ -65,8 +55,7 @@ const StyledBoldText = styled.Text({
   fontSize: 24,
   color: '#ffffff',
   marginBottom: 10,
-  fontWeight: 600,
-  fontFamily: 'DancingScript_700Bold',
+  fontFamily: 'DancingScript-Bold',
 });
 
 const image: ImageSourcePropType = { uri: D.randomAvatarUrl() };
@@ -75,15 +64,15 @@ const text = 'Almost before we knew it, we had left the ground.';
 const App = () => {
   const [isReady, setIsReady] = useState(false);
 
-  const [fontsLoaded] = useFonts({
-    DancingScript_400Regular,
-    DancingScript_500Medium,
-    DancingScript_600SemiBold,
-    DancingScript_700Bold,
-  });
-
   const startAsync = useCallback(async () => {
-    const icons = cacheIcons([]);
+    const icons = cacheFonts([
+      {
+        'DancingScript-Regular': require('./assets/fonts/DancingScript-Regular.ttf'),
+        'DancingScript-Medium': require('./assets/fonts/DancingScript-Medium.ttf'),
+        'DancingScript-SemiBold': require('./assets/fonts/DancingScript-SemiBold.ttf'),
+        'DancingScript-Bold': require('./assets/fonts/DancingScript-Bold.ttf'),
+      },
+    ]);
     const images = cacheImages([require('./assets/images/bg.jpg')]);
 
     await Promise.all([...icons, ...images]);
@@ -93,7 +82,7 @@ const App = () => {
     setIsReady(true);
   }, []);
 
-  return isReady && fontsLoaded ? (
+  return isReady ? (
     <StyledSafeAreaView>
       <StatusBar />
 

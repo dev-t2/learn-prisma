@@ -2,7 +2,7 @@ import { Image } from 'react-native';
 import * as Font from 'expo-font';
 import { Asset } from 'expo-asset';
 
-export const cacheIcons = (fonts: any) => {
+export const cacheFonts = (fonts: any) => {
   return fonts.map((font: any) => Font.loadAsync(font));
 };
 
