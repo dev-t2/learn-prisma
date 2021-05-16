@@ -23,6 +23,10 @@
     "import/no-extraneous-dependencies": "off",
     "global-require": "off",
     "import/no-unresolved": "off",
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "linebreak-style": "off",
+    "no-console": "off",
+    "camelcase": "off"
   }
 }
