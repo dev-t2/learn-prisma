@@ -1,6 +1,8 @@
 import React, { memo, useCallback, useState } from 'react';
-import { ImageSourcePropType, StatusBar } from 'react-native';
+import { Alert, ImageSourcePropType, StatusBar } from 'react-native';
+import { Colors } from 'react-native-paper';
 import AppLoading from 'expo-app-loading';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import styled from 'styled-components/native';
 
 import * as D from './src/data';
@@ -65,21 +67,26 @@ const App = () => {
   const [isReady, setIsReady] = useState(false);
 
   const startAsync = useCallback(async () => {
-    const icons = cacheFonts([
+    const fonts = cacheFonts([
       {
         'DancingScript-Regular': require('./assets/fonts/DancingScript-Regular.ttf'),
         'DancingScript-Medium': require('./assets/fonts/DancingScript-Medium.ttf'),
         'DancingScript-SemiBold': require('./assets/fonts/DancingScript-SemiBold.ttf'),
         'DancingScript-Bold': require('./assets/fonts/DancingScript-Bold.ttf'),
       },
+      MaterialCommunityIcons.font,
     ]);
     const images = cacheImages([require('./assets/images/bg.jpg')]);
 
-    await Promise.all([...icons, ...images]);
+    await Promise.all([...fonts, ...images]);
   }, []);
 
   const onFinish = useCallback(() => {
     setIsReady(true);
+  }, []);
+
+  const onPress = useCallback(() => {
+    Alert.alert('Icon Pressed');
   }, []);
 
   return isReady ? (
@@ -95,6 +102,13 @@ const App = () => {
           <StyledSemiBoldText>{text} [semi-bold]</StyledSemiBoldText>
           <StyledBoldText>{text} [bold]</StyledBoldText>
         </StyledView>
+
+        <MaterialCommunityIcons
+          name="home"
+          size={50}
+          color={Colors.lightBlue500}
+          onPress={onPress}
+        />
       </StyledImageBackground>
     </StyledSafeAreaView>
   ) : (
