@@ -12,9 +12,9 @@ const StyledText = styled.Text({
   color: Colors.white,
 });
 
-const TITLE = 'CopyMe';
+const TITLE = 'BottomBar';
 
-const CopyMe = () => {
+const BottomBar = () => {
   return (
     <StyledView>
       <StyledText>{TITLE}</StyledText>
@@ -22,4 +22,4 @@ const CopyMe = () => {
   );
 };
 
-export default memo(CopyMe);
+export default memo(BottomBar);

@@ -16,23 +16,26 @@ const StyledText = styled.Text({
 const StyledView1 = styled.View({
   padding: 5,
   backgroundColor: Colors.red700,
+  marginTop: 5,
 });
 
 const StyledView2 = styled.View({
   padding: 5,
   backgroundColor: Colors.green700,
   flex: 1,
+  marginTop: 5,
 });
 
 const StyledView3 = styled.View({
   padding: 5,
   backgroundColor: Colors.purple700,
   flex: 2,
+  marginTop: 5,
 });
 
-const TITLE = 'BottomBar';
+const TITLE = 'Content';
 
-const BottomBar = () => {
+const Content = () => {
   return (
     <StyledView>
       <StyledText>{TITLE}</StyledText>
@@ -52,4 +55,4 @@ const BottomBar = () => {
   );
 };
 
-export default memo(BottomBar);
+export default memo(Content);
