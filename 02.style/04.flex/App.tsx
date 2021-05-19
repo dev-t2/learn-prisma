@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { StatusBar } from 'react-native';
 import styled from 'styled-components/native';
 
 import { BottomBar, Content, TopBar } from './src/screens';
@@ -10,6 +11,8 @@ const StyledSafeAreaView = styled.SafeAreaView({
 const App = () => {
   return (
     <StyledSafeAreaView>
+      <StatusBar />
+
       <TopBar />
       <Content />
       <BottomBar />
