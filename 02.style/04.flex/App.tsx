@@ -1,14 +1,19 @@
 import React, { memo } from 'react';
-import { Text, View } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
+import styled from 'styled-components/native';
+
+import { BottomBar, Content, TopBar } from './src/screens';
+
+const StyledSafeAreaView = styled.SafeAreaView({
+  flex: 1,
+});
 
 const App = () => {
   return (
-    <View>
-      <StatusBar />
-
-      <Text>Open up App.tsx to start working on your app!</Text>
-    </View>
+    <StyledSafeAreaView>
+      <TopBar />
+      <Content />
+      <BottomBar />
+    </StyledSafeAreaView>
   );
 };
 
