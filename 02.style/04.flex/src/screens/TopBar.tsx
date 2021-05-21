@@ -10,13 +10,13 @@ const StyledView = styled.View({
   flexDirection: 'row',
   alignItems: 'center',
   padding: 5,
-  backgroundColor: Colors.amber500,
+  backgroundColor: Colors.blue500,
 });
 
 const StyledImage = styled.Image({
-  width: 40,
-  height: 40,
-  borderRadius: 20,
+  width: 50,
+  height: 50,
+  borderRadius: 25,
 });
 
 const StyledCenterView = styled.View({

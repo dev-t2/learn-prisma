@@ -26,8 +26,6 @@ const Content = () => {
     () => ({
       flexDirection: 'row',
       flexWrap: 'wrap',
-      justifyContent: 'center',
-      padding: 5,
     }),
     []
   );
