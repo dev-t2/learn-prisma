@@ -1,56 +1,37 @@
 import React, { memo } from 'react';
-import { Colors } from 'react-native-paper';
 import styled from 'styled-components/native';
 
+import * as D from '../data';
+
 const StyledView = styled.View({
-  padding: 5,
-  backgroundColor: Colors.blue700,
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  overflow: 'hidden',
+  justifyContent: 'center',
   flex: 1,
-});
-
-const StyledText = styled.Text({
-  fontSize: 20,
-  color: Colors.white,
-});
-
-const StyledView1 = styled.View({
   padding: 5,
-  backgroundColor: Colors.red700,
-  marginTop: 5,
 });
 
-const StyledView2 = styled.View({
-  padding: 5,
-  backgroundColor: Colors.green700,
-  flex: 1,
-  marginTop: 5,
+const StyledAvatarContainer = styled.View({
+  padding: 3,
 });
 
-const StyledView3 = styled.View({
-  padding: 5,
-  backgroundColor: Colors.purple700,
-  flex: 2,
-  marginTop: 5,
+const StyledAvatar = styled.Image({
+  width: 50,
+  height: 50,
+  borderRadius: 25,
 });
 
-const TITLE = 'Content';
+const avatars = D.makeArray(200).map(() => D.randomAvatarUrl());
 
 const Content = () => {
   return (
     <StyledView>
-      <StyledText>{TITLE}</StyledText>
-
-      <StyledView1>
-        <StyledText>flex: 0</StyledText>
-      </StyledView1>
-
-      <StyledView2>
-        <StyledText>flex: 1</StyledText>
-      </StyledView2>
-
-      <StyledView3>
-        <StyledText>flex: 2</StyledText>
-      </StyledView3>
+      {avatars.map((avatar, index) => (
+        <StyledAvatarContainer key={index}>
+          <StyledAvatar source={{ uri: avatar }} />
+        </StyledAvatarContainer>
+      ))}
     </StyledView>
   );
 };
