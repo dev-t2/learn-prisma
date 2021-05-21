@@ -1,16 +1,13 @@
-import React, { memo } from 'react';
+import React, { memo, useMemo } from 'react';
+import {
+  ImageSourcePropType,
+  ScrollView,
+  StyleProp,
+  ViewStyle,
+} from 'react-native';
 import styled from 'styled-components/native';
 
 import * as D from '../data';
-
-const StyledView = styled.View({
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  overflow: 'hidden',
-  justifyContent: 'center',
-  flex: 1,
-  padding: 5,
-});
 
 const StyledAvatarContainer = styled.View({
   padding: 3,
@@ -25,14 +22,28 @@ const StyledAvatar = styled.Image({
 const avatars = D.makeArray(200).map(() => D.randomAvatarUrl());
 
 const Content = () => {
+  const contentContainerStyle = useMemo<StyleProp<ViewStyle>>(
+    () => ({
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'center',
+      padding: 5,
+    }),
+    []
+  );
+
   return (
-    <StyledView>
-      {avatars.map((avatar, index) => (
-        <StyledAvatarContainer key={index}>
-          <StyledAvatar source={{ uri: avatar }} />
-        </StyledAvatarContainer>
-      ))}
-    </StyledView>
+    <ScrollView contentContainerStyle={contentContainerStyle}>
+      {avatars.map((avatar, index) => {
+        const source: ImageSourcePropType = { uri: avatar };
+
+        return (
+          <StyledAvatarContainer key={index}>
+            <StyledAvatar source={source} />
+          </StyledAvatarContainer>
+        );
+      })}
+    </ScrollView>
   );
 };
 
