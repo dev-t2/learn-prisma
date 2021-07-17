@@ -3,6 +3,8 @@ import { Button, StyleSheet, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useCallback } from 'react';
 
+import MyButton from './src/components/MyButton';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -14,7 +16,7 @@ const styles = StyleSheet.create({
 
 const App = () => {
   const onPress = useCallback(() => {
-    alert('Click!!');
+    alert('Button Click!!');
   }, []);
 
   return (
@@ -22,6 +24,7 @@ const App = () => {
       <StatusBar style="auto" />
 
       <Button title="Button" onPress={onPress} />
+      <MyButton />
     </View>
   );
 };
