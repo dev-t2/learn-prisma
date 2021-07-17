@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: '#f1c40f',
     padding: 15,
-    margin: 10,
+    margin: 100,
     borderRadius: 10,
   },
   text: {
@@ -39,6 +39,8 @@ const PressEvent = () => {
       onPress={onPress}
       onLongPress={onLongPress}
       delayLongPress={3000}
+      hitSlop={30}
+      pressRetentionOffset={70}
     >
       <Text style={styles.text}>Press Event</Text>
     </Pressable>
