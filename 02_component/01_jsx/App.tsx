@@ -21,7 +21,12 @@ const App = () => {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <Text style={styles.text}>{name}</Text>
+      <Text style={styles.text}>
+        {name === 'React Native' ? name : 'React'}
+      </Text>
+
+      {name === 'React Native' && <Text style={styles.text}>{name}</Text>}
+      {name !== 'React Native' && <Text style={styles.text}>React</Text>}
     </View>
   );
 };
