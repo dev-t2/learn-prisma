@@ -9,13 +9,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+
+  text: {
+    fontSize: 30,
+  },
 });
 
 const App = () => {
+  const name = 'React Native';
+
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <Text>Open up App.tsx to start working on your app!</Text>
+      <Text style={styles.text}>{name}</Text>
     </View>
   );
 };
