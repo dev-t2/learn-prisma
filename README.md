@@ -9,4 +9,4 @@
 - ESLint: https://eslint.org/
 - Arrow Parens: https://eslint.org/docs/rules/arrow-parens
 - ESLint Plugin React Hooks: https://www.npmjs.com/package/eslint-plugin-react-hooks
-- Component: https://reactnative.dev/docs/components-and-apis
+- Components: https://reactnative.dev/docs/components-and-apis
