@@ -2,7 +2,7 @@
 
 - Node.js: https://nodejs.org/ko/
 - React Native: https://reactnative.dev/
-  - Setup: https://reactnative.dev/docs/environment-setup
+  - Environment Setup: https://reactnative.dev/docs/environment-setup
 - Expo: https://expo.io/
   - Installation: https://docs.expo.io/get-started/installation/
 - TypeScript: https://typescript-kr.github.io/
