@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import { useCallback } from 'react';
 
 const styles = StyleSheet.create({
   container: {
@@ -12,10 +13,15 @@ const styles = StyleSheet.create({
 });
 
 const App = () => {
+  const onPress = useCallback(() => {
+    alert('Click!!');
+  }, []);
+
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <Text>Open up App.tsx to start working on your app!</Text>
+
+      <Button title="Button" onPress={onPress} />
     </View>
   );
 };
