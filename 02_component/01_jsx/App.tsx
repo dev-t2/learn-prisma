@@ -9,10 +9,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-
-  text: {
-    fontSize: 30,
-  },
 });
 
 const App = () => {
@@ -21,12 +17,12 @@ const App = () => {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <Text style={styles.text}>
+      <Text style={{ fontSize: 30 }}>
         {name === 'React Native' ? name : 'React'}
       </Text>
 
-      {name === 'React Native' && <Text style={styles.text}>{name}</Text>}
-      {name !== 'React Native' && <Text style={styles.text}>React</Text>}
+      {name === 'React Native' && <Text style={{ fontSize: 30 }}>{name}</Text>}
+      {name !== 'React Native' && <Text style={{ fontSize: 30 }}>React</Text>}
     </View>
   );
 };
