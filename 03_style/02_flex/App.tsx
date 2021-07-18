@@ -1,6 +1,8 @@
 import React, { memo } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+
+import { Contents, Footer, Header } from './src/components';
 
 const styles = StyleSheet.create({
   container: {
@@ -15,7 +17,10 @@ const App = () => {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <Text>Open up App.tsx to start working on your app!</Text>
+
+      <Header />
+      <Contents />
+      <Footer />
     </View>
   );
 };
