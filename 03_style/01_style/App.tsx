@@ -9,31 +9,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#fff',
   },
+  text: { padding: 10, fontSize: 25, fontWeight: '600', color: 'black' },
+  error: { padding: 10, fontSize: 25, fontWeight: '600', color: 'red' },
 });
 
 const App = () => {
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#fff',
-      }}
-    >
+    <View style={styles.container}>
       <StatusBar style="auto" />
 
-      <Text
-        style={{ padding: 10, fontSize: 25, fontWeight: '600', color: 'black' }}
-      >
-        Inline Style - Text
-      </Text>
-
-      <Text
-        style={{ padding: 10, fontSize: 25, fontWeight: '600', color: 'red' }}
-      >
-        Inline Style - Error
-      </Text>
+      <Text style={styles.text}>Inline Style - Text</Text>
+      <Text style={styles.error}>Inline Style - Error</Text>
     </View>
   );
 };
