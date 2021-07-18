@@ -1,6 +1,8 @@
 import React, { memo } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+
+import ShadowBox from './src/components/ShadowBox';
 
 const styles = StyleSheet.create({
   container: {
@@ -15,7 +17,8 @@ const App = () => {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <Text>Open up App.tsx to start working on your app!</Text>
+
+      <ShadowBox />
     </View>
   );
 };
