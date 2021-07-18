@@ -8,5 +8,3 @@
 - ESLint: https://eslint.org/
   - React Hooks: https://www.npmjs.com/package/eslint-plugin-react-hooks
 - Flexbox Froggy: https://flexboxfroggy.com/#ko
-- Styled Components: https://styled-components.com/
-  - TypeScript Setup: https://styled-components.com/docs/api#typescript
