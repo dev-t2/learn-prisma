@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   text: { padding: 10, fontSize: 25, fontWeight: '600', color: 'black' },
-  error: { padding: 10, fontSize: 25, fontWeight: '600', color: 'red' },
+  error: { color: 'red' },
 });
 
 const App = () => {
@@ -19,7 +19,8 @@ const App = () => {
       <StatusBar style="auto" />
 
       <Text style={styles.text}>Inline Style - Text</Text>
-      <Text style={styles.error}>Inline Style - Error</Text>
+      <Text style={[styles.text, styles.error]}>Inline Style - Error</Text>
+      <Text style={[styles.text, { color: 'green' }]}>Inline Style - Text</Text>
     </View>
   );
 };
