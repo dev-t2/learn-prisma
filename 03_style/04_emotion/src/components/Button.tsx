@@ -1,13 +1,17 @@
 import styled from '@emotion/native';
 import React, { FC, memo } from 'react';
 
-const Container = styled.Pressable({
-  backgroundColor: '#9b59b6',
+interface IContainer {
+  title: string;
+}
+
+const Container = styled.Pressable<IContainer>(({ title }) => ({
+  backgroundColor: title === 'React Native' ? '#9b59b6' : '#3498db',
   borderRadius: 15,
   paddingVertical: 15,
   paddingHorizontal: 40,
   marginVertical: 10,
-});
+}));
 
 const Title = styled.Text({
   fontSize: 20,
@@ -21,7 +25,7 @@ interface IButton {
 
 const Button: FC<IButton> = ({ title }) => {
   return (
-    <Container>
+    <Container title={title}>
       <Title>{title}</Title>
     </Container>
   );

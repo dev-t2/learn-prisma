@@ -1,7 +1,8 @@
 import React, { memo } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import styled from '@emotion/native';
-import Button from './src/components/Button';
+
+import { Button, Input } from './src/components';
 
 const Container = styled.View({
   flex: 1,
@@ -17,6 +18,9 @@ const App = () => {
 
       <Button title="React Native" />
       <Button title="TypeScript" />
+
+      <Input color="#3498db" />
+      <Input color="#9b59b6" />
     </Container>
   );
 };
