@@ -8,3 +8,5 @@
 - ESLint: https://eslint.org/
   - React Hooks: https://www.npmjs.com/package/eslint-plugin-react-hooks
 - Flexbox Froggy: https://flexboxfroggy.com/#ko
+- Emotion: https://emotion.sh/docs/introduction
+  - Setup: https://emotion.sh/docs/@emotion/native
