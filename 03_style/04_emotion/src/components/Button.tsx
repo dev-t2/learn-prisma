@@ -1,23 +1,23 @@
-import styled from '@emotion/native';
 import React, { FC, memo } from 'react';
+import styled from '@emotion/native';
 
 interface IContainer {
   title: string;
 }
 
-const Container = styled.Pressable<IContainer>(({ title }) => ({
-  backgroundColor: title === 'React Native' ? '#9b59b6' : '#3498db',
+const Container = styled.Pressable<IContainer>(({ theme, title }) => ({
+  backgroundColor: title === 'React Native' ? theme.purple : theme.blue,
   borderRadius: 15,
   paddingVertical: 15,
   paddingHorizontal: 40,
   marginVertical: 10,
 }));
 
-const Title = styled.Text({
+const Title = styled.Text(({ theme }) => ({
   fontSize: 20,
   fontWeight: '600',
-  color: '#fff',
-});
+  color: theme.text,
+}));
 
 interface IButton {
   title: string;

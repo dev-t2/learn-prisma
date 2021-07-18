@@ -1,31 +1,25 @@
-import React, { FC, memo } from 'react';
+import React, { memo } from 'react';
+import { useTheme } from '@emotion/react';
 import styled from '@emotion/native';
 
-interface IStyledInput {
-  color: string;
-}
-
-const StyledInput = styled.TextInput<IStyledInput>(({ color }) => ({
+const StyledInput = styled.TextInput(({ theme }) => ({
   width: 200,
   height: 60,
   margin: 5,
-  padding: 10,
+  paddingHorizontal: 20,
   borderRadius: 10,
   borderWidth: 1,
-  borderColor: color,
+  borderColor: theme.borderColor,
   fontSize: 24,
 }));
 
-interface IInput {
-  color: string;
-}
+const Input = () => {
+  const theme = useTheme();
 
-const Input: FC<IInput> = ({ color }) => {
   return (
     <StyledInput
-      color={color}
       placeholder="Enter a text..."
-      placeholderTextColor={color}
+      placeholderTextColor={theme.borderColor}
     />
   );
 };

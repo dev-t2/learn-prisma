@@ -1,27 +1,40 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback, useState } from 'react';
+import { Switch } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import { ThemeProvider } from '@emotion/react';
 import styled from '@emotion/native';
 
+import { darkTheme, lightTheme } from './src/theme';
 import { Button, Input } from './src/components';
 
-const Container = styled.View({
+const Container = styled.View(({ theme }) => ({
   flex: 1,
-  backgroundColor: '#fff',
+  backgroundColor: theme.backgroudColor,
   alignItems: 'center',
   justifyContent: 'center',
-});
+}));
 
 const App = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const onValueChange = useCallback(() => {
+    setIsDarkMode(prev => !prev);
+  }, []);
+
   return (
-    <Container>
-      <StatusBar style="auto" />
+    <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+      <Container>
+        <StatusBar style="auto" />
 
-      <Button title="React Native" />
-      <Button title="TypeScript" />
+        <Switch value={isDarkMode} onValueChange={onValueChange} />
 
-      <Input color="#3498db" />
-      <Input color="#9b59b6" />
-    </Container>
+        <Button title="React Native" />
+        <Button title="TypeScript" />
+
+        <Input />
+        <Input />
+      </Container>
+    </ThemeProvider>
   );
 };
 
