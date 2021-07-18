@@ -11,3 +11,5 @@
 - Arrow Parens: https://eslint.org/docs/rules/arrow-parens
 - Components: https://reactnative.dev/docs/components-and-apis
 - Flexbox Froggy: https://flexboxfroggy.com/#ko
+- Styled Components: https://styled-components.com/
+  - TypeScript Setup: https://styled-components.com/docs/api#typescript
