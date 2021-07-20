@@ -1,4 +1,5 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback, useState } from 'react';
+import { Button } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import styled from '@emotion/native';
 
@@ -12,11 +13,19 @@ const Container = styled.View({
 });
 
 const App = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  const onVisible = useCallback(() => {
+    setIsVisible(prevIsVisible => !prevIsVisible);
+  }, []);
+
   return (
     <Container>
       <StatusBar style="auto" />
 
-      <Form />
+      <Button title={isVisible ? 'Hide' : 'Show'} onPress={onVisible} />
+
+      {isVisible && <Form />}
     </Container>
   );
 };

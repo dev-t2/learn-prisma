@@ -20,7 +20,13 @@ const Form = () => {
   const [email, setEmail] = useState('');
 
   useEffect(() => {
+    console.log('\n==== Form Component Mount ====\n');
+
     console.log({ name, email });
+
+    return () => {
+      console.log('\n==== Form Component Unmount ====\n');
+    };
   }, [name, email]);
 
   const onChangeName = useCallback(text => {
