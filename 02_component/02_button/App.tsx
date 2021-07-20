@@ -1,7 +1,6 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import { Button, StyleSheet, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { useCallback } from 'react';
 
 import MyButton from './src/components/MyButton';
 

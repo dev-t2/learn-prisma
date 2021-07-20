@@ -18,6 +18,12 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
-    "requireForBlockBody": true
+    "arrow-parens": "off",
+    "no-use-before-define": "off",
+    "no-alert": "off",
+    "import/no-unresolved": "off",
+    "import/extensions": "off",
+    "react/jsx-filename-extension": "off",
+    "react/style-prop-object": "off"
   }
 }
