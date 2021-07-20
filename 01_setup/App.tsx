@@ -1,15 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text style={{ color: 'blue' }}>Hello React Native</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+import { StatusBar } from 'expo-status-bar';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,3 +10,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+const App = () => {
+  return (
+    <View style={styles.container}>
+      <StatusBar style="auto" />
+      <Text style={{ color: 'blue' }}>Hello React Native</Text>
+    </View>
+  );
+};
+
+export default memo(App);
