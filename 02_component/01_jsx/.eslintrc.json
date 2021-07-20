@@ -18,6 +18,9 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
-    "requireForBlockBody": true
+    "arrow-parens": "off",
+    "no-use-before-define": "off",
+    "react/jsx-filename-extension": "off",
+    "react/style-prop-object": "off"
   }
 }

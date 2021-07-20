@@ -17,6 +17,7 @@ const App = () => {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
+
       <Text style={{ fontSize: 30 }}>
         {name === 'React Native' ? name : 'React'}
       </Text>
