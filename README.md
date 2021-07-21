@@ -11,3 +11,5 @@
 - Emotion: https://emotion.sh/docs/introduction
   - Installation: https://emotion.sh/docs/@emotion/native
   - Setup: https://emotion.sh/docs/typescript
+- Axios: https://www.npmjs.com/package/axios
+- Public API: https://github.com/public-apis/public-apis
