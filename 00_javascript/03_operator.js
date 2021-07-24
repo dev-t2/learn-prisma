@@ -29,3 +29,20 @@ console.log(a);
 
 a = !((true && false) || (true && false) || !false);
 console.log(a);
+
+a = 1;
+let b = 1;
+console.log(a === b);
+console.log(a !== b);
+
+a = 10;
+b = 15;
+let c = 15;
+console.log(a < b);
+console.log(a > b);
+console.log(b >= c);
+console.log(a <= c);
+
+a = 'Hello';
+b = ' JavaScript';
+console.log(a + b);
