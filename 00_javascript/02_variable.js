@@ -1,11 +1,11 @@
-let value = 1;
-console.log(value);
+let variable = 1;
+console.log(variable);
 
-value = 2;
-console.log(value);
+variable = 2;
+console.log(variable);
 
-const a = 1;
-console.log(a);
+const constant = 3;
+console.log(constant);
 
 const text = 'hello';
 console.log(text);
