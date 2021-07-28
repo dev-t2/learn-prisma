@@ -26,13 +26,9 @@ const getTurtle = async () => {
 };
 
 const process = async () => {
-  const [dog, rabbit, turtle] = await Promise.all([
-    getDog(),
-    getRabbit(),
-    getTurtle(),
-  ]);
+  const result = await Promise.race([getDog(), getRabbit(), getTurtle()]);
 
-  console.log({ dog, rabbit, turtle });
+  console.log(result);
 };
 
 process();

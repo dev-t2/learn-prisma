@@ -26,13 +26,17 @@ const getTurtle = async () => {
 };
 
 const process = async () => {
-  const [dog, rabbit, turtle] = await Promise.all([
-    getDog(),
-    getRabbit(),
-    getTurtle(),
-  ]);
+  const dog = await getDog();
 
-  console.log({ dog, rabbit, turtle });
+  console.log(dog);
+
+  const rabbit = await getRabbit();
+
+  console.log(rabbit);
+
+  const turtle = await getTurtle();
+
+  console.log(turtle);
 };
 
 process();
