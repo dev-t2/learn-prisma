@@ -5,7 +5,8 @@ import { ThemeProvider } from '@emotion/react';
 import styled from '@emotion/native';
 
 import { theme } from './src/emotion/theme';
-import { Input, Title } from './src/components';
+import { Button, Input, Title } from './src/components';
+import { checkIcon, deleteIcon, editIcon, uncheckIcon } from './src/icons';
 
 const Container = styled.SafeAreaView(({ theme }) => ({
   flex: 1,
@@ -26,6 +27,8 @@ const App = () => {
     setValue('');
   }, []);
 
+  const onPress = useCallback(() => {}, []);
+
   return (
     <ThemeProvider theme={theme}>
       <Container>
@@ -39,6 +42,11 @@ const App = () => {
           onChangeText={onChangeText}
           onSubmitEditing={onSubmitEditing}
         />
+
+        <Button icon={checkIcon} onPress={onPress} />
+        <Button icon={uncheckIcon} onPress={onPress} />
+        <Button icon={editIcon} onPress={onPress} />
+        <Button icon={deleteIcon} onPress={onPress} />
       </Container>
     </ThemeProvider>
   );
