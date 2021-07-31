@@ -7,6 +7,7 @@
   - Installation: https://docs.expo.io/get-started/installation/
 - ESLint: https://eslint.org/
   - React Hooks: https://www.npmjs.com/package/eslint-plugin-react-hooks
+  - No Unused Vars: https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unused-vars.md
 - Flexbox Froggy: https://flexboxfroggy.com/#ko
 - Emotion: https://emotion.sh/docs/introduction
   - Installation: https://emotion.sh/docs/@emotion/native
