@@ -8,7 +8,7 @@ const Container = styled.View({
 const StyledText = styled.Text(({ theme }) => ({
   fontSize: 40,
   fontWeight: 'bold',
-  color: theme.main,
+  color: theme.text,
 }));
 
 interface ITitle {

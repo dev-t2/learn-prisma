@@ -28,6 +28,9 @@
     "import/no-unresolved": "off",
     "import/extensions": "off",
     "no-shadow": "off",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "object-curly-newline": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"]
   }
 }

@@ -1,4 +1,9 @@
-import React, { memo } from 'react';
+import React, { FC, memo } from 'react';
+import {
+  NativeSyntheticEvent,
+  TextInputSubmitEditingEventData,
+} from 'react-native';
+import { useTheme } from '@emotion/react';
 import styled from '@emotion/native';
 
 const Container = styled.View({
@@ -16,10 +21,36 @@ const StyledInput = styled.TextInput(({ theme }) => ({
   marginHorizontal: 10,
 }));
 
-const Input = () => {
+interface IInput {
+  value: string;
+  placeholder: string;
+  onChangeText: (text: string) => void;
+  onSubmitEditing: (
+    e: NativeSyntheticEvent<TextInputSubmitEditingEventData>
+  ) => void;
+}
+
+const Input: FC<IInput> = ({
+  value,
+  placeholder,
+  onChangeText,
+  onSubmitEditing,
+}) => {
+  const theme = useTheme();
+
   return (
     <Container>
-      <StyledInput />
+      <StyledInput
+        value={value}
+        maxLength={29}
+        autoCapitalize="none"
+        autoCorrect={false}
+        returnKeyType="done"
+        placeholder={placeholder}
+        placeholderTextColor={theme.text}
+        onChangeText={onChangeText}
+        onSubmitEditing={onSubmitEditing}
+      />
     </Container>
   );
 };

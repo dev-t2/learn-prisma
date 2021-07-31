@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import Constants from 'expo-constants';
 import { StatusBar } from 'expo-status-bar';
 import { ThemeProvider } from '@emotion/react';
@@ -16,13 +16,29 @@ const Container = styled.SafeAreaView(({ theme }) => ({
 }));
 
 const App = () => {
+  const [value, setValue] = useState('');
+
+  const onChangeText = useCallback((text: string) => {
+    setValue(text);
+  }, []);
+
+  const onSubmitEditing = useCallback(() => {
+    setValue('');
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <Container>
         <StatusBar style="light" />
 
         <Title>TODO</Title>
-        <Input />
+
+        <Input
+          value={value}
+          placeholder="Please enter what to do..."
+          onChangeText={onChangeText}
+          onSubmitEditing={onSubmitEditing}
+        />
       </Container>
     </ThemeProvider>
   );
