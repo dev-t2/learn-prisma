@@ -5,7 +5,7 @@ import { ThemeProvider } from '@emotion/react';
 import styled from '@emotion/native';
 
 import { theme } from './src/emotion/theme';
-import { Title } from './src/components';
+import { Input, Title } from './src/components';
 
 const Container = styled.SafeAreaView(({ theme }) => ({
   flex: 1,
@@ -18,10 +18,11 @@ const Container = styled.SafeAreaView(({ theme }) => ({
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <StatusBar style="light" />
-
       <Container>
+        <StatusBar style="light" />
+
         <Title>TODO</Title>
+        <Input />
       </Container>
     </ThemeProvider>
   );
