@@ -5,6 +5,7 @@
   - Environment Setup: https://reactnative.dev/docs/environment-setup
 - Expo: https://expo.io/
   - Installation: https://docs.expo.io/get-started/installation/
+  - API Reference: https://docs.expo.dev/versions/latest/
 - ESLint: https://eslint.org/
   - React Hooks: https://www.npmjs.com/package/eslint-plugin-react-hooks
   - No Unused Vars: https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unused-vars.md
