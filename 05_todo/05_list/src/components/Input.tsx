@@ -8,6 +8,7 @@ import styled from '@emotion/native';
 
 const Container = styled.View({
   width: '100%',
+  marginVertical: 10,
 });
 
 const StyledInput = styled.TextInput(({ theme }) => ({
@@ -17,8 +18,6 @@ const StyledInput = styled.TextInput(({ theme }) => ({
   color: theme.text,
   paddingVertical: 10,
   paddingHorizontal: 20,
-  marginVertical: 10,
-  marginHorizontal: 10,
 }));
 
 interface IInput {

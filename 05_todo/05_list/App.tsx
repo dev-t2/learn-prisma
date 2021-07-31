@@ -5,8 +5,7 @@ import { ThemeProvider } from '@emotion/react';
 import styled from '@emotion/native';
 
 import { theme } from './src/emotion/theme';
-import { Button, Input, Title } from './src/components';
-import { checkIcon, deleteIcon, editIcon, uncheckIcon } from './src/icons';
+import { Input, Title, Todo, Todos } from './src/components';
 
 const Container = styled.SafeAreaView(({ theme }) => ({
   flex: 1,
@@ -14,6 +13,7 @@ const Container = styled.SafeAreaView(({ theme }) => ({
   justifyContent: 'flex-start',
   backgroundColor: theme.background,
   paddingTop: Constants.statusBarHeight,
+  paddingHorizontal: 10,
 }));
 
 const App = () => {
@@ -26,8 +26,6 @@ const App = () => {
   const onSubmitEditing = useCallback(() => {
     setValue('');
   }, []);
-
-  const onPress = useCallback(() => {}, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -43,10 +41,19 @@ const App = () => {
           onSubmitEditing={onSubmitEditing}
         />
 
-        <Button icon={checkIcon} onPress={onPress} />
-        <Button icon={uncheckIcon} onPress={onPress} />
-        <Button icon={editIcon} onPress={onPress} />
-        <Button icon={deleteIcon} onPress={onPress} />
+        <Todos>
+          <Todo>01234567890123456789012345678</Todo>
+          <Todo>REACT NATIVE</Todo>
+          <Todo>REACT NATIVE</Todo>
+          <Todo>REACT NATIVE</Todo>
+          <Todo>REACT NATIVE</Todo>
+          <Todo>REACT NATIVE</Todo>
+          <Todo>REACT NATIVE</Todo>
+          <Todo>REACT NATIVE</Todo>
+          <Todo>REACT NATIVE</Todo>
+          <Todo>REACT NATIVE</Todo>
+          <Todo>REACT NATIVE</Todo>
+        </Todos>
       </Container>
     </ThemeProvider>
   );
