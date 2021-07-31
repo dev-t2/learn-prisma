@@ -16,3 +16,4 @@
 - Axios: https://www.npmjs.com/package/axios
 - Public API: https://github.com/public-apis/public-apis
 - Google Fonts Icons: https://fonts.google.com/icons
+  - Static Image Resources: https://reactnative.dev/docs/images#static-image-resources
