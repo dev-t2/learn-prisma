@@ -42,7 +42,7 @@ const App = () => {
         />
 
         <Todos>
-          <Todo>01234567890123456789012345678</Todo>
+          <Todo>REACT NATIVE</Todo>
           <Todo>REACT NATIVE</Todo>
           <Todo>REACT NATIVE</Todo>
           <Todo>REACT NATIVE</Todo>

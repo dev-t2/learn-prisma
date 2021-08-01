@@ -20,6 +20,7 @@ const StyledText = styled.Text(({ theme }) => ({
   color: theme.text,
   fontSize: 20,
   textAlignVertical: 'center',
+  margin: 10,
 }));
 
 interface ITodo {

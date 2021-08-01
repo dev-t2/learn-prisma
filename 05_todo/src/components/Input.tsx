@@ -41,7 +41,6 @@ const Input: FC<IInput> = ({
     <Container>
       <StyledInput
         value={value}
-        maxLength={29}
         autoCapitalize="none"
         autoCorrect={false}
         returnKeyType="done"
