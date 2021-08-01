@@ -1,4 +1,5 @@
-import React, { FC, memo, ReactNode, useCallback } from 'react';
+import React, { FC, memo, useCallback } from 'react';
+import { GestureResponderEvent } from 'react-native';
 import styled from '@emotion/native';
 
 import Button from './Button';
@@ -24,19 +25,22 @@ const StyledText = styled.Text(({ theme }) => ({
 }));
 
 interface ITodo {
-  children: ReactNode;
-  isCompleted: boolean;
+  todo: Todo;
+  onDelete: (id: number) => (event: GestureResponderEvent) => void;
 }
 
-const Todo: FC<ITodo> = ({ children, isCompleted }) => {
+const Todo: FC<ITodo> = ({ todo, onDelete }) => {
   const onPress = useCallback(() => {}, []);
 
   return (
     <Container>
-      <Button icon={isCompleted ? checkIcon : uncheckIcon} onPress={onPress} />
-      <StyledText>{children}</StyledText>
+      <Button
+        icon={todo.isCompleted ? checkIcon : uncheckIcon}
+        onPress={onPress}
+      />
+      <StyledText>{todo.text}</StyledText>
       <Button icon={editIcon} onPress={onPress} />
-      <Button icon={deleteIcon} onPress={onPress} />
+      <Button icon={deleteIcon} onPress={onDelete(todo.id)} />
     </Container>
   );
 };

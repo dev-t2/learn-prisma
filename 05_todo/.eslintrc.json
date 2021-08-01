@@ -18,6 +18,8 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"],
     "arrow-parens": "off",
     "no-use-before-define": "off",
     "arrow-body-style": "off",
@@ -30,7 +32,7 @@
     "no-shadow": "off",
     "react/prop-types": "off",
     "object-curly-newline": "off",
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": ["error"]
+    "comma-dangle": "off",
+    "no-undef": "off"
   }
 }

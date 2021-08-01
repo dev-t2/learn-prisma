@@ -35,10 +35,17 @@ const App = () => {
       const id = Date.now();
       const todo = { id, text, isCompleted: false };
 
-      setTodos(prev => [...prev, todo]);
+      setTodos(todos => [...todos, todo]);
       setText('');
     }
   }, [text]);
+
+  const onDelete = useCallback(
+    (id: number) => () => {
+      setTodos(todos => todos.filter(todo => todo.id !== id));
+    },
+    []
+  );
 
   return (
     <ThemeProvider theme={theme}>
@@ -55,10 +62,8 @@ const App = () => {
         />
 
         <Todos>
-          {todos.map(({ id, text, isCompleted }) => (
-            <Todo key={id} isCompleted={isCompleted}>
-              {text}
-            </Todo>
+          {todos.map(todo => (
+            <Todo key={todo.id} todo={todo} onDelete={onDelete} />
           ))}
         </Todos>
       </Container>
