@@ -15,16 +15,30 @@ const Container = styled.SafeAreaView(({ theme }) => ({
   paddingTop: Constants.statusBarHeight,
 }));
 
+const sampleTodos = [
+  { id: 1, text: 'TypeScript', isCompleted: true },
+  { id: 2, text: 'React', isCompleted: true },
+  { id: 3, text: 'React Native', isCompleted: false },
+  { id: 4, text: 'Expo', isCompleted: false },
+];
+
 const App = () => {
-  const [value, setValue] = useState('');
+  const [todos, setTodos] = useState(sampleTodos);
+  const [text, setText] = useState('');
 
   const onChangeText = useCallback((text: string) => {
-    setValue(text);
+    setText(text);
   }, []);
 
   const onSubmitEditing = useCallback(() => {
-    setValue('');
-  }, []);
+    if (text.length > 0) {
+      const id = Date.now();
+      const todo = { id, text, isCompleted: false };
+
+      setTodos(prev => [...prev, todo]);
+      setText('');
+    }
+  }, [text]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -34,24 +48,18 @@ const App = () => {
         <Title>TODO</Title>
 
         <Input
-          value={value}
+          value={text}
           placeholder="Please enter what to do..."
           onChangeText={onChangeText}
           onSubmitEditing={onSubmitEditing}
         />
 
         <Todos>
-          <Todo>REACT NATIVE</Todo>
-          <Todo>REACT NATIVE</Todo>
-          <Todo>REACT NATIVE</Todo>
-          <Todo>REACT NATIVE</Todo>
-          <Todo>REACT NATIVE</Todo>
-          <Todo>REACT NATIVE</Todo>
-          <Todo>REACT NATIVE</Todo>
-          <Todo>REACT NATIVE</Todo>
-          <Todo>REACT NATIVE</Todo>
-          <Todo>REACT NATIVE</Todo>
-          <Todo>REACT NATIVE</Todo>
+          {todos.map(({ id, text, isCompleted }) => (
+            <Todo key={id} isCompleted={isCompleted}>
+              {text}
+            </Todo>
+          ))}
         </Todos>
       </Container>
     </ThemeProvider>

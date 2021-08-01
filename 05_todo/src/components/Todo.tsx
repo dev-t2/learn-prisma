@@ -25,14 +25,15 @@ const StyledText = styled.Text(({ theme }) => ({
 
 interface ITodo {
   children: ReactNode;
+  isCompleted: boolean;
 }
 
-const Todo: FC<ITodo> = ({ children }) => {
+const Todo: FC<ITodo> = ({ children, isCompleted }) => {
   const onPress = useCallback(() => {}, []);
 
   return (
     <Container>
-      <Button icon={uncheckIcon} onPress={onPress} />
+      <Button icon={isCompleted ? checkIcon : uncheckIcon} onPress={onPress} />
       <StyledText>{children}</StyledText>
       <Button icon={editIcon} onPress={onPress} />
       <Button icon={deleteIcon} onPress={onPress} />
