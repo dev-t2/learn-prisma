@@ -111,35 +111,43 @@ const App = () => {
     [setStore, todos]
   );
 
-  return isReady ? (
+  return (
     <ThemeProvider theme={theme}>
       <Container>
         <StatusBar style="light" />
 
-        <Title>TODO</Title>
+        {isReady ? (
+          <>
+            <Title>TODO</Title>
 
-        <Input
-          value={text}
-          placeholder="Please enter what to do..."
-          onChangeText={onChangeText}
-          onSubmitEditing={onSubmitEditing}
-        />
-
-        <Todos>
-          {todos.map(todo => (
-            <Todo
-              key={todo.id}
-              todo={todo}
-              onCheck={onCheck}
-              onEdit={onEdit}
-              onDelete={onDelete}
+            <Input
+              value={text}
+              placeholder="Please enter what to do..."
+              onChangeText={onChangeText}
+              onSubmitEditing={onSubmitEditing}
             />
-          ))}
-        </Todos>
+
+            <Todos>
+              {todos.map(todo => (
+                <Todo
+                  key={todo.id}
+                  todo={todo}
+                  onCheck={onCheck}
+                  onEdit={onEdit}
+                  onDelete={onDelete}
+                />
+              ))}
+            </Todos>
+          </>
+        ) : (
+          <AppLoading
+            startAsync={startAsync}
+            onFinish={onFinish}
+            onError={onError}
+          />
+        )}
       </Container>
     </ThemeProvider>
-  ) : (
-    <AppLoading startAsync={startAsync} onFinish={onFinish} onError={onError} />
   );
 };
 
