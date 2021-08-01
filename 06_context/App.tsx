@@ -2,6 +2,9 @@ import React, { memo } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import styled from '@emotion/native';
 
+import UserProvider from './src/contexts/User';
+import User from './src/components/User';
+
 const Container = styled.View({
   flex: 1,
   alignItems: 'center',
@@ -11,9 +14,13 @@ const Container = styled.View({
 
 const App = () => {
   return (
-    <Container>
-      <StatusBar style="auto" />
-    </Container>
+    <UserProvider>
+      <Container>
+        <StatusBar style="auto" />
+
+        <User />
+      </Container>
+    </UserProvider>
   );
 };
 

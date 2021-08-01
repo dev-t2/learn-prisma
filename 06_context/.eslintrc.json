@@ -12,7 +12,7 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint"],
+  "plugins": ["react", "plugin:react-hooks/recommended", "@typescript-eslint"],
   "rules": {
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": ["error"],
@@ -20,6 +20,13 @@
     "no-use-before-define": "off",
     "arrow-body-style": "off",
     "react/jsx-filename-extension": "off",
-    "react/style-prop-object": "off"
+    "react/style-prop-object": "off",
+    "linebreak-style": "off",
+    "object-curly-newline": "off",
+    "react/prop-types": "off",
+    "import/no-unresolved": "off",
+    "import/extensions": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "comma-dangle": "off"
   }
 }
