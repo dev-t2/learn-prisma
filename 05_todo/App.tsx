@@ -53,6 +53,12 @@ const App = () => {
     []
   );
 
+  const onEdit = useCallback((id: number, text: string) => {
+    setTodos(todos => {
+      return todos.map(todo => (todo.id === id ? { ...todo, text } : todo));
+    });
+  }, []);
+
   const onDelete = useCallback(
     (id: number) => () => {
       setTodos(todos => todos.filter(todo => todo.id !== id));
@@ -80,6 +86,7 @@ const App = () => {
               key={todo.id}
               todo={todo}
               onCheck={onCheck}
+              onEdit={onEdit}
               onDelete={onDelete}
             />
           ))}
