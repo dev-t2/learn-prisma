@@ -1,9 +1,13 @@
 import React, { memo, useCallback, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import AppLoading from 'expo-app-loading';
 import Constants from 'expo-constants';
 import { StatusBar } from 'expo-status-bar';
 import { ThemeProvider } from '@emotion/react';
 import styled from '@emotion/native';
 
+import { cacheFonts, cacheImages } from './src/lib/cache';
+import { checkIcon, deleteIcon, editIcon, uncheckIcon } from './src/icons';
 import { theme } from './src/emotion/theme';
 import { Input, Title, Todo, Todos } from './src/components';
 
@@ -15,16 +19,50 @@ const Container = styled.SafeAreaView(({ theme }) => ({
   paddingTop: Constants.statusBarHeight,
 }));
 
-const sampleTodos = [
-  { id: 1, text: 'TypeScript', isCompleted: true },
-  { id: 2, text: 'React', isCompleted: true },
-  { id: 3, text: 'React Native', isCompleted: false },
-  { id: 4, text: 'Expo', isCompleted: false },
-];
-
 const App = () => {
-  const [todos, setTodos] = useState(sampleTodos);
+  const [isReady, setIsReady] = useState(false);
+  const [todos, setTodos] = useState<Todo[]>([]);
   const [text, setText] = useState('');
+
+  const setStore = useCallback(async (todos: Todo[]) => {
+    try {
+      await AsyncStorage.setItem('todos', JSON.stringify(todos));
+
+      setTodos(todos);
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
+
+  const getStore = useCallback(async () => {
+    const todos = JSON.parse((await AsyncStorage.getItem('todos')) || '[]');
+
+    if (todos.length > 0) {
+      setTodos(todos);
+    } else {
+      const id = Date.now();
+      const todo = { id, text: 'Create a new to do!! 🚀', isCompleted: false };
+
+      setStore([todo]);
+    }
+  }, [setStore]);
+
+  const startAsync = useCallback(async () => {
+    const images = cacheImages([checkIcon, deleteIcon, editIcon, uncheckIcon]);
+    const fonts = cacheFonts([]);
+
+    await Promise.all([...images, ...fonts]);
+
+    getStore();
+  }, [getStore]);
+
+  const onFinish = useCallback(() => {
+    setIsReady(true);
+  }, []);
+
+  const onError = useCallback((error: Error) => {
+    console.error(error);
+  }, []);
 
   const onChangeText = useCallback((text: string) => {
     setText(text);
@@ -35,38 +73,45 @@ const App = () => {
       const id = Date.now();
       const todo = { id, text, isCompleted: false };
 
-      setTodos(todos => [...todos, todo]);
+      setStore([...todos, todo]);
       setText('');
     }
-  }, [text]);
+  }, [text, setStore, todos]);
 
   const onCheck = useCallback(
     (id: number) => () => {
-      setTodos(todos => {
-        return todos.map(todo => {
-          return todo.id === id
-            ? { ...todo, isCompleted: !todo.isCompleted }
-            : todo;
-        });
+      const updatedTodos = todos.map(todo => {
+        return todo.id === id
+          ? { ...todo, isCompleted: !todo.isCompleted }
+          : todo;
       });
+
+      setStore(updatedTodos);
     },
-    []
+    [setStore, todos]
   );
 
-  const onEdit = useCallback((id: number, text: string) => {
-    setTodos(todos => {
-      return todos.map(todo => (todo.id === id ? { ...todo, text } : todo));
-    });
-  }, []);
+  const onEdit = useCallback(
+    (id: number, text: string) => {
+      const updatedTodos = todos.map(todo => {
+        return todo.id === id ? { ...todo, text } : todo;
+      });
+
+      setStore(updatedTodos);
+    },
+    [setStore, todos]
+  );
 
   const onDelete = useCallback(
     (id: number) => () => {
-      setTodos(todos => todos.filter(todo => todo.id !== id));
+      const updatedTodos = todos.filter(todo => todo.id !== id);
+
+      setStore(updatedTodos);
     },
-    []
+    [setStore, todos]
   );
 
-  return (
+  return isReady ? (
     <ThemeProvider theme={theme}>
       <Container>
         <StatusBar style="light" />
@@ -93,6 +138,8 @@ const App = () => {
         </Todos>
       </Container>
     </ThemeProvider>
+  ) : (
+    <AppLoading startAsync={startAsync} onFinish={onFinish} onError={onError} />
   );
 };
 

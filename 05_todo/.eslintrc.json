@@ -33,6 +33,7 @@
     "react/prop-types": "off",
     "object-curly-newline": "off",
     "comma-dangle": "off",
-    "no-undef": "off"
+    "no-undef": "off",
+    "no-console": "off"
   }
 }
