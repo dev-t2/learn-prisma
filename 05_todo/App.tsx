@@ -9,7 +9,7 @@ import styled from '@emotion/native';
 import { cacheFonts, cacheImages } from './src/lib/cache';
 import { checkIcon, deleteIcon, editIcon, uncheckIcon } from './src/icons';
 import { theme } from './src/emotion/theme';
-import { Input, Title, Todo, Todos } from './src/components';
+import { Footer, Input, Title, Todo, Todos } from './src/components';
 
 const Container = styled.SafeAreaView(({ theme }) => ({
   flex: 1,
@@ -138,6 +138,8 @@ const App = () => {
                 />
               ))}
             </Todos>
+
+            <Footer />
           </>
         ) : (
           <AppLoading

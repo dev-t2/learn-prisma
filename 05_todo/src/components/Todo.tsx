@@ -30,7 +30,6 @@ const Container = styled.View<IContainer>(({ theme, isCompleted }) => ({
 
 const text = css({
   flex: 1,
-  minHeight: 30,
   fontSize: 20,
   textAlignVertical: 'center',
   margin: 10,
