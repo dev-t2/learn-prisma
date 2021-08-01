@@ -4,6 +4,7 @@ import styled from '@emotion/native';
 const Container = styled.ScrollView({
   flex: 1,
   width: '100%',
+  paddingHorizontal: 10,
   marginVertical: 10,
 });
 

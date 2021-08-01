@@ -8,6 +8,7 @@ import styled from '@emotion/native';
 
 const Container = styled.View({
   width: '100%',
+  paddingHorizontal: 10,
   marginVertical: 10,
 });
 

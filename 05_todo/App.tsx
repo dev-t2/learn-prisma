@@ -13,7 +13,6 @@ const Container = styled.SafeAreaView(({ theme }) => ({
   justifyContent: 'flex-start',
   backgroundColor: theme.background,
   paddingTop: Constants.statusBarHeight,
-  paddingHorizontal: 10,
 }));
 
 const App = () => {
