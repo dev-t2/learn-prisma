@@ -40,6 +40,19 @@ const App = () => {
     }
   }, [text]);
 
+  const onCheck = useCallback(
+    (id: number) => () => {
+      setTodos(todos => {
+        return todos.map(todo => {
+          return todo.id === id
+            ? { ...todo, isCompleted: !todo.isCompleted }
+            : todo;
+        });
+      });
+    },
+    []
+  );
+
   const onDelete = useCallback(
     (id: number) => () => {
       setTodos(todos => todos.filter(todo => todo.id !== id));
@@ -63,7 +76,12 @@ const App = () => {
 
         <Todos>
           {todos.map(todo => (
-            <Todo key={todo.id} todo={todo} onDelete={onDelete} />
+            <Todo
+              key={todo.id}
+              todo={todo}
+              onCheck={onCheck}
+              onDelete={onDelete}
+            />
           ))}
         </Todos>
       </Container>

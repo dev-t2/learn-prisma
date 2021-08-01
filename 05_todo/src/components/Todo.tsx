@@ -5,7 +5,11 @@ import styled from '@emotion/native';
 import Button from './Button';
 import { checkIcon, deleteIcon, editIcon, uncheckIcon } from '../icons';
 
-const Container = styled.View(({ theme }) => ({
+interface IContainer {
+  isCompleted: boolean;
+}
+
+const Container = styled.View<IContainer>(({ theme, isCompleted }) => ({
   width: '100%',
   flexDirection: 'row',
   alignItems: 'center',
@@ -13,33 +17,43 @@ const Container = styled.View(({ theme }) => ({
   borderRadius: 10,
   padding: 5,
   marginVertical: 5,
+  opacity: isCompleted ? 0.4 : 1,
 }));
 
-const StyledText = styled.Text(({ theme }) => ({
+interface IStyledText {
+  isCompleted: boolean;
+}
+
+const StyledText = styled.Text<IStyledText>(({ theme, isCompleted }) => ({
   flex: 1,
   minHeight: 30,
   color: theme.text,
   fontSize: 20,
   textAlignVertical: 'center',
   margin: 10,
+  textDecorationLine: isCompleted ? 'line-through' : 'none',
 }));
 
 interface ITodo {
   todo: Todo;
+  onCheck: (id: number) => (event: GestureResponderEvent) => void;
   onDelete: (id: number) => (event: GestureResponderEvent) => void;
 }
 
-const Todo: FC<ITodo> = ({ todo, onDelete }) => {
+const Todo: FC<ITodo> = ({ todo, onCheck, onDelete }) => {
   const onPress = useCallback(() => {}, []);
 
   return (
-    <Container>
+    <Container isCompleted={todo.isCompleted}>
       <Button
         icon={todo.isCompleted ? checkIcon : uncheckIcon}
-        onPress={onPress}
+        onPress={onCheck(todo.id)}
       />
-      <StyledText>{todo.text}</StyledText>
-      <Button icon={editIcon} onPress={onPress} />
+
+      <StyledText isCompleted={todo.isCompleted}>{todo.text}</StyledText>
+
+      {todo.isCompleted || <Button icon={editIcon} onPress={onPress} />}
+
       <Button icon={deleteIcon} onPress={onDelete(todo.id)} />
     </Container>
   );
