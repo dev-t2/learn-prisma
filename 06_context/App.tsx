@@ -1,23 +1,19 @@
 import React, { memo } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import styled from '@emotion/native';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#fff',
-  },
+const Container = styled.View({
+  flex: 1,
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: '#fff',
 });
 
 const App = () => {
   return (
-    <View style={styles.container}>
+    <Container>
       <StatusBar style="auto" />
-
-      <Text>Open up App.tsx to start working on your app!</Text>
-    </View>
+    </Container>
   );
 };
 
