@@ -16,3 +16,4 @@
 - Axios: https://www.npmjs.com/package/axios
 - Public API: https://github.com/public-apis/public-apis
 - Google Fonts Icons: https://fonts.google.com/icons
+- Navigation: https://reactnavigation.org/
