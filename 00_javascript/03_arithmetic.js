@@ -9,11 +9,15 @@ console.log(c++);
 console.log(++c);
 
 let d = 1;
+
 d += 3;
 console.log(d);
+
 d -= 3;
 console.log(d);
+
 d *= 3;
 console.log(d);
+
 d /= 3;
 console.log(d);

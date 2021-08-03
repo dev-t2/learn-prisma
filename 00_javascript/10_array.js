@@ -8,6 +8,7 @@ console.log(objects);
 console.log(objects[0]);
 console.log(objects[1]);
 console.log(objects.length);
+
 objects.push({ name: '거북이' });
 console.log(objects);
 console.log(objects.length);

@@ -32,6 +32,7 @@ const cat = {
   sound: '야옹',
   age: 3,
 };
+
 console.log(Object.entries(cat));
 console.log(Object.keys(cat));
 console.log(Object.values(cat));
