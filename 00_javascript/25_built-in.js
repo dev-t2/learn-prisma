@@ -17,6 +17,6 @@ const average = numbers.reduce((sum, number, index, array) => {
   }
 
   return sum + number;
-});
+}, 0);
 
 console.log(average);
