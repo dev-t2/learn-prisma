@@ -1,9 +1,9 @@
-const superheroes = ['아이언맨', '캡틴 아메리카', '토르', '닥터 스트레인지'];
+const superHeroes = ['아이언맨', '캡틴 아메리카', '토르', '닥터 스트레인지'];
 
-for (let i = 0; i < superheroes.length; i++) {
-  console.log(superheroes[i]);
+for (let i = 0; i < superHeroes.length; i++) {
+  console.log(superHeroes[i]);
 }
 
 console.log('');
 
-superheroes.forEach(hero => console.log(hero));
+superHeroes.forEach(hero => console.log(hero));
