@@ -1,6 +1,9 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import styled from '@emotion/native';
 
+import { RootStackParamList } from '../navigation/Stack';
 import { Button } from '../components';
 
 const Container = styled.View({
@@ -14,11 +17,20 @@ const StyledText = styled.Text({
   margin: 10,
 });
 
+type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
+
 const Home = () => {
+  const navigation = useNavigation<HomeScreenNavigationProp>();
+
+  const onPress = useCallback(() => {
+    navigation.navigate('List');
+  }, [navigation]);
+
   return (
     <Container>
       <StyledText>Home</StyledText>
-      <Button>List</Button>
+
+      <Button onPress={onPress}>List</Button>
     </Container>
   );
 };

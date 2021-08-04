@@ -15,7 +15,7 @@ const StyledText = styled.Text({
 
 interface IButton {
   children: ReactNode;
-  onPress?: (event: GestureResponderEvent) => void;
+  onPress: (event: GestureResponderEvent) => void;
 }
 
 const Button: FC<IButton> = ({ children, onPress }) => {

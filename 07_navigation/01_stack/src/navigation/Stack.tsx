@@ -3,15 +3,21 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { Chat, Home, List } from '../screen';
 
-const StackNavigator = createStackNavigator();
+export type RootStackParamList = {
+  Home: undefined;
+  List: undefined;
+  Chat: undefined;
+};
+
+const { Navigator, Screen } = createStackNavigator<RootStackParamList>();
 
 const Stack = () => {
   return (
-    <StackNavigator.Navigator>
-      <StackNavigator.Screen name="Home" component={Home} />
-      <StackNavigator.Screen name="List" component={List} />
-      <StackNavigator.Screen name="Chat" component={Chat} />
-    </StackNavigator.Navigator>
+    <Navigator>
+      <Screen name="Home" component={Home} />
+      <Screen name="List" component={List} />
+      <Screen name="Chat" component={Chat} />
+    </Navigator>
   );
 };
 
