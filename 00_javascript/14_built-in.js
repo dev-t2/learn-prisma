@@ -6,4 +6,6 @@ for (let i = 0; i < superHeroes.length; i++) {
 
 console.log('');
 
-superHeroes.forEach(hero => console.log(hero));
+superHeroes.forEach(hero => {
+  return console.log(hero);
+});
