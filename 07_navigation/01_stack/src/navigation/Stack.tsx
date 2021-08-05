@@ -1,13 +1,35 @@
 import React, { memo } from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import { RouteProp } from '@react-navigation/native';
+import {
+  createStackNavigator,
+  StackNavigationProp,
+} from '@react-navigation/stack';
 
 import { Chat, Home, List } from '../screen';
 
-export type RootStackParamList = {
+type RootStackParamList = {
   Home: undefined;
   List: undefined;
-  Chat: undefined;
+  Chat: { id: number; name: string };
 };
+
+export type HomeScreenRouteProp = RouteProp<RootStackParamList, 'Home'>;
+export type HomeScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'Home'
+>;
+
+export type ListScreenRouteProp = RouteProp<RootStackParamList, 'List'>;
+export type ListScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'List'
+>;
+
+export type ChatScreenRouteProp = RouteProp<RootStackParamList, 'Chat'>;
+export type ChatScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'List'
+>;
 
 const { Navigator, Screen } = createStackNavigator<RootStackParamList>();
 

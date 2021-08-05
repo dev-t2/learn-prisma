@@ -1,6 +1,11 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import styled from '@emotion/native';
 
+import {
+  ChatScreenNavigationProp,
+  ChatScreenRouteProp,
+} from '../navigation/Stack';
 import { Button } from '../components';
 
 const Container = styled.View({
@@ -15,10 +20,20 @@ const StyledText = styled.Text({
 });
 
 const Chat = () => {
+  const { params } = useRoute<ChatScreenRouteProp>();
+  const navigation = useNavigation<ChatScreenNavigationProp>();
+
+  const onPress = useCallback(() => {
+    navigation.reset({ routes: [{ name: 'Home' }] });
+  }, [navigation]);
+
   return (
     <Container>
       <StyledText>Chat</StyledText>
-      <Button>Home</Button>
+      <StyledText>{params.id}</StyledText>
+      <StyledText>{params.name}</StyledText>
+
+      <Button onPress={onPress}>Home</Button>
     </Container>
   );
 };

@@ -1,6 +1,8 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import styled from '@emotion/native';
 
+import { ListScreenNavigationProp } from '../navigation/Stack';
 import { Button } from '../components';
 
 const Container = styled.View({
@@ -21,12 +23,23 @@ const items = [
 ];
 
 const List = () => {
+  const navigation = useNavigation<ListScreenNavigationProp>();
+
+  const onPress = useCallback(
+    (id: number, name: string) => () => {
+      navigation.navigate('Chat', { id, name });
+    },
+    [navigation]
+  );
+
   return (
     <Container>
       <StyledText>List</StyledText>
 
       {items.map(({ id, name }) => (
-        <Button key={id}>{name}</Button>
+        <Button key={id} onPress={onPress(id, name)}>
+          {name}
+        </Button>
       ))}
     </Container>
   );

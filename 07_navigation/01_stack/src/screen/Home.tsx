@@ -1,9 +1,8 @@
 import React, { memo, useCallback } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
 import styled from '@emotion/native';
 
-import { RootStackParamList } from '../navigation/Stack';
+import { HomeScreenNavigationProp } from '../navigation/Stack';
 import { Button } from '../components';
 
 const Container = styled.View({
@@ -16,8 +15,6 @@ const StyledText = styled.Text({
   fontSize: 30,
   margin: 10,
 });
-
-type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
 const Home = () => {
   const navigation = useNavigation<HomeScreenNavigationProp>();
