@@ -1,7 +1,8 @@
-import React, { memo } from 'react';
+import React, { memo, useMemo } from 'react';
 import { RouteProp } from '@react-navigation/native';
 import {
   createStackNavigator,
+  StackNavigationOptions,
   StackNavigationProp,
 } from '@react-navigation/stack';
 
@@ -34,8 +35,15 @@ export type ChatScreenNavigationProp = StackNavigationProp<
 const { Navigator, Screen } = createStackNavigator<RootStackParamList>();
 
 const Stack = () => {
+  const screenOptions = useMemo<StackNavigationOptions>(
+    () => ({
+      cardStyle: { backgroundColor: '#fff' },
+    }),
+    []
+  );
+
   return (
-    <Navigator>
+    <Navigator screenOptions={screenOptions}>
       <Screen name="Home" component={Home} />
       <Screen name="List" component={List} />
       <Screen name="Chat" component={Chat} />
