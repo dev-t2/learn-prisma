@@ -5,6 +5,7 @@ import {
   StackNavigationOptions,
   StackNavigationProp,
 } from '@react-navigation/stack';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { Chat, Home, List } from '../screen';
 
@@ -38,15 +39,43 @@ const Stack = () => {
   const screenOptions = useMemo<StackNavigationOptions>(
     () => ({
       cardStyle: { backgroundColor: '#fff' },
+      headerStyle: {
+        height: 120,
+        backgroundColor: '#555',
+        borderBottomWidth: 5,
+        borderBottomColor: '#111',
+      },
+      headerTitleStyle: {
+        fontSize: 25,
+        color: '#fff',
+      },
+      headerTitleAlign: 'center',
+      headerTitle: () => (
+        <MaterialCommunityIcons name="react" color="#fff" size={25} />
+      ),
+    }),
+    []
+  );
+
+  const homeOptions = useMemo<StackNavigationOptions>(
+    () => ({
+      headerShown: false,
+    }),
+    []
+  );
+
+  const chatOptions = useMemo<StackNavigationOptions>(
+    () => ({
+      headerTitle: 'Chat Screen',
     }),
     []
   );
 
   return (
     <Navigator screenOptions={screenOptions}>
-      <Screen name="Home" component={Home} />
+      <Screen name="Home" component={Home} options={homeOptions} />
       <Screen name="List" component={List} />
-      <Screen name="Chat" component={Chat} />
+      <Screen name="Chat" component={Chat} options={chatOptions} />
     </Navigator>
   );
 };
