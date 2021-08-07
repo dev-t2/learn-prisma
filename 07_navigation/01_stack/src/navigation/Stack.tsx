@@ -47,12 +47,16 @@ const Stack = () => {
       },
       headerTitleStyle: {
         fontSize: 25,
-        color: '#fff',
+        // color: '#fff',
       },
       headerTitleAlign: 'center',
       headerTitle: () => (
-        <MaterialCommunityIcons name="react" color="#fff" size={25} />
+        <MaterialCommunityIcons name="react" color="#ff6600" size={25} />
       ),
+      headerBackTitle: 'Prev',
+      headerBackTitleVisible: true,
+      headerBackTitleStyle: { fontSize: 25 },
+      headerTintColor: '#ff6600',
     }),
     []
   );
@@ -67,6 +71,14 @@ const Stack = () => {
   const chatOptions = useMemo<StackNavigationOptions>(
     () => ({
       headerTitle: 'Chat Screen',
+      headerBackImage: () => (
+        <MaterialCommunityIcons
+          name="keyboard-backspace"
+          size={25}
+          color="#ff6600"
+          style={{ marginHorizontal: 10 }}
+        />
+      ),
     }),
     []
   );
