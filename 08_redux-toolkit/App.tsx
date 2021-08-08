@@ -1,6 +1,10 @@
 import React, { memo } from 'react';
+import { Provider } from 'react-redux';
 import { StatusBar } from 'expo-status-bar';
 import styled from '@emotion/native';
+
+import { store } from './src/redux';
+import { Count } from './src/components';
 
 const Container = styled.View({
   flex: 1,
@@ -11,9 +15,13 @@ const Container = styled.View({
 
 const App = () => {
   return (
-    <Container>
-      <StatusBar style="auto" />
-    </Container>
+    <Provider store={store}>
+      <Container>
+        <StatusBar style="auto" />
+
+        <Count />
+      </Container>
+    </Provider>
   );
 };
 
