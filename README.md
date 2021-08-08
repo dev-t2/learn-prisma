@@ -5,6 +5,7 @@
   - Environment Setup: https://reactnative.dev/docs/environment-setup
 - Expo: https://expo.io/
   - Installation: https://docs.expo.io/get-started/installation/
+  - Guide: https://docs.expo.dev/guides/
   - API Reference: https://docs.expo.dev/versions/latest/
 - ESLint: https://eslint.org/
   - React Hooks: https://www.npmjs.com/package/eslint-plugin-react-hooks
@@ -19,4 +20,3 @@
 - Navigation: https://reactnavigation.org/
 - Vector Icons: https://icons.expo.fyi/
 - Redux Toolkit: https://soyoung210.github.io/redux-toolkit/
-- Firebase: https://firebase.google.com/?hl=ko
