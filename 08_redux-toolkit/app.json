@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "08_redux",
-    "slug": "08_redux",
+    "name": "08_redux-toolkit",
+    "slug": "08_redux-toolkit",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
