@@ -1,6 +1,9 @@
 import React, { memo } from 'react';
 import { StatusBar } from 'expo-status-bar';
+import { ThemeProvider } from '@emotion/react';
 import styled from '@emotion/native';
+
+import { theme } from './src/emotion';
 
 const Container = styled.View({
   flex: 1,
@@ -11,9 +14,11 @@ const Container = styled.View({
 
 const App = () => {
   return (
-    <Container>
-      <StatusBar style="auto" />
-    </Container>
+    <ThemeProvider theme={theme}>
+      <Container>
+        <StatusBar style="auto" />
+      </Container>
+    </ThemeProvider>
   );
 };
 
