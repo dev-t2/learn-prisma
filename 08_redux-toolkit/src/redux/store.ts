@@ -7,6 +7,12 @@ const store = configureStore({
   reducer: rootReducer,
 });
 
+if (process.env.NODE_ENV === 'development' && (module as any).hot) {
+  (module as any).hot.accept(() => {
+    store.replaceReducer(rootReducer);
+  });
+}
+
 export type AppDispatch = typeof store.dispatch;
 
 export default store;
