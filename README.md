@@ -19,3 +19,4 @@
 - Navigation: https://reactnavigation.org/
 - Vector Icons: https://icons.expo.fyi/
 - Redux Toolkit: https://soyoung210.github.io/redux-toolkit/
+- Firebase: https://firebase.google.com/?hl=ko
