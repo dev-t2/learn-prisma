@@ -18,3 +18,4 @@
 - Google Fonts Icons: https://fonts.google.com/icons
 - Navigation: https://reactnavigation.org/
 - Vector Icons: https://icons.expo.fyi/
+- Redux Toolkit: https://soyoung210.github.io/redux-toolkit/
