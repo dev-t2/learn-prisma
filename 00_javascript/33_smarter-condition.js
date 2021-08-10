@@ -1,4 +1,4 @@
-const makeSound = animal => {
+const makeSound = (animal) => {
   const tasks = {
     개: () => '멍멍',
     고양이: () => '야옹',
