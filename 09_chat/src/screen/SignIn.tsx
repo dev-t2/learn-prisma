@@ -1,12 +1,22 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import { Pressable } from 'react-native';
+import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
 import styled from '@emotion/native';
 
-const Container = styled.View(({ theme }) => ({
+import { SignInScreenNavigationProp } from '../navigation/Auth';
+
+interface IContainer {
+  insets: EdgeInsets;
+}
+
+const Container = styled.View<IContainer>(({ theme, insets }) => ({
   flex: 1,
   alignItems: 'center',
   justifyContent: 'center',
   backgroundColor: theme.background,
+  paddingTop: insets.top,
+  paddingBottom: insets.bottom,
   paddingHorizontal: 20,
 }));
 
@@ -16,11 +26,18 @@ const StyledText = styled.Text(({ theme }) => ({
 }));
 
 const SignIn = () => {
+  const insets = useSafeAreaInsets();
+  const navigation = useNavigation<SignInScreenNavigationProp>();
+
+  const onPress = useCallback(() => {
+    navigation.navigate('SignUp');
+  }, [navigation]);
+
   return (
-    <Container>
+    <Container insets={insets}>
       <StyledText>SignIn</StyledText>
 
-      <Pressable>
+      <Pressable onPress={onPress}>
         <StyledText>SignUp</StyledText>
       </Pressable>
     </Container>
