@@ -28,6 +28,7 @@
     "import/no-unresolved": "off",
     "import/extensions": "off",
     "import/prefer-default-export": "off",
-    "comma-dangle": "off"
+    "comma-dangle": "off",
+    "react/prop-types": "off"
   }
 }
