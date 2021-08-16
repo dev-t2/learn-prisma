@@ -1,10 +1,10 @@
 import React, { memo, useCallback } from 'react';
-import { Pressable } from 'react-native';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import styled from '@emotion/native';
 
 import { SignInScreenNavigationProp } from '../navigation/Auth';
+import { Button } from '../components';
 
 interface IContainer {
   insets: EdgeInsets;
@@ -29,7 +29,7 @@ const SignIn = () => {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<SignInScreenNavigationProp>();
 
-  const onPress = useCallback(() => {
+  const onSignUp = useCallback(() => {
     navigation.navigate('SignUp');
   }, [navigation]);
 
@@ -37,9 +37,7 @@ const SignIn = () => {
     <Container insets={insets}>
       <StyledText>SignIn</StyledText>
 
-      <Pressable onPress={onPress}>
-        <StyledText>SignUp</StyledText>
-      </Pressable>
+      <Button onPress={onSignUp}>SignUp</Button>
     </Container>
   );
 };
