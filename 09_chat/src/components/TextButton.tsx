@@ -2,8 +2,6 @@ import React, { FC, memo, ReactNode } from 'react';
 import styled from '@emotion/native';
 
 const StyledPressable = styled.Pressable({
-  width: '100%',
-  alignItems: 'center',
   backgroundColor: 'transparent',
   borderRadius: 4,
   padding: 10,

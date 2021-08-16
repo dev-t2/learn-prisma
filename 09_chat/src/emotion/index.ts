@@ -6,4 +6,5 @@ export const theme: Theme = {
   text: '#111111',
   main: '#115293',
   link: '#115293',
+  gray: '#d5d5d5',
 };

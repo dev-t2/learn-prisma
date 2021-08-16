@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import styled from '@emotion/native';
 
 import { SignInScreenNavigationProp } from '../navigation/Auth';
-import { Button, TextButton } from '../components';
+import { Button, Image, TextButton } from '../components';
 
 interface IContainer {
   insets: EdgeInsets;
@@ -21,8 +21,9 @@ const Container = styled.View<IContainer>(({ theme, insets }) => ({
 }));
 
 const StyledText = styled.Text(({ theme }) => ({
-  fontSize: 20,
+  fontSize: 24,
   color: theme.text,
+  marginTop: 30,
 }));
 
 const SignIn = () => {
@@ -35,6 +36,8 @@ const SignIn = () => {
 
   return (
     <Container insets={insets}>
+      <Image />
+
       <StyledText>SignIn</StyledText>
 
       <Button onPress={onSignUp}>SignIn</Button>
