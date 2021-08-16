@@ -29,6 +29,7 @@
     "import/extensions": "off",
     "import/prefer-default-export": "off",
     "comma-dangle": "off",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "operator-linebreak": "off"
   }
 }

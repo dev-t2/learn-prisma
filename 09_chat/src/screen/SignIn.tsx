@@ -26,6 +26,9 @@ const StyledText = styled.Text(({ theme }) => ({
   marginTop: 30,
 }));
 
+const logo =
+  'https://firebasestorage.googleapis.com/v0/b/expo-chat-64b70.appspot.com/o/logo.png?alt=media';
+
 const SignIn = () => {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<SignInScreenNavigationProp>();
@@ -36,7 +39,7 @@ const SignIn = () => {
 
   return (
     <Container insets={insets}>
-      <Image />
+      <Image uri={logo} />
 
       <StyledText>SignIn</StyledText>
 
