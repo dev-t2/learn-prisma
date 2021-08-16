@@ -6,9 +6,9 @@ const myPromise = new Promise((resolve, reject) => {
 });
 
 myPromise
-  .then(number => {
+  .then((number) => {
     console.log(number);
   })
-  .catch(error => {
+  .catch((error) => {
     console.error(error);
   });
