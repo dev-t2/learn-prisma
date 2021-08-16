@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import styled from '@emotion/native';
 
 import { SignInScreenNavigationProp } from '../navigation/Auth';
-import { Button } from '../components';
+import { Button, TextButton } from '../components';
 
 interface IContainer {
   insets: EdgeInsets;
@@ -37,7 +37,8 @@ const SignIn = () => {
     <Container insets={insets}>
       <StyledText>SignIn</StyledText>
 
-      <Button onPress={onSignUp}>SignUp</Button>
+      <Button onPress={onSignUp}>SignIn</Button>
+      <TextButton onPress={onSignUp}>SignUp</TextButton>
     </Container>
   );
 };
