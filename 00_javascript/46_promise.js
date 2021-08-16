@@ -1,4 +1,4 @@
-const increaseAndPrint = n => {
+const increaseAndPrint = (n) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const value = n + 1;
@@ -18,8 +18,8 @@ const increaseAndPrint = n => {
 };
 
 increaseAndPrint(0)
-  .then(number => increaseAndPrint(number))
-  .then(number => increaseAndPrint(number))
-  .then(number => increaseAndPrint(number))
-  .then(number => increaseAndPrint(number))
-  .catch(error => console.error(error));
+  .then((number) => increaseAndPrint(number))
+  .then((number) => increaseAndPrint(number))
+  .then((number) => increaseAndPrint(number))
+  .then((number) => increaseAndPrint(number))
+  .catch((error) => console.error(error));
