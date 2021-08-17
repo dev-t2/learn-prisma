@@ -6,7 +6,7 @@ const StyledImage = styled.Image(({ theme }) => ({
   width: 100,
   height: 100,
   borderRadius: 50,
-  backgroundColor: theme.gray,
+  backgroundColor: theme.gray1,
 }));
 
 interface IImage {
