@@ -1,8 +1,7 @@
-import React, { FC, memo } from 'react';
+import React, { FC, memo, useCallback, useState } from 'react';
 import {
   NativeSyntheticEvent,
   ReturnKeyTypeOptions,
-  TextInputFocusEventData,
   TextInputSubmitEditingEventData,
 } from 'react-native';
 import { useTheme } from '@emotion/react';
@@ -14,21 +13,29 @@ const Container = styled.View({
   marginVertical: 10,
 });
 
-const Label = styled.Text(({ theme }) => ({
+interface ILabel {
+  isFocus: boolean;
+}
+
+const Label = styled.Text<ILabel>(({ theme, isFocus }) => ({
   fontSize: 14,
   fontWeight: '600',
   marginBottom: 6,
-  color: theme.gray2,
+  color: isFocus ? theme.text : theme.gray2,
 }));
 
-const StyledInput = styled.TextInput(({ theme }) => ({
+interface IStyledInput {
+  isFocus: boolean;
+}
+
+const StyledInput = styled.TextInput<IStyledInput>(({ theme, isFocus }) => ({
   backgroundColor: theme.white,
   color: theme.text,
   paddingVertical: 20,
   paddingHorizontal: 10,
   fontSize: 16,
   borderWidth: 1,
-  borderColor: theme.gray2,
+  borderColor: isFocus ? theme.text : theme.gray2,
   borderRadius: 4,
 }));
 
@@ -37,12 +44,11 @@ interface IInput {
   placeholder: string;
   value: string;
   returnKeyType: ReturnKeyTypeOptions;
-  maxLength: number;
+  maxLength?: number;
   onChangeText: (text: string) => void;
-  onSubmitEditing: (
+  onSubmitEditing?: (
     e: NativeSyntheticEvent<TextInputSubmitEditingEventData>
   ) => void;
-  onBlur: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
 }
 
 const Input: FC<IInput> = ({
@@ -53,20 +59,34 @@ const Input: FC<IInput> = ({
   value,
   onChangeText,
   onSubmitEditing,
-  onBlur,
 }) => {
   const theme = useTheme();
 
+  const [isFocus, setIsFocus] = useState(false);
+
+  const onFocus = useCallback(() => {
+    setIsFocus(true);
+  }, []);
+
+  const onBlur = useCallback(() => {
+    setIsFocus(false);
+  }, []);
+
   return (
     <Container>
-      <Label>{label}</Label>
+      <Label isFocus={isFocus}>{label}</Label>
 
       <StyledInput
+        autoCapitalize="none"
+        autoCorrect={false}
+        textContentType="none"
+        isFocus={isFocus}
         placeholder={placeholder}
         placeholderTextColor={theme.gray2}
         maxLength={maxLength}
         returnKeyType={returnKeyType}
         value={value}
+        onFocus={onFocus}
         onChangeText={onChangeText}
         onBlur={onBlur}
         onSubmitEditing={onSubmitEditing}
