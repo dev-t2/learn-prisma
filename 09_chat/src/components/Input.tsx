@@ -1,7 +1,8 @@
-import React, { FC, memo, useCallback, useState } from 'react';
+import React, { forwardRef, memo, useCallback, useState } from 'react';
 import {
   NativeSyntheticEvent,
   ReturnKeyTypeOptions,
+  TextInput,
   TextInputSubmitEditingEventData,
 } from 'react-native';
 import { useTheme } from '@emotion/react';
@@ -44,55 +45,64 @@ interface IInput {
   placeholder: string;
   value: string;
   returnKeyType: ReturnKeyTypeOptions;
+  secureTextEntry?: boolean;
   maxLength?: number;
   onChangeText: (text: string) => void;
-  onSubmitEditing?: (
+  onSubmitEditing: (
     e: NativeSyntheticEvent<TextInputSubmitEditingEventData>
   ) => void;
 }
 
-const Input: FC<IInput> = ({
-  label,
-  placeholder,
-  maxLength,
-  returnKeyType,
-  value,
-  onChangeText,
-  onSubmitEditing,
-}) => {
-  const theme = useTheme();
+const Input = forwardRef<TextInput, IInput>(
+  (
+    {
+      label,
+      placeholder,
+      secureTextEntry,
+      maxLength,
+      returnKeyType,
+      value,
+      onChangeText,
+      onSubmitEditing,
+    },
+    ref
+  ) => {
+    const theme = useTheme();
 
-  const [isFocus, setIsFocus] = useState(false);
+    const [isFocus, setIsFocus] = useState(false);
 
-  const onFocus = useCallback(() => {
-    setIsFocus(true);
-  }, []);
+    const onFocus = useCallback(() => {
+      setIsFocus(true);
+    }, []);
 
-  const onBlur = useCallback(() => {
-    setIsFocus(false);
-  }, []);
+    const onBlur = useCallback(() => {
+      setIsFocus(false);
+    }, []);
 
-  return (
-    <Container>
-      <Label isFocus={isFocus}>{label}</Label>
+    return (
+      <Container>
+        <Label isFocus={isFocus}>{label}</Label>
 
-      <StyledInput
-        autoCapitalize="none"
-        autoCorrect={false}
-        textContentType="none"
-        isFocus={isFocus}
-        placeholder={placeholder}
-        placeholderTextColor={theme.gray2}
-        maxLength={maxLength}
-        returnKeyType={returnKeyType}
-        value={value}
-        onFocus={onFocus}
-        onChangeText={onChangeText}
-        onBlur={onBlur}
-        onSubmitEditing={onSubmitEditing}
-      />
-    </Container>
-  );
-};
+        <StyledInput
+          ref={ref}
+          autoCapitalize="none"
+          autoCorrect={false}
+          textContentType="none"
+          isFocus={isFocus}
+          placeholder={placeholder}
+          placeholderTextColor={theme.gray2}
+          secureTextEntry={secureTextEntry}
+          maxLength={maxLength}
+          returnKeyType={returnKeyType}
+          value={value}
+          onFocus={onFocus}
+          onChangeText={onChangeText}
+          onBlur={onBlur}
+          onSubmitEditing={onSubmitEditing}
+        />
+      </Container>
+    );
+  }
+);
 
 export default memo(Input);

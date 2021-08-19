@@ -1,4 +1,5 @@
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useCallback, useRef, useState } from 'react';
+import { TextInput } from 'react-native';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import styled from '@emotion/native';
@@ -30,7 +31,13 @@ const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const onSubmitEmail = useCallback(() => {}, []);
+  const passwordRef = useRef<TextInput>(null);
+
+  const onEmail = useCallback(() => {
+    passwordRef.current?.focus();
+  }, []);
+
+  const onSignIn = useCallback(() => {}, []);
 
   const onSignUp = useCallback(() => {
     navigation.navigate('SignUp');
@@ -46,18 +53,21 @@ const SignIn = () => {
         returnKeyType="next"
         value={email}
         onChangeText={setEmail}
-        onSubmitEditing={onSubmitEmail}
+        onSubmitEditing={onEmail}
       />
 
       <Input
+        ref={passwordRef}
         label="Password"
         placeholder="Password"
+        secureTextEntry
         returnKeyType="done"
         value={password}
         onChangeText={setPassword}
+        onSubmitEditing={onSignIn}
       />
 
-      <Button onPress={onSignUp}>SignIn</Button>
+      <Button onPress={onSignIn}>SignIn</Button>
       <TextButton onPress={onSignUp}>SignUp</TextButton>
     </Container>
   );
