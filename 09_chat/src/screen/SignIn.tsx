@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useMemo, useRef, useState } from 'react';
-import { StyleProp, TextInput, ViewStyle } from 'react-native';
+import { Alert, StyleProp, TextInput, ViewStyle } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
@@ -7,6 +7,7 @@ import styled from '@emotion/native';
 
 import { SignInScreenNavigationProp } from '../navigation/Auth';
 import { Button, Image, Input, TextButton } from '../components';
+import { signIn } from '../firebase/firebase';
 
 interface IContainer {
   insets: EdgeInsets;
@@ -45,7 +46,15 @@ const SignIn = () => {
     passwordRef.current?.focus();
   }, []);
 
-  const onSignIn = useCallback(() => {}, []);
+  const onSignIn = useCallback(async () => {
+    try {
+      const user = await signIn({ email, password });
+
+      navigation.replace('Profile', { user });
+    } catch (e) {
+      Alert.alert('SignIn Error', e.message);
+    }
+  }, [email, password, navigation]);
 
   const onSignUp = useCallback(() => {
     navigation.navigate('SignUp');

@@ -1,8 +1,11 @@
 import React, { memo, useCallback } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import styled from '@emotion/native';
 
-import { ProfileScreenNavigationProp } from '../navigation/Auth';
+import {
+  ProfileScreenNavigationProp,
+  ProfileScreenRouteProp,
+} from '../navigation/Auth';
 import { Button } from '../components';
 
 const Container = styled.View(({ theme }) => ({
@@ -12,6 +15,9 @@ const Container = styled.View(({ theme }) => ({
 
 const Profile = () => {
   const navigation = useNavigation<ProfileScreenNavigationProp>();
+  const route = useRoute<ProfileScreenRouteProp>();
+
+  console.log(route.params.user);
 
   const onSignOut = useCallback(() => {
     navigation.replace('SignIn');
