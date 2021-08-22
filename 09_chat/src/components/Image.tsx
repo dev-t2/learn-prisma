@@ -10,10 +10,12 @@ const StyledImage = styled.Image(({ theme }) => ({
 }));
 
 interface IImage {
-  uri: string;
+  uri?: string;
 }
 
-const Image: FC<IImage> = ({ uri }) => {
+const Image: FC<IImage> = ({
+  uri = 'https://firebasestorage.googleapis.com/v0/b/expo-chat-64b70.appspot.com/o/face.png?alt=media',
+}) => {
   const source = useMemo<ImageSourcePropType>(() => ({ uri }), [uri]);
 
   return <StyledImage source={source} />;

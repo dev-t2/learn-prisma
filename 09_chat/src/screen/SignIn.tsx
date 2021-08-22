@@ -33,7 +33,7 @@ const SignIn = () => {
 
   const passwordRef = useRef<TextInput>(null);
 
-  const onEmail = useCallback(() => {
+  const onSubmitEmail = useCallback(() => {
     passwordRef.current?.focus();
   }, []);
 
@@ -53,7 +53,7 @@ const SignIn = () => {
         returnKeyType="next"
         value={email}
         onChangeText={setEmail}
-        onSubmitEditing={onEmail}
+        onSubmitEditing={onSubmitEmail}
       />
 
       <Input
