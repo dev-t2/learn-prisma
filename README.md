@@ -20,4 +20,4 @@
 - Navigation: https://reactnavigation.org/
 - Vector Icons: https://icons.expo.fyi/
 - Redux Toolkit: https://soyoung210.github.io/redux-toolkit/
-- React Native Keyboard Aware ScrollView: https://www.npmjs.com/package/react-native-keyboard-aware-scroll-view
+- Keyboard Aware ScrollView: https://www.npmjs.com/package/react-native-keyboard-aware-scroll-view
