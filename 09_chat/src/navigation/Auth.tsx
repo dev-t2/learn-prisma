@@ -8,11 +8,12 @@ import {
 } from '@react-navigation/stack';
 import { useTheme } from '@emotion/react';
 
-import { SignIn, SignUp } from '../screen';
+import { Profile, SignIn, SignUp } from '../screen';
 
 type RootStackParamList = {
   SignIn: undefined;
   SignUp: undefined;
+  Profile: undefined;
 };
 
 export type SignInScreenRouteProp = RouteProp<RootStackParamList, 'SignIn'>;
@@ -25,6 +26,12 @@ export type SignUpScreenRouteProp = RouteProp<RootStackParamList, 'SignUp'>;
 export type SignUpScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
   'SignUp'
+>;
+
+export type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'Profile'>;
+export type ProfileScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'Profile'
 >;
 
 const { Navigator, Screen } = createStackNavigator<RootStackParamList>();
@@ -69,6 +76,7 @@ const Auth = () => {
     <Navigator screenOptions={screenOptions}>
       <Screen name="SignIn" component={SignIn} options={signInOptions} />
       <Screen name="SignUp" component={SignUp} options={signUpOptions} />
+      <Screen name="Profile" component={Profile} />
     </Navigator>
   );
 };
