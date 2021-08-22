@@ -1,27 +1,19 @@
 import React, { memo, useCallback, useRef, useState } from 'react';
-import { TextInput } from 'react-native';
-import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { ScrollView, TextInput } from 'react-native';
 import styled from '@emotion/native';
 
 import { Button, Image, Input } from '../components';
 
-interface IContainer {
-  insets: EdgeInsets;
-}
-
-const Container = styled.View<IContainer>(({ theme, insets }) => ({
+const Container = styled.View(({ theme }) => ({
   flex: 1,
   alignItems: 'center',
   justifyContent: 'center',
   backgroundColor: theme.background,
-  paddingTop: insets.top,
-  paddingBottom: insets.bottom,
+  paddingVertical: 50,
   paddingHorizontal: 20,
 }));
 
 const SignUp = () => {
-  const insets = useSafeAreaInsets();
-
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -46,51 +38,53 @@ const SignUp = () => {
   const onSignUp = useCallback(() => {}, []);
 
   return (
-    <Container insets={insets}>
-      <Image />
+    <ScrollView>
+      <Container>
+        <Image />
 
-      <Input
-        label="Email"
-        placeholder="Email"
-        returnKeyType="next"
-        value={email}
-        onChangeText={setEmail}
-        onSubmitEditing={onSubmitEmail}
-      />
+        <Input
+          label="Email"
+          placeholder="Email"
+          returnKeyType="next"
+          value={email}
+          onChangeText={setEmail}
+          onSubmitEditing={onSubmitEmail}
+        />
 
-      <Input
-        ref={nameRef}
-        label="Name"
-        placeholder="Name"
-        returnKeyType="next"
-        value={name}
-        onChangeText={setName}
-        onSubmitEditing={onSubmitName}
-      />
+        <Input
+          ref={nameRef}
+          label="Name"
+          placeholder="Name"
+          returnKeyType="next"
+          value={name}
+          onChangeText={setName}
+          onSubmitEditing={onSubmitName}
+        />
 
-      <Input
-        ref={passwordRef}
-        label="Password"
-        placeholder="Password"
-        secureTextEntry
-        returnKeyType="next"
-        value={password}
-        onChangeText={setPassword}
-        onSubmitEditing={onSubmitPassword}
-      />
+        <Input
+          ref={passwordRef}
+          label="Password"
+          placeholder="Password"
+          secureTextEntry
+          returnKeyType="next"
+          value={password}
+          onChangeText={setPassword}
+          onSubmitEditing={onSubmitPassword}
+        />
 
-      <Input
-        ref={passwordConfirmRef}
-        label="Password Confirm"
-        placeholder="Password Confirm"
-        returnKeyType="done"
-        value={passwordConfirm}
-        onChangeText={setPasswordConfirm}
-        onSubmitEditing={onSignUp}
-      />
+        <Input
+          ref={passwordConfirmRef}
+          label="Password Confirm"
+          placeholder="Password Confirm"
+          returnKeyType="done"
+          value={passwordConfirm}
+          onChangeText={setPasswordConfirm}
+          onSubmitEditing={onSignUp}
+        />
 
-      <Button onPress={onSignUp}>SignUp</Button>
-    </Container>
+        <Button onPress={onSignUp}>SignUp</Button>
+      </Container>
+    </ScrollView>
   );
 };
 

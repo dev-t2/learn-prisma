@@ -32,6 +32,15 @@ const { Navigator, Screen } = createStackNavigator<RootStackParamList>();
 const Auth = () => {
   const theme = useTheme();
 
+  const screenOptions = useMemo<StackNavigationOptions>(
+    () => ({
+      cardStyle: {
+        backgroundColor: theme.background,
+      },
+    }),
+    [theme.background]
+  );
+
   const signInOptions = useMemo<StackNavigationOptions>(
     () => ({
       headerShown: false,
@@ -57,7 +66,7 @@ const Auth = () => {
   );
 
   return (
-    <Navigator>
+    <Navigator screenOptions={screenOptions}>
       <Screen name="SignIn" component={SignIn} options={signInOptions} />
       <Screen name="SignUp" component={SignUp} options={signUpOptions} />
     </Navigator>
