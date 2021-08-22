@@ -1,5 +1,6 @@
 import React, { memo, useCallback, useRef, useState } from 'react';
-import { ScrollView, TextInput } from 'react-native';
+import { TextInput } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styled from '@emotion/native';
 
 import { Button, Image, Input } from '../components';
@@ -38,7 +39,7 @@ const SignUp = () => {
   const onSignUp = useCallback(() => {}, []);
 
   return (
-    <ScrollView>
+    <KeyboardAwareScrollView enableOnAndroid>
       <Container>
         <Image />
 
@@ -84,7 +85,7 @@ const SignUp = () => {
 
         <Button onPress={onSignUp}>SignUp</Button>
       </Container>
-    </ScrollView>
+    </KeyboardAwareScrollView>
   );
 };
 
