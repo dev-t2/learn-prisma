@@ -6,8 +6,9 @@ import { useNavigation } from '@react-navigation/native';
 import styled from '@emotion/native';
 
 import { SignInScreenNavigationProp } from '../navigation/Auth';
-import { Button, Image, Input, TextButton } from '../components';
+import { deleteWhitespace } from '../api';
 import { signIn } from '../firebase/firebase';
+import { Button, Image, Input, TextButton } from '../components';
 
 interface IContainer {
   insets: EdgeInsets;
@@ -36,14 +37,20 @@ const SignIn = () => {
   const passwordRef = useRef<TextInput>(null);
 
   const contentContainerStyle = useMemo<StyleProp<ViewStyle>>(
-    () => ({
-      flex: 1,
-    }),
+    () => ({ flex: 1 }),
     []
   );
 
+  const onChangeEmail = useCallback((email: string) => {
+    setEmail(deleteWhitespace(email));
+  }, []);
+
   const onSubmitEmail = useCallback(() => {
     passwordRef.current?.focus();
+  }, []);
+
+  const onChangePassword = useCallback((password: string) => {
+    setPassword(deleteWhitespace(password));
   }, []);
 
   const onSignIn = useCallback(async () => {
@@ -73,7 +80,7 @@ const SignIn = () => {
           placeholder="Email"
           returnKeyType="next"
           value={email}
-          onChangeText={setEmail}
+          onChangeText={onChangeEmail}
           onSubmitEditing={onSubmitEmail}
         />
 
@@ -84,7 +91,7 @@ const SignIn = () => {
           secureTextEntry
           returnKeyType="done"
           value={password}
-          onChangeText={setPassword}
+          onChangeText={onChangePassword}
           onSubmitEditing={onSignIn}
         />
 
