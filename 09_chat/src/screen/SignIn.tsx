@@ -1,5 +1,6 @@
-import React, { memo, useCallback, useRef, useState } from 'react';
-import { TextInput } from 'react-native';
+import React, { memo, useCallback, useMemo, useRef, useState } from 'react';
+import { StyleProp, TextInput, ViewStyle } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import styled from '@emotion/native';
@@ -33,6 +34,13 @@ const SignIn = () => {
 
   const passwordRef = useRef<TextInput>(null);
 
+  const contentContainerStyle = useMemo<StyleProp<ViewStyle>>(
+    () => ({
+      flex: 1,
+    }),
+    []
+  );
+
   const onSubmitEmail = useCallback(() => {
     passwordRef.current?.focus();
   }, []);
@@ -44,32 +52,37 @@ const SignIn = () => {
   }, [navigation]);
 
   return (
-    <Container insets={insets}>
-      <Image uri={logo} />
+    <KeyboardAwareScrollView
+      enableOnAndroid
+      contentContainerStyle={contentContainerStyle}
+    >
+      <Container insets={insets}>
+        <Image uri={logo} />
 
-      <Input
-        label="Email"
-        placeholder="Email"
-        returnKeyType="next"
-        value={email}
-        onChangeText={setEmail}
-        onSubmitEditing={onSubmitEmail}
-      />
+        <Input
+          label="Email"
+          placeholder="Email"
+          returnKeyType="next"
+          value={email}
+          onChangeText={setEmail}
+          onSubmitEditing={onSubmitEmail}
+        />
 
-      <Input
-        ref={passwordRef}
-        label="Password"
-        placeholder="Password"
-        secureTextEntry
-        returnKeyType="done"
-        value={password}
-        onChangeText={setPassword}
-        onSubmitEditing={onSignIn}
-      />
+        <Input
+          ref={passwordRef}
+          label="Password"
+          placeholder="Password"
+          secureTextEntry
+          returnKeyType="done"
+          value={password}
+          onChangeText={setPassword}
+          onSubmitEditing={onSignIn}
+        />
 
-      <Button onPress={onSignIn}>SignIn</Button>
-      <TextButton onPress={onSignUp}>SignUp</TextButton>
-    </Container>
+        <Button onPress={onSignIn}>SignIn</Button>
+        <TextButton onPress={onSignUp}>SignUp</TextButton>
+      </Container>
+    </KeyboardAwareScrollView>
   );
 };
 

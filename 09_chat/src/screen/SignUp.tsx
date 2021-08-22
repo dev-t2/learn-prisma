@@ -14,7 +14,11 @@ const Container = styled.View(({ theme }) => ({
   paddingHorizontal: 20,
 }));
 
+const defaultPhoto =
+  'https://firebasestorage.googleapis.com/v0/b/expo-chat-64b70.appspot.com/o/face.png?alt=media';
+
 const SignUp = () => {
+  const [photo, setPhoto] = useState(defaultPhoto);
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -23,6 +27,10 @@ const SignUp = () => {
   const nameRef = useRef<TextInput>(null);
   const passwordRef = useRef<TextInput>(null);
   const passwordConfirmRef = useRef<TextInput>(null);
+
+  const onChangePhoto = useCallback((uri: string) => {
+    setPhoto(uri);
+  }, []);
 
   const onSubmitEmail = useCallback(() => {
     nameRef.current?.focus();
@@ -41,7 +49,7 @@ const SignUp = () => {
   return (
     <KeyboardAwareScrollView enableOnAndroid>
       <Container>
-        <Image />
+        <Image isPhoto uri={photo} onChangePhoto={onChangePhoto} />
 
         <Input
           label="Email"
