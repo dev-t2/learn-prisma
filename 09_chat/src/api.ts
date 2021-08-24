@@ -1,6 +1,6 @@
 export const validateEmail = (email: string) => {
   const regExp =
-    /^[0-9?A-z0-9?]+(\.)?[0-9?A-z0-9?]+@[A-z]+\.[A-z]{2}.?[A-z]{2,3}$/;
+    /^[0-9?A-z0-9?]+(\.)?[0-9?A-z0-9?]+@[A-z]+\.[A-z]{2}.?[A-z]{0,3}$/;
 
   return regExp.test(email);
 };

@@ -6,9 +6,9 @@ import { useNavigation } from '@react-navigation/native';
 import styled from '@emotion/native';
 
 import { SignInScreenNavigationProp } from '../navigation/Auth';
-import { deleteWhitespace } from '../api';
+import { deleteWhitespace, validateEmail } from '../api';
 import { signIn } from '../firebase/firebase';
-import { Button, Image, Input, TextButton } from '../components';
+import { Button, ErrorMessage, Image, Input, TextButton } from '../components';
 
 interface IContainer {
   insets: EdgeInsets;
@@ -33,6 +33,7 @@ const SignIn = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const passwordRef = useRef<TextInput>(null);
 
@@ -43,6 +44,10 @@ const SignIn = () => {
 
   const onChangeEmail = useCallback((email: string) => {
     setEmail(deleteWhitespace(email));
+
+    const validatedEmail = validateEmail(email);
+
+    setErrorMessage(validatedEmail ? '' : 'Please verify your email');
   }, []);
 
   const onSubmitEmail = useCallback(() => {
@@ -95,7 +100,10 @@ const SignIn = () => {
           onSubmitEditing={onSignIn}
         />
 
+        <ErrorMessage>{errorMessage}</ErrorMessage>
+
         <Button onPress={onSignIn}>SignIn</Button>
+
         <TextButton onPress={onSignUp}>SignUp</TextButton>
       </Container>
     </KeyboardAwareScrollView>
