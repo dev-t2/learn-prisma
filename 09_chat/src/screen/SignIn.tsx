@@ -1,4 +1,11 @@
-import React, { memo, useCallback, useMemo, useRef, useState } from 'react';
+import React, {
+  memo,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { Alert, StyleProp, TextInput, ViewStyle } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -34,6 +41,7 @@ const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [isValid, setIsValid] = useState(false);
 
   const passwordRef = useRef<TextInput>(null);
 
@@ -41,6 +49,10 @@ const SignIn = () => {
     () => ({ flex: 1 }),
     []
   );
+
+  useEffect(() => {
+    setIsValid(!!email && !!password && !errorMessage);
+  }, [email, password, errorMessage]);
 
   const onChangeEmail = useCallback((email: string) => {
     setEmail(deleteWhitespace(email));
@@ -102,7 +114,9 @@ const SignIn = () => {
 
         <ErrorMessage>{errorMessage}</ErrorMessage>
 
-        <Button onPress={onSignIn}>SignIn</Button>
+        <Button disabled={!isValid} onPress={onSignIn}>
+          SignIn
+        </Button>
 
         <TextButton onPress={onSignUp}>SignUp</TextButton>
       </Container>

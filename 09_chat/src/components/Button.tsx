@@ -1,14 +1,20 @@
 import React, { FC, memo, ReactNode } from 'react';
 import styled from '@emotion/native';
 
-const StyledPressable = styled.Pressable(({ theme }) => ({
-  width: '100%',
-  alignItems: 'center',
-  backgroundColor: theme.main,
-  borderRadius: 4,
-  padding: 10,
-  margin: 10,
-}));
+interface IStyledPressable {
+  disabled: boolean;
+}
+
+const StyledPressable = styled.Pressable<IStyledPressable>(
+  ({ theme, disabled }) => ({
+    width: '100%',
+    alignItems: 'center',
+    backgroundColor: disabled ? theme.gray2 : theme.main,
+    borderRadius: 4,
+    padding: 10,
+    margin: 10,
+  })
+);
 
 const Title = styled.Text(({ theme }) => ({
   fontSize: 24,
@@ -17,12 +23,13 @@ const Title = styled.Text(({ theme }) => ({
 
 interface IButton {
   children: ReactNode;
+  disabled: boolean;
   onPress: () => void;
 }
 
-const Button: FC<IButton> = ({ children, onPress }) => {
+const Button: FC<IButton> = ({ children, disabled, onPress }) => {
   return (
-    <StyledPressable onPress={onPress}>
+    <StyledPressable disabled={disabled} onPress={onPress}>
       <Title>{children}</Title>
     </StyledPressable>
   );
