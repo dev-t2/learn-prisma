@@ -18,12 +18,15 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"],
     "arrow-parens": "off",
     "no-use-before-define": "off",
     "no-alert": "off",
     "import/no-unresolved": "off",
     "import/extensions": "off",
     "react/jsx-filename-extension": "off",
-    "react/style-prop-object": "off"
+    "react/style-prop-object": "off",
+    "linebreak-style": "off"
   }
 }
