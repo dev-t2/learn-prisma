@@ -14,7 +14,7 @@ import { Profile, SignIn, SignUp } from '../screen';
 type RootStackParamList = {
   SignIn: undefined;
   SignUp: undefined;
-  Profile: { user: firebase.User | null };
+  Profile: { user: firebase.User };
 };
 
 export type SignInScreenRouteProp = RouteProp<RootStackParamList, 'SignIn'>;

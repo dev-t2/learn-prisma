@@ -32,6 +32,7 @@
     "react/prop-types": "off",
     "operator-linebreak": "off",
     "object-curly-newline": "off",
-    "no-shadow": "off"
+    "no-shadow": "off",
+    "no-return-await": "off"
   }
 }

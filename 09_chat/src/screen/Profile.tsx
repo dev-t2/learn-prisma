@@ -20,7 +20,7 @@ const Profile = () => {
   console.log(route.params.user);
 
   const onSignOut = useCallback(() => {
-    navigation.replace('SignIn');
+    navigation.reset({ routes: [{ name: 'SignIn' }] });
   }, [navigation]);
 
   return (

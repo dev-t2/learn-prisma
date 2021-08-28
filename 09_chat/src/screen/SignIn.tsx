@@ -14,7 +14,7 @@ import styled from '@emotion/native';
 
 import { SignInScreenNavigationProp } from '../navigation/Auth';
 import { deleteWhitespace, validateEmail } from '../api';
-import { signIn } from '../firebase/firebase';
+import { signIn } from '../firebase';
 import { Button, ErrorMessage, Image, Input, TextButton } from '../components';
 
 interface IContainer {
@@ -74,7 +74,7 @@ const SignIn = () => {
     try {
       const user = await signIn({ email, password });
 
-      navigation.replace('Profile', { user });
+      navigation.reset({ routes: [{ name: 'Profile', params: { user } }] });
     } catch (e) {
       Alert.alert('SignIn Error', e.message);
     }
