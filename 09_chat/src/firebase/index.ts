@@ -29,19 +29,20 @@ export const uploadStorage = async (photo: string) => {
     };
 
     xhr.onerror = () => {
-      reject(new TypeError('Network Request Error'));
+      reject(new TypeError('Network request failed'));
     };
 
     xhr.responseType = 'blob';
+
     xhr.open('GET', photo, true);
     xhr.send(null);
   });
 
-  const user = Auth.currentUser;
-  const ref = app.storage().ref(`/profile/${user?.uid}/avatar.png`);
+  const ref = app.storage().ref(`/profile/${Auth.currentUser?.uid}/avatar.png`);
   const snapshot = await ref.put(blob, { contentType: 'image/png' });
+  const photoUrl = await snapshot.ref.getDownloadURL();
 
-  return await snapshot.ref.getDownloadURL();
+  return photoUrl;
 };
 
 interface ISignUp {
