@@ -7,14 +7,13 @@ import {
   StackNavigationProp,
 } from '@react-navigation/stack';
 import { useTheme } from '@emotion/react';
-import firebase from 'firebase';
 
 import { Profile, SignIn, SignUp } from '../screen';
 
 type RootStackParamList = {
   SignIn: undefined;
   SignUp: undefined;
-  Profile: { user: firebase.User };
+  Profile: undefined;
 };
 
 export type SignInScreenRouteProp = RouteProp<RootStackParamList, 'SignIn'>;

@@ -7,6 +7,7 @@ import React, {
   useState,
 } from 'react';
 import { Alert, StyleProp, TextInput, ViewStyle } from 'react-native';
+import { useDispatch } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
@@ -15,6 +16,7 @@ import styled from '@emotion/native';
 import { SignInScreenNavigationProp } from '../navigation/Auth';
 import { deleteWhitespace, validateEmail } from '../api';
 import { signIn } from '../firebase';
+import { setUser } from '../redux/user';
 import { Button, ErrorMessage, Image, Input, TextButton } from '../components';
 
 interface IContainer {
@@ -37,6 +39,7 @@ const logo =
 const SignIn = () => {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<SignInScreenNavigationProp>();
+  const dispatch = useDispatch();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -74,11 +77,11 @@ const SignIn = () => {
     try {
       const user = await signIn({ email, password });
 
-      navigation.reset({ routes: [{ name: 'Profile', params: { user } }] });
+      dispatch(setUser({ user }));
     } catch (e) {
       Alert.alert('SignIn Error', e.message);
     }
-  }, [email, password, navigation]);
+  }, [email, password, dispatch]);
 
   const onSignUp = useCallback(() => {
     navigation.navigate('SignUp');
