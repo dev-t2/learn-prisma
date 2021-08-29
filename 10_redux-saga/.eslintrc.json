@@ -26,6 +26,10 @@
     "react/style-prop-object": "off",
     "import/no-unresolved": "off",
     "import/extensions": "off",
-    "linebreak-style": "off"
+    "linebreak-style": "off",
+    "no-param-reassign": "off",
+    "operator-linebreak": "off",
+    "object-curly-newline": "off",
+    "no-console": "off"
   }
 }
