@@ -33,6 +33,7 @@
     "operator-linebreak": "off",
     "object-curly-newline": "off",
     "no-shadow": "off",
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "no-console": "off"
   }
 }
