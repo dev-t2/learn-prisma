@@ -22,3 +22,4 @@
 - Redux Toolkit: https://soyoung210.github.io/redux-toolkit/
 - Firebase: https://firebase.google.com/?hl=ko
 - Keyboard Aware ScrollView: https://www.npmjs.com/package/react-native-keyboard-aware-scroll-view
+- Redux-Saga: https://redux-saga.js.org/
