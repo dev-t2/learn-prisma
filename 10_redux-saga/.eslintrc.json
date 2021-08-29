@@ -23,6 +23,9 @@
     "no-use-before-define": "off",
     "arrow-body-style": "off",
     "react/jsx-filename-extension": "off",
-    "react/style-prop-object": "off"
+    "react/style-prop-object": "off",
+    "import/no-unresolved": "off",
+    "import/extensions": "off",
+    "linebreak-style": "off"
   }
 }
