@@ -1,11 +1,8 @@
 import React, { memo, useCallback } from 'react';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
 import styled from '@emotion/native';
 
-import {
-  ProfileScreenNavigationProp,
-  ProfileScreenRouteProp,
-} from '../navigation/Auth';
+import { setUser } from '../redux/user';
 import { Button } from '../components';
 
 const Container = styled.View(({ theme }) => ({
@@ -14,18 +11,17 @@ const Container = styled.View(({ theme }) => ({
 }));
 
 const Profile = () => {
-  const navigation = useNavigation<ProfileScreenNavigationProp>();
-  const route = useRoute<ProfileScreenRouteProp>();
-
-  console.log(route.params.user);
+  const dispatch = useDispatch();
 
   const onSignOut = useCallback(() => {
-    navigation.reset({ routes: [{ name: 'SignIn' }] });
-  }, [navigation]);
+    dispatch(setUser({ user: null }));
+  }, [dispatch]);
 
   return (
     <Container>
-      <Button onPress={onSignOut}>로그아웃</Button>
+      <Button disabled={false} onPress={onSignOut}>
+        로그아웃
+      </Button>
     </Container>
   );
 };

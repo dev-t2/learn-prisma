@@ -8,33 +8,26 @@ import {
 } from '@react-navigation/stack';
 import { useTheme } from '@emotion/react';
 
-import { Profile, SignIn, SignUp } from '../screen';
+import { SignIn, SignUp } from '../screen';
 
-type RootStackParamList = {
+type AuthStackParamList = {
   SignIn: undefined;
   SignUp: undefined;
-  Profile: undefined;
 };
 
-export type SignInScreenRouteProp = RouteProp<RootStackParamList, 'SignIn'>;
+export type SignInScreenRouteProp = RouteProp<AuthStackParamList, 'SignIn'>;
 export type SignInScreenNavigationProp = StackNavigationProp<
-  RootStackParamList,
+  AuthStackParamList,
   'SignIn'
 >;
 
-export type SignUpScreenRouteProp = RouteProp<RootStackParamList, 'SignUp'>;
+export type SignUpScreenRouteProp = RouteProp<AuthStackParamList, 'SignUp'>;
 export type SignUpScreenNavigationProp = StackNavigationProp<
-  RootStackParamList,
+  AuthStackParamList,
   'SignUp'
 >;
 
-export type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'Profile'>;
-export type ProfileScreenNavigationProp = StackNavigationProp<
-  RootStackParamList,
-  'Profile'
->;
-
-const { Navigator, Screen } = createStackNavigator<RootStackParamList>();
+const { Navigator, Screen } = createStackNavigator<AuthStackParamList>();
 
 const Auth = () => {
   const theme = useTheme();
@@ -76,7 +69,6 @@ const Auth = () => {
     <Navigator screenOptions={screenOptions}>
       <Screen name="SignIn" component={SignIn} options={signInOptions} />
       <Screen name="SignUp" component={SignUp} options={signUpOptions} />
-      <Screen name="Profile" component={Profile} />
     </Navigator>
   );
 };
