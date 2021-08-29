@@ -1,4 +1,5 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Alert, TextInput } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useNavigation } from '@react-navigation/native';
@@ -8,6 +9,7 @@ import { SignUpScreenNavigationProp } from '../navigation/Auth';
 import { signup } from '../firebase';
 import { deleteWhitespace, validateEmail } from '../api';
 import { Button, ErrorMessage, Image, Input } from '../components';
+import { setIsLoading } from '../redux/user';
 
 const Container = styled.View(({ theme }) => ({
   flex: 1,
@@ -23,6 +25,7 @@ const defaultPhoto =
 
 const SignUp = () => {
   const navigation = useNavigation<SignUpScreenNavigationProp>();
+  const dispatch = useDispatch();
 
   const [photo, setPhoto] = useState(defaultPhoto);
   const [email, setEmail] = useState('');
@@ -96,13 +99,17 @@ const SignUp = () => {
 
   const onSignUp = useCallback(async () => {
     try {
+      dispatch(setIsLoading({ isLoading: true }));
+
       await signup({ photo, email, displayName, password });
 
       navigation.reset({ routes: [{ name: 'SignIn' }] });
     } catch (e) {
       Alert.alert('SignUp Error', e.message);
+    } finally {
+      dispatch(setIsLoading({ isLoading: false }));
     }
-  }, [photo, email, displayName, password, navigation]);
+  }, [dispatch, photo, email, displayName, password, navigation]);
 
   return (
     <KeyboardAwareScrollView enableOnAndroid>

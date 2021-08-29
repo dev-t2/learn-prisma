@@ -5,12 +5,17 @@ import { NavigationContainer } from '@react-navigation/native';
 import { RootState } from '../redux/rootReducer';
 import Main from './Main';
 import Auth from './Auth';
+import { Spinner } from '../components';
 
 const Navigation = () => {
-  const { user } = useSelector((state: RootState) => state.user);
+  const { user, isLoading } = useSelector((state: RootState) => state.user);
 
   return (
-    <NavigationContainer>{user ? <Main /> : <Auth />}</NavigationContainer>
+    <NavigationContainer>
+      {user ? <Main /> : <Auth />}
+
+      {isLoading && <Spinner />}
+    </NavigationContainer>
   );
 };
 

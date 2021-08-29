@@ -9,6 +9,7 @@ declare module '@emotion/react' {
     link: string;
     gray1: string;
     gray2: string;
+    spinner: string;
     error: string;
   }
 }

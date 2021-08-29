@@ -16,7 +16,7 @@ import styled from '@emotion/native';
 import { SignInScreenNavigationProp } from '../navigation/Auth';
 import { deleteWhitespace, validateEmail } from '../api';
 import { signIn } from '../firebase';
-import { setUser } from '../redux/user';
+import { setIsLoading, setUser } from '../redux/user';
 import { Button, ErrorMessage, Image, Input, TextButton } from '../components';
 
 interface IContainer {
@@ -75,11 +75,15 @@ const SignIn = () => {
 
   const onSignIn = useCallback(async () => {
     try {
+      dispatch(setIsLoading({ isLoading: true }));
+
       const user = await signIn({ email, password });
 
       dispatch(setUser({ user }));
     } catch (e) {
       Alert.alert('SignIn Error', e.message);
+    } finally {
+      dispatch(setIsLoading({ isLoading: false }));
     }
   }, [email, password, dispatch]);
 
