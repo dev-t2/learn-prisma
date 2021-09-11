@@ -32,12 +32,11 @@ interface IStyledInput {
 const StyledInput = styled.TextInput<IStyledInput>(({ theme, isFocus }) => ({
   backgroundColor: theme.white,
   color: theme.text,
-  paddingVertical: 20,
-  paddingHorizontal: 10,
   fontSize: 16,
   borderWidth: 1,
   borderColor: isFocus ? theme.text : theme.gray2,
   borderRadius: 4,
+  padding: 10,
 }));
 
 interface IInput {

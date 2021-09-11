@@ -27,6 +27,7 @@ const Home = () => {
   const screenOptions = useMemo<BottomTabNavigationOptions>(
     () => ({
       headerShown: false,
+      tabBarShowLabel: false,
     }),
     []
   );

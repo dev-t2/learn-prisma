@@ -65,3 +65,5 @@ export const signup = async ({
 
   return user;
 };
+
+export const getUser = () => Auth.currentUser;
