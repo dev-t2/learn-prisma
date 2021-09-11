@@ -23,3 +23,4 @@
 - Firebase: https://firebase.google.com/?hl=ko
 - Keyboard Aware ScrollView: https://www.npmjs.com/package/react-native-keyboard-aware-scroll-view
 - Redux-Saga: https://redux-saga.js.org/
+- React Native Debugger: https://github.com/jhen0409/react-native-debugger
