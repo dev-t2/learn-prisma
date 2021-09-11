@@ -20,7 +20,7 @@ const Profile = () => {
   return (
     <Container>
       <Button disabled={false} onPress={onSignOut}>
-        로그아웃
+        SignOut
       </Button>
     </Container>
   );
