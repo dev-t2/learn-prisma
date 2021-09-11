@@ -1,5 +1,8 @@
-import React, { memo } from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React, { memo, useMemo } from 'react';
+import {
+  BottomTabNavigationOptions,
+  createBottomTabNavigator,
+} from '@react-navigation/bottom-tabs';
 
 import { ChannelList, Profile } from '../screen';
 
@@ -11,8 +14,15 @@ type HomeStackParamList = {
 const { Navigator, Screen } = createBottomTabNavigator<HomeStackParamList>();
 
 const Home = () => {
+  const screenOptions = useMemo<BottomTabNavigationOptions>(
+    () => ({
+      headerShown: false,
+    }),
+    []
+  );
+
   return (
-    <Navigator>
+    <Navigator screenOptions={screenOptions}>
       <Screen name="ChannelList" component={ChannelList} />
       <Screen name="Profile" component={Profile} />
     </Navigator>
