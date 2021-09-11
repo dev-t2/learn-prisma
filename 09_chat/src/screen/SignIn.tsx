@@ -80,8 +80,8 @@ const SignIn = () => {
       const user = await signIn({ email, password });
 
       dispatch(setUser({ user }));
-    } catch (e) {
-      Alert.alert('SignIn Error', e.message);
+    } catch (error) {
+      Alert.alert('SignIn Error');
     } finally {
       dispatch(setIsLoading({ isLoading: false }));
     }

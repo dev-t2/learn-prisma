@@ -12,7 +12,7 @@ const StyledPressable = styled.Pressable<IStyledPressable>(
     backgroundColor: disabled ? theme.gray2 : theme.main,
     borderRadius: 4,
     padding: 10,
-    margin: 10,
+    marginVertical: 10,
   })
 );
 
