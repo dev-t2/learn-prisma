@@ -8,7 +8,3 @@ export interface IState {
 export interface ISetUser {
   user: firebase.User | null;
 }
-
-export interface ISetIsLoading {
-  isLoading: boolean;
-}

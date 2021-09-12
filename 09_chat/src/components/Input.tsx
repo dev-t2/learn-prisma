@@ -36,18 +36,20 @@ const StyledInput = styled.TextInput<IStyledInput>(({ theme, isFocus }) => ({
   borderWidth: 1,
   borderColor: isFocus ? theme.text : theme.gray2,
   borderRadius: 4,
-  padding: 10,
+  paddingVertical: 10,
+  paddingHorizontal: 20,
 }));
 
 interface IInput {
   label: string;
-  placeholder: string;
+  isEditable?: boolean;
+  placeholder?: string;
   value: string;
-  returnKeyType: ReturnKeyTypeOptions;
+  returnKeyType?: ReturnKeyTypeOptions;
   secureTextEntry?: boolean;
   maxLength?: number;
-  onChangeText: (text: string) => void;
-  onSubmitEditing: (
+  onChangeText?: (text: string) => void;
+  onSubmitEditing?: (
     e: NativeSyntheticEvent<TextInputSubmitEditingEventData>
   ) => void;
 }
@@ -56,6 +58,7 @@ const Input = forwardRef<TextInput, IInput>(
   (
     {
       label,
+      isEditable = true,
       placeholder,
       secureTextEntry,
       maxLength,
@@ -87,6 +90,7 @@ const Input = forwardRef<TextInput, IInput>(
           autoCapitalize="none"
           autoCorrect={false}
           textContentType="none"
+          editable={isEditable}
           isFocus={isFocus}
           placeholder={placeholder}
           placeholderTextColor={theme.gray2}

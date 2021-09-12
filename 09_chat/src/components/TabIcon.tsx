@@ -14,7 +14,7 @@ const TabIcon: FC<ITabIcon> = ({ name, isFocus }) => {
     <MaterialIcons
       name={name}
       size={26}
-      color={isFocus ? theme.main : theme.gray1}
+      color={isFocus ? theme.main : theme.gray2}
     />
   );
 };

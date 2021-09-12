@@ -52,7 +52,7 @@ interface ISignUp {
   password: string;
 }
 
-export const signup = async ({
+export const signUp = async ({
   photo,
   email,
   displayName,
@@ -64,4 +64,16 @@ export const signup = async ({
   await user?.updateProfile({ displayName, photoURL });
 
   return user;
+};
+
+export const updateUserInfo = async (photo: string) => {
+  const photoURL = await uploadStorage(photo);
+
+  await Auth.currentUser?.updateProfile({ photoURL });
+
+  return Auth.currentUser;
+};
+
+export const signOut = async () => {
+  await Auth.signOut();
 };

@@ -1,12 +1,12 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Alert, TextInput } from 'react-native';
+import { TextInput } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useNavigation } from '@react-navigation/native';
 import styled from '@emotion/native';
 
 import { SignUpScreenNavigationProp } from '../navigation/Auth';
-import { signup } from '../firebase';
+import { signUp } from '../firebase';
 import { deleteWhitespace, validateEmail } from '../api';
 import { Button, ErrorMessage, Image, Input } from '../components';
 import { setIsLoading } from '../redux/user';
@@ -98,17 +98,11 @@ const SignUp = () => {
   }, []);
 
   const onSignUp = useCallback(async () => {
-    try {
-      dispatch(setIsLoading({ isLoading: true }));
+    dispatch(setIsLoading());
 
-      await signup({ photo, email, displayName, password });
+    await signUp({ photo, email, displayName, password });
 
-      navigation.reset({ routes: [{ name: 'SignIn' }] });
-    } catch (e) {
-      Alert.alert('SignUp Error', e.message);
-    } finally {
-      dispatch(setIsLoading({ isLoading: false }));
-    }
+    navigation.reset({ routes: [{ name: 'SignIn' }] });
   }, [dispatch, photo, email, displayName, password, navigation]);
 
   return (

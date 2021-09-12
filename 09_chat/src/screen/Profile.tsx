@@ -1,10 +1,11 @@
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from '@emotion/native';
 
-import { setUser } from '../redux/user';
-import { Button, Image, Input } from '../components';
 import { RootState } from '../redux/rootReducer';
+import { setIsLoading, setUser } from '../redux/user';
+import { Button, Image, Input } from '../components';
+import { signOut, updateUserInfo } from '../firebase';
 
 const Container = styled.View(({ theme }) => ({
   flex: 1,
@@ -18,19 +19,31 @@ const Profile = () => {
   const { user } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
 
-  const [photoURL, setPhotoURL] = useState(user?.photoURL ?? '');
+  const onChangePhoto = useCallback(
+    async (uri: string) => {
+      dispatch(setIsLoading());
 
-  const onSignOut = useCallback(() => {
+      const user = await updateUserInfo(uri);
+
+      dispatch(setUser({ user }));
+    },
+    [dispatch]
+  );
+
+  const onSignOut = useCallback(async () => {
+    dispatch(setIsLoading());
+
+    await signOut();
+
     dispatch(setUser({ user: null }));
   }, [dispatch]);
 
   return (
     <Container>
-      <Image isPhoto uri={photoURL} />
+      <Image isPhoto uri={user?.photoURL ?? ''} onChangePhoto={onChangePhoto} />
 
-      <Input label="Name" value={user?.displayName ?? ''} />
-
-      <Input label="Email" value={user?.email ?? ''} />
+      <Input label="Name" isEditable={false} value={user?.displayName ?? ''} />
+      <Input label="Email" isEditable={false} value={user?.email ?? ''} />
 
       <Button disabled={false} onPress={onSignOut}>
         SignOut
