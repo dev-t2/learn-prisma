@@ -1,10 +1,10 @@
 import React, { memo, useCallback, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from '@emotion/native';
 
 import { setUser } from '../redux/user';
-import { getUser } from '../firebase';
 import { Button, Image, Input } from '../components';
+import { RootState } from '../redux/rootReducer';
 
 const Container = styled.View(({ theme }) => ({
   flex: 1,
@@ -14,9 +14,8 @@ const Container = styled.View(({ theme }) => ({
   backgroundColor: theme.background,
 }));
 
-const user = getUser();
-
 const Profile = () => {
+  const { user } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
 
   const [photoURL, setPhotoURL] = useState(user?.photoURL ?? '');
