@@ -1,4 +1,6 @@
-import React, { memo, useEffect, useMemo } from 'react';
+import React, { memo, useCallback, useEffect, useMemo } from 'react';
+import { StyleProp, TextStyle } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 import {
   BottomTabNavigationOptions,
   createBottomTabNavigator,
@@ -56,11 +58,31 @@ const Home = () => {
     []
   );
 
+  const style = useMemo<StyleProp<TextStyle>>(() => ({ marginRight: 20 }), []);
+
+  const onCreateChannel = useCallback(() => {
+    navigation.navigate('CreateChannel');
+  }, [navigation]);
+
   useEffect(() => {
     const screenName = getFocusedRouteNameFromRoute(route) ?? 'List';
 
-    navigation.setOptions({ headerTitle: screenName });
-  }, [route, navigation]);
+    navigation.setOptions({
+      headerTitle: screenName,
+      headerRight: () => {
+        return (
+          screenName === 'List' && (
+            <MaterialIcons
+              name="add"
+              size={26}
+              style={style}
+              onPress={onCreateChannel}
+            />
+          )
+        );
+      },
+    });
+  }, [route, navigation, style, onCreateChannel]);
 
   return (
     <Navigator screenOptions={screenOptions}>

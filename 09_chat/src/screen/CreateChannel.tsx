@@ -20,9 +20,7 @@ import { Button, ErrorMessage, Input, Spinner } from '../components';
 
 const Container = styled.View(({ theme }) => ({
   flex: 1,
-  justifyContent: 'center',
-  alignItems: 'center',
-  paddingHorizontal: 20,
+  padding: 20,
   backgroundColor: theme.background,
 }));
 
