@@ -13,7 +13,7 @@ import { Channel, CreateChannel } from '../screen';
 type MainStackParamList = {
   Home: undefined;
   CreateChannel: undefined;
-  Channel: undefined;
+  Channel: { id: string; title: string };
 };
 
 export type HomeScreenRouteProp = RouteProp<MainStackParamList, 'Home'>;

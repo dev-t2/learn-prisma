@@ -5,6 +5,10 @@ export interface IState {
   isLoading: boolean;
 }
 
+export interface ISetIsLoading {
+  isLoading: boolean;
+}
+
 export interface ISetUser {
   user: firebase.User | null;
 }

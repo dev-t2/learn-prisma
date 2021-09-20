@@ -6,13 +6,17 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { StyleProp, TextInput, ViewStyle } from 'react-native';
+import { Alert, StyleProp, TextInput, ViewStyle } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import styled from '@emotion/native';
 
-import { ChannelScreenNavigationProp } from '../navigation/Main';
-import { Button, ErrorMessage, Input } from '../components';
+import { CreateChannelScreenNavigationProp } from '../navigation/Main';
+import { RootState } from '../redux/rootReducer';
+import { setIsLoading } from '../redux/user';
+import { createChannel } from '../firebase';
+import { Button, ErrorMessage, Input, Spinner } from '../components';
 
 const Container = styled.View(({ theme }) => ({
   flex: 1,
@@ -23,7 +27,10 @@ const Container = styled.View(({ theme }) => ({
 }));
 
 const CreateChannel = () => {
-  const navigation = useNavigation<ChannelScreenNavigationProp>();
+  const navigation = useNavigation<CreateChannelScreenNavigationProp>();
+
+  const { isLoading } = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch();
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -51,18 +58,30 @@ const CreateChannel = () => {
   }, []);
 
   const onChangeDescription = useCallback((description: string) => {
-    setDescription(description);
+    setDescription(description.trim());
   }, []);
 
-  const onCreateChannel = useCallback(() => {
-    navigation.replace('Channel');
-  }, [navigation]);
+  const onCreateChannel = useCallback(async () => {
+    try {
+      dispatch(setIsLoading({ isLoading: true }));
+
+      const id = await createChannel({ title, description });
+
+      navigation.replace('Channel', { id, title });
+    } catch (error) {
+      Alert.alert('Create Channel Error');
+    } finally {
+      dispatch(setIsLoading({ isLoading: false }));
+    }
+  }, [dispatch, title, description, navigation]);
 
   return (
     <KeyboardAwareScrollView
       contentContainerStyle={contentContainerStyle}
       extraScrollHeight={20}
     >
+      {isLoading && <Spinner />}
+
       <Container>
         <Input
           label="Title"

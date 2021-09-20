@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { TextInput } from 'react-native';
+import { Alert, TextInput } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useNavigation } from '@react-navigation/native';
 import styled from '@emotion/native';
@@ -98,11 +98,17 @@ const SignUp = () => {
   }, []);
 
   const onSignUp = useCallback(async () => {
-    dispatch(setIsLoading());
+    try {
+      dispatch(setIsLoading({ isLoading: true }));
 
-    await signUp({ photo, email, displayName, password });
+      await signUp({ photo, email, displayName, password });
 
-    navigation.reset({ routes: [{ name: 'SignIn' }] });
+      navigation.reset({ routes: [{ name: 'SignIn' }] });
+    } catch (e) {
+      Alert.alert('SignUp Error');
+    } finally {
+      dispatch(setIsLoading({ isLoading: false }));
+    }
   }, [dispatch, photo, email, displayName, password, navigation]);
 
   return (

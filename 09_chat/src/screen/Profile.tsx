@@ -1,4 +1,5 @@
 import React, { memo, useCallback } from 'react';
+import { Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from '@emotion/native';
 
@@ -21,21 +22,33 @@ const Profile = () => {
 
   const onChangePhoto = useCallback(
     async (uri: string) => {
-      dispatch(setIsLoading());
+      try {
+        dispatch(setIsLoading({ isLoading: true }));
 
-      const user = await updateUserInfo(uri);
+        const user = await updateUserInfo(uri);
 
-      dispatch(setUser({ user }));
+        dispatch(setUser({ user }));
+      } catch (e) {
+        Alert.alert('Update Photo Error');
+      } finally {
+        dispatch(setIsLoading({ isLoading: false }));
+      }
     },
     [dispatch]
   );
 
   const onSignOut = useCallback(async () => {
-    dispatch(setIsLoading());
+    try {
+      dispatch(setIsLoading({ isLoading: true }));
 
-    await signOut();
+      await signOut();
 
-    dispatch(setUser({ user: null }));
+      dispatch(setUser({ user: null }));
+    } catch (e) {
+      Alert.alert('SignOut Error');
+    } finally {
+      dispatch(setIsLoading({ isLoading: false }));
+    }
   }, [dispatch]);
 
   return (

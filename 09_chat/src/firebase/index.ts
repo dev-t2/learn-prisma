@@ -2,6 +2,7 @@ import firebase from 'firebase';
 import firebaseConfig from './firebaseConfig';
 
 const app = firebase.initializeApp(firebaseConfig);
+const database = firebase.firestore();
 
 const Auth = app.auth();
 
@@ -76,4 +77,18 @@ export const updateUserInfo = async (photo: string) => {
 
 export const signOut = async () => {
   await Auth.signOut();
+};
+
+interface ICreateChannel {
+  title: string;
+  description: string;
+}
+
+export const createChannel = async ({ title, description }: ICreateChannel) => {
+  const newChannel = database.collection('channels').doc();
+  const createdAt = Date.now();
+
+  await newChannel.set({ id: newChannel.id, title, description, createdAt });
+
+  return newChannel.id;
 };

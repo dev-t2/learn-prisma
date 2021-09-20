@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ISetUser, IState } from './interfaces';
+import { ISetIsLoading, ISetUser, IState } from './interfaces';
 
 const initialState: IState = {
   user: null,
@@ -10,11 +10,10 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setIsLoading: (state) => {
-      state.isLoading = true;
+    setIsLoading: (state, action: PayloadAction<ISetIsLoading>) => {
+      state.isLoading = action.payload.isLoading;
     },
     setUser: (state, action: PayloadAction<ISetUser>) => {
-      state.isLoading = false;
       state.user = action.payload.user;
     },
   },

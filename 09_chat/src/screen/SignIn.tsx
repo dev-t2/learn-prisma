@@ -6,7 +6,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { StyleProp, TextInput, ViewStyle } from 'react-native';
+import { Alert, StyleProp, TextInput, ViewStyle } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -74,11 +74,17 @@ const SignIn = () => {
   }, []);
 
   const onSignIn = useCallback(async () => {
-    dispatch(setIsLoading());
+    try {
+      dispatch(setIsLoading({ isLoading: true }));
 
-    const user = await signIn({ email, password });
+      const user = await signIn({ email, password });
 
-    dispatch(setUser({ user }));
+      dispatch(setUser({ user }));
+    } catch (e) {
+      Alert.alert('SignIn Error');
+    } finally {
+      dispatch(setIsLoading({ isLoading: false }));
+    }
   }, [email, password, dispatch]);
 
   const onSignUp = useCallback(() => {
