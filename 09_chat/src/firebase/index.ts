@@ -85,10 +85,16 @@ interface ICreateChannel {
 }
 
 export const createChannel = async ({ title, description }: ICreateChannel) => {
-  const newChannel = database.collection('channels').doc();
-  const createdAt = Date.now();
+  const channel = database.collection('channels').doc();
+  const date = Date.now();
 
-  await newChannel.set({ id: newChannel.id, title, description, createdAt });
+  await channel.set({
+    id: channel.id,
+    title,
+    description,
+    createdAt: date,
+    updatedAt: date,
+  });
 
-  return newChannel.id;
+  return channel.id;
 };
