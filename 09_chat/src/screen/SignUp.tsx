@@ -151,6 +151,7 @@ const SignUp = () => {
           ref={passwordConfirmRef}
           label="Password Confirm"
           placeholder="Password Confirm"
+          secureTextEntry
           returnKeyType="done"
           value={passwordConfirm}
           onChangeText={onChangePasswordConfirm}

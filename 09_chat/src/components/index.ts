@@ -1,5 +1,5 @@
 export { default as Button } from './Button';
-export { default as Channel } from './Channel';
+export { default as ChannelItem } from './ChannelItem';
 export { default as ErrorMessage } from './ErrorMessage';
 export { default as Image } from './Image';
 export { default as Input } from './Input';

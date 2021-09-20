@@ -1,8 +1,11 @@
-import React, { FC, memo } from 'react';
+import React, { FC, memo, useMemo } from 'react';
 import { GestureResponderEvent } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/native';
+
+import { ChannelType } from '../firebase';
+import { getDateOrTime } from '../api';
 
 const Container = styled.Pressable(({ theme }) => ({
   flexDirection: 'row',
@@ -32,21 +35,18 @@ const Description = styled.Text(({ theme }) => ({
 const Time = styled.Text(({ theme }) => ({
   fontSize: 12,
   color: theme.gray2,
+  marginRight: 10,
 }));
 
-interface IChannel {
-  item: {
-    id: string;
-    title: string;
-    description: string;
-    createdAt: string;
-    updatedAt: string;
-  };
+interface IChannelItem {
+  item: ChannelType;
   onPress: (event: GestureResponderEvent) => void;
 }
 
-const Channel: FC<IChannel> = ({ item, onPress }) => {
+const ChannelItem: FC<IChannelItem> = ({ item, onPress }) => {
   const theme = useTheme();
+
+  const time = useMemo(() => getDateOrTime(item.createdAt), [item.createdAt]);
 
   return (
     <Container onPress={onPress}>
@@ -55,11 +55,11 @@ const Channel: FC<IChannel> = ({ item, onPress }) => {
         <Description>{item.description}</Description>
       </TextContainer>
 
-      <Time>{item.createdAt}</Time>
+      <Time>{time}</Time>
 
       <MaterialIcons name="keyboard-arrow-right" size={24} color={theme.text} />
     </Container>
   );
 };
 
-export default memo(Channel);
+export default memo(ChannelItem);

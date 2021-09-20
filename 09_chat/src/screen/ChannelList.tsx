@@ -1,21 +1,11 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
+import { FlatList, ListRenderItem } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import styled from '@emotion/native';
-import { FlatList } from 'react-native';
-import { Channel } from '../components';
 
-const channels = Array(1000)
-  .fill(null)
-  .map((_, index) => {
-    const date = Date.now();
-
-    return {
-      id: index,
-      title: `title ${index}`,
-      description: `description ${index}`,
-      createdAt: date,
-      updatedAt: date,
-    };
-  });
+import { ChannelType, database } from '../firebase';
+import { ChannelItem } from '../components';
+import { HomeScreenNavigationProp } from '../navigation/Main';
 
 const Container = styled.View(({ theme }) => ({
   flex: 1,
@@ -23,14 +13,36 @@ const Container = styled.View(({ theme }) => ({
 }));
 
 const ChannelList = () => {
-  const onPress = useCallback(() => {}, []);
+  const navigation = useNavigation<HomeScreenNavigationProp>();
 
-  const renderItem = useCallback(
-    ({ item }) => <Channel item={item} onPress={onPress} />,
+  const [channels, setChannels] = useState<ChannelType[]>([]);
+
+  useEffect(() => {
+    const unsubscribe = database
+      .collection('channels')
+      .orderBy('createdAt', 'desc')
+      .onSnapshot((snapshot) => {
+        setChannels(snapshot.docs.map((doc) => doc.data() as ChannelType));
+      });
+
+    return () => unsubscribe();
+  }, []);
+
+  const onPress = useCallback(
+    (item: ChannelType) => () => {
+      navigation.navigate('Channel', { id: item.id, title: item.title });
+    },
+    [navigation]
+  );
+
+  const renderItem = useCallback<ListRenderItem<ChannelType>>(
+    ({ item }) => {
+      return <ChannelItem item={item} onPress={onPress(item)} />;
+    },
     [onPress]
   );
 
-  const keyExtractor = useCallback((item) => item.id.toString(), []);
+  const keyExtractor = useCallback((item: ChannelType) => item.id, []);
 
   return (
     <Container>

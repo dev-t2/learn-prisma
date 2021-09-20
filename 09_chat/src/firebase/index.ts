@@ -2,7 +2,7 @@ import firebase from 'firebase';
 import firebaseConfig from './firebaseConfig';
 
 const app = firebase.initializeApp(firebaseConfig);
-const database = firebase.firestore();
+export const database = firebase.firestore();
 
 const Auth = app.auth();
 
@@ -97,4 +97,12 @@ export const createChannel = async ({ title, description }: ICreateChannel) => {
   });
 
   return channel.id;
+};
+
+export type ChannelType = {
+  id: string;
+  title: string;
+  description: string;
+  createdAt: number;
+  updatedAt: number;
 };
