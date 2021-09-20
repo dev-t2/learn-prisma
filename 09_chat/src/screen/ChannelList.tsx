@@ -1,7 +1,21 @@
 import React, { memo, useCallback } from 'react';
 import styled from '@emotion/native';
+import { FlatList } from 'react-native';
+import { Channel } from '../components';
 
-import { Button } from '../components';
+const channels = Array(1000)
+  .fill(null)
+  .map((_, index) => {
+    const date = Date.now();
+
+    return {
+      id: index,
+      title: `title ${index}`,
+      description: `description ${index}`,
+      createdAt: date,
+      updatedAt: date,
+    };
+  });
 
 const Container = styled.View(({ theme }) => ({
   flex: 1,
@@ -9,13 +23,23 @@ const Container = styled.View(({ theme }) => ({
 }));
 
 const ChannelList = () => {
-  const onChannel = useCallback(() => {}, []);
+  const onPress = useCallback(() => {}, []);
+
+  const renderItem = useCallback(
+    ({ item }) => <Channel item={item} onPress={onPress} />,
+    [onPress]
+  );
+
+  const keyExtractor = useCallback((item) => item.id.toString(), []);
 
   return (
     <Container>
-      <Button disabled={false} onPress={onChannel}>
-        Channel
-      </Button>
+      <FlatList
+        data={channels}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+        windowSize={3}
+      />
     </Container>
   );
 };
