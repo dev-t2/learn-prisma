@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "09_chat",
-    "slug": "09_chat",
+    "name": "chat",
+    "slug": "chat",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
