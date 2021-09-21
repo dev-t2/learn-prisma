@@ -19,9 +19,9 @@
 - Google Fonts Icons: https://fonts.google.com/icons
 - Navigation: https://reactnavigation.org/
 - Vector Icons: https://icons.expo.fyi/
-- Redux Toolkit: https://soyoung210.github.io/redux-toolkit/
 - Firebase: https://firebase.google.com/?hl=ko
 - Keyboard Aware ScrollView: https://www.npmjs.com/package/react-native-keyboard-aware-scroll-view
+- Moment: https://momentjs.com/
+- Redux Toolkit: https://soyoung210.github.io/redux-toolkit/
 - Redux-Saga: https://redux-saga.js.org/
 - React Native Debugger: https://github.com/jhen0409/react-native-debugger
-- Moment: https://momentjs.com/

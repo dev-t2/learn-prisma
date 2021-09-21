@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "10_redux-saga",
-    "slug": "10_redux-saga",
+    "name": "chat",
+    "slug": "chat",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#115293"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -20,8 +20,9 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "backgroundColor": "#115293"
+      },
+      "softwareKeyboardLayoutMode": "pan"
     },
     "web": {
       "favicon": "./assets/favicon.png"
