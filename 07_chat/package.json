@@ -1,4 +1,5 @@
 {
+  "private": true,
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
@@ -14,7 +15,6 @@
     "@react-navigation/bottom-tabs": "^6.0.5",
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/stack": "^6.0.4",
-    "@reduxjs/toolkit": "^1.6.1",
     "expo": "~42.0.1",
     "expo-image-picker": "~10.2.2",
     "expo-status-bar": "~1.0.4",
@@ -28,14 +28,12 @@
     "react-native-keyboard-aware-scroll-view": "^0.9.4",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.4.0",
-    "react-native-web": "~0.13.12",
-    "react-redux": "^7.2.4"
+    "react-native-web": "~0.13.12"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@types/react": "~16.9.35",
     "@types/react-native": "~0.63.2",
-    "@types/react-redux": "^7.1.18",
     "@typescript-eslint/eslint-plugin": "^4.29.0",
     "@typescript-eslint/parser": "^4.29.0",
     "eslint": "^7.32.0",
@@ -45,6 +43,5 @@
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "typescript": "~4.0.0"
-  },
-  "private": true
+  }
 }

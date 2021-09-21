@@ -9,9 +9,9 @@ import { IMessage } from 'react-native-gifted-chat';
 import firebaseConfig from './firebaseConfig';
 
 const app = firebase.initializeApp(firebaseConfig);
-export const database = firebase.firestore();
 
-const Auth = app.auth();
+export const firestore = firebase.firestore();
+export const auth = app.auth();
 
 interface ISignIn {
   email: string;
@@ -19,13 +19,13 @@ interface ISignIn {
 }
 
 export const signIn = async ({ email, password }: ISignIn) => {
-  const { user } = await Auth.signInWithEmailAndPassword(email, password);
+  const { user } = await auth.signInWithEmailAndPassword(email, password);
 
   return user;
 };
 
 export const getCurrentUser = () => {
-  return Auth.currentUser;
+  return auth.currentUser;
 };
 
 export const uploadStorage = async (photo: string) => {
@@ -50,7 +50,7 @@ export const uploadStorage = async (photo: string) => {
     xhr.send(null);
   });
 
-  const ref = app.storage().ref(`/profile/${Auth.currentUser?.uid}/avatar.png`);
+  const ref = app.storage().ref(`/profile/${auth.currentUser?.uid}/avatar.png`);
   const snapshot = await ref.put(blob, { contentType: 'image/png' });
   const photoUrl = await snapshot.ref.getDownloadURL();
 
@@ -70,7 +70,7 @@ export const signUp = async ({
   displayName,
   password,
 }: ISignUp) => {
-  const { user } = await Auth.createUserWithEmailAndPassword(email, password);
+  const { user } = await auth.createUserWithEmailAndPassword(email, password);
   const photoURL = await uploadStorage(photo);
 
   await user?.updateProfile({ displayName, photoURL });
@@ -81,13 +81,13 @@ export const signUp = async ({
 export const updateUserInfo = async (photo: string) => {
   const photoURL = await uploadStorage(photo);
 
-  await Auth.currentUser?.updateProfile({ photoURL });
+  await auth.currentUser?.updateProfile({ photoURL });
 
-  return Auth.currentUser;
+  return auth.currentUser;
 };
 
 export const signOut = async () => {
-  await Auth.signOut();
+  await auth.signOut();
 };
 
 interface ICreateChannel {
@@ -96,7 +96,7 @@ interface ICreateChannel {
 }
 
 export const createChannel = async ({ title, description }: ICreateChannel) => {
-  const newChannel = database.collection('channels').doc();
+  const newChannel = firestore.collection('channels').doc();
   const date = Date.now();
 
   await newChannel.set({
@@ -126,7 +126,7 @@ interface ICreateMessage {
 export const createMessage = async ({ channelId, message }: ICreateMessage) => {
   const date = Date.now();
 
-  const newMessage = await database
+  const newMessage = await firestore
     .collection('channels')
     .doc(channelId)
     .collection('messages')

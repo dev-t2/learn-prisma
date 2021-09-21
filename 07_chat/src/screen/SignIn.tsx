@@ -7,17 +7,22 @@ import React, {
   useState,
 } from 'react';
 import { Alert, StyleProp, TextInput, ViewStyle } from 'react-native';
-import { useDispatch } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import styled from '@emotion/native';
 
 import { SignInScreenNavigationProp } from '../navigation/Auth';
-import { deleteWhitespace, validateEmail } from '../api';
 import { signIn } from '../firebase';
-import { setIsLoading, setUser } from '../redux/user';
-import { Button, ErrorMessage, Image, Input, TextButton } from '../components';
+import { deleteWhitespace, validateEmail } from '../api';
+import {
+  Button,
+  ErrorMessage,
+  Image,
+  Input,
+  Loading,
+  TextButton,
+} from '../components';
 
 interface IContainer {
   insets: EdgeInsets;
@@ -38,13 +43,14 @@ const logo =
 
 const SignIn = () => {
   const insets = useSafeAreaInsets();
+
   const navigation = useNavigation<SignInScreenNavigationProp>();
-  const dispatch = useDispatch();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [isValid, setIsValid] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const passwordRef = useRef<TextInput>(null);
 
@@ -75,17 +81,16 @@ const SignIn = () => {
 
   const onSignIn = useCallback(async () => {
     try {
-      dispatch(setIsLoading({ isLoading: true }));
+      setIsLoading(true);
 
-      const user = await signIn({ email, password });
-
-      dispatch(setUser({ user }));
+      // const user = await signIn({ email, password });
+      await signIn({ email, password });
     } catch (e) {
       Alert.alert('SignIn Error');
     } finally {
-      dispatch(setIsLoading({ isLoading: false }));
+      setIsLoading(false);
     }
-  }, [email, password, dispatch]);
+  }, [email, password]);
 
   const onSignUp = useCallback(() => {
     navigation.navigate('SignUp');
@@ -97,6 +102,8 @@ const SignIn = () => {
       contentContainerStyle={contentContainerStyle}
     >
       <Container insets={insets}>
+        {isLoading && <Loading />}
+
         <Image uri={logo} />
 
         <Input

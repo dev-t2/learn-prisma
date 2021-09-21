@@ -1,12 +1,9 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import { Alert } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
 import styled from '@emotion/native';
 
-import { RootState } from '../redux/rootReducer';
-import { setIsLoading, setUser } from '../redux/user';
-import { Button, Image, Input } from '../components';
-import { signOut, updateUserInfo } from '../firebase';
+import { auth, signOut, updateUserInfo } from '../firebase';
+import { Button, Image, Input, Loading } from '../components';
 
 const Container = styled.View(({ theme }) => ({
   flex: 1,
@@ -17,46 +14,53 @@ const Container = styled.View(({ theme }) => ({
 }));
 
 const Profile = () => {
-  const { user } = useSelector((state: RootState) => state.user);
-  const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const onChangePhoto = useCallback(
-    async (uri: string) => {
-      try {
-        dispatch(setIsLoading({ isLoading: true }));
-
-        const user = await updateUserInfo(uri);
-
-        dispatch(setUser({ user }));
-      } catch (e) {
-        Alert.alert('Update Photo Error');
-      } finally {
-        dispatch(setIsLoading({ isLoading: false }));
-      }
-    },
-    [dispatch]
-  );
+  const onChangePhoto = useCallback(async (uri: string) => {
+    try {
+      setIsLoading(true);
+      // const user = await updateUserInfo(uri);
+      await updateUserInfo(uri);
+    } catch (e) {
+      Alert.alert('Update Photo Error');
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
 
   const onSignOut = useCallback(async () => {
     try {
-      dispatch(setIsLoading({ isLoading: true }));
+      setIsLoading(true);
 
       await signOut();
-
-      dispatch(setUser({ user: null }));
     } catch (e) {
       Alert.alert('SignOut Error');
     } finally {
-      dispatch(setIsLoading({ isLoading: false }));
+      setIsLoading(false);
     }
-  }, [dispatch]);
+  }, []);
 
   return (
     <Container>
-      <Image isPhoto uri={user?.photoURL ?? ''} onChangePhoto={onChangePhoto} />
+      {isLoading && <Loading />}
 
-      <Input label="Name" isEditable={false} value={user?.displayName ?? ''} />
-      <Input label="Email" isEditable={false} value={user?.email ?? ''} />
+      <Image
+        isPhoto
+        uri={auth.currentUser?.photoURL ?? ''}
+        onChangePhoto={onChangePhoto}
+      />
+
+      <Input
+        label="Name"
+        isEditable={false}
+        value={auth.currentUser?.displayName ?? ''}
+      />
+
+      <Input
+        label="Email"
+        isEditable={false}
+        value={auth.currentUser?.email ?? ''}
+      />
 
       <Button disabled={false} onPress={onSignOut}>
         SignOut

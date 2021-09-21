@@ -23,7 +23,7 @@ import {
   ChannelScreenNavigationProp,
   ChannelScreenRouteProp,
 } from '../navigation/Main';
-import { createMessage, database, getCurrentUser } from '../firebase';
+import { createMessage, firestore, getCurrentUser } from '../firebase';
 
 const Container = styled.View(({ theme }) => ({
   flex: 1,
@@ -57,7 +57,7 @@ const Channel = () => {
   }, [navigation, params.title]);
 
   useEffect(() => {
-    const unsubscribe = database
+    const unsubscribe = firestore
       .collection('channels')
       .doc(params.id)
       .collection('messages')

@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import styled from '@emotion/native';
 
 import { HomeScreenNavigationProp } from '../navigation/Main';
-import { ChannelType, database } from '../firebase';
+import { ChannelType, firestore } from '../firebase';
 import { ChannelItem } from '../components';
 
 const Container = styled.View(({ theme }) => ({
@@ -18,7 +18,7 @@ const ChannelList = () => {
   const [channels, setChannels] = useState<ChannelType[]>([]);
 
   useEffect(() => {
-    const unsubscribe = database
+    const unsubscribe = firestore
       .collection('channels')
       .orderBy('createdAt', 'desc')
       .onSnapshot((snapshot) => {

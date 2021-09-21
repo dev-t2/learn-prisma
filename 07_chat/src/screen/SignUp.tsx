@@ -1,5 +1,4 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { Alert, TextInput } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useNavigation } from '@react-navigation/native';
@@ -8,8 +7,7 @@ import styled from '@emotion/native';
 import { SignUpScreenNavigationProp } from '../navigation/Auth';
 import { signUp } from '../firebase';
 import { deleteWhitespace, validateEmail } from '../api';
-import { Button, ErrorMessage, Image, Input } from '../components';
-import { setIsLoading } from '../redux/user';
+import { Button, ErrorMessage, Image, Input, Loading } from '../components';
 
 const Container = styled.View(({ theme }) => ({
   flex: 1,
@@ -25,7 +23,6 @@ const defaultPhoto =
 
 const SignUp = () => {
   const navigation = useNavigation<SignUpScreenNavigationProp>();
-  const dispatch = useDispatch();
 
   const [photo, setPhoto] = useState(defaultPhoto);
   const [email, setEmail] = useState('');
@@ -34,6 +31,7 @@ const SignUp = () => {
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [disabled, setDisabled] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const nameRef = useRef<TextInput>(null);
   const passwordRef = useRef<TextInput>(null);
@@ -99,7 +97,7 @@ const SignUp = () => {
 
   const onSignUp = useCallback(async () => {
     try {
-      dispatch(setIsLoading({ isLoading: true }));
+      setIsLoading(true);
 
       await signUp({ photo, email, displayName, password });
 
@@ -107,12 +105,14 @@ const SignUp = () => {
     } catch (e) {
       Alert.alert('SignUp Error');
     } finally {
-      dispatch(setIsLoading({ isLoading: false }));
+      setIsLoading(false);
     }
-  }, [dispatch, photo, email, displayName, password, navigation]);
+  }, [photo, email, displayName, password, navigation]);
 
   return (
     <KeyboardAwareScrollView enableOnAndroid>
+      {isLoading && <Loading />}
+
       <Container>
         <Image isPhoto uri={photo} onChangePhoto={onChangePhoto} />
 
