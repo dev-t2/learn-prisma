@@ -1,4 +1,9 @@
 import firebase from 'firebase/app';
+
+import 'firebase/auth';
+import 'firebase/firestore';
+import 'firebase/storage';
+
 import { IMessage } from 'react-native-gifted-chat';
 
 import firebaseConfig from './firebaseConfig';
