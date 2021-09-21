@@ -47,7 +47,7 @@ const CreateChannel = () => {
   }, [errorMessage]);
 
   const onChangeTitle = useCallback((title: string) => {
-    setTitle(title.trim());
+    setTitle(title);
     setErrorMessage(title.trim() ? '' : 'Please enter the title');
   }, []);
 
@@ -56,7 +56,7 @@ const CreateChannel = () => {
   }, []);
 
   const onChangeDescription = useCallback((description: string) => {
-    setDescription(description.trim());
+    setDescription(description);
   }, []);
 
   const onCreateChannel = useCallback(async () => {

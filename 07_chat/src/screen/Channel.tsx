@@ -1,14 +1,29 @@
-import React, { memo, useCallback, useState } from 'react';
-import { Alert } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import { useRoute } from '@react-navigation/native';
+import React, {
+  memo,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useState,
+} from 'react';
+import { Alert, StyleProp, ViewStyle } from 'react-native';
+import {
+  GiftedChat,
+  IMessage,
+  Send,
+  SendProps,
+  User,
+} from 'react-native-gifted-chat';
+import { MaterialIcons } from '@expo/vector-icons';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { useTheme } from '@emotion/react';
 import styled from '@emotion/native';
 
-import { ChannelScreenRouteProp } from '../navigation/Main';
-import { createMessage } from '../firebase';
-import { Input, Spinner } from '../components';
-import { setIsLoading } from '../redux/user';
-import { RootState } from '../redux/rootReducer';
+import {
+  ChannelScreenNavigationProp,
+  ChannelScreenRouteProp,
+} from '../navigation/Main';
+import { createMessage, database, getCurrentUser } from '../firebase';
 
 const Container = styled.View(({ theme }) => ({
   flex: 1,
@@ -16,37 +31,97 @@ const Container = styled.View(({ theme }) => ({
 }));
 
 const Channel = () => {
+  const theme = useTheme();
+
+  const navigation = useNavigation<ChannelScreenNavigationProp>();
   const { params } = useRoute<ChannelScreenRouteProp>();
 
-  const { isLoading } = useSelector((state: RootState) => state.user);
-  const dispatch = useDispatch();
+  const [messages, setMessages] = useState<IMessage[]>([]);
 
-  const [message, setMessage] = useState('');
+  const user = useMemo<User | undefined>(() => {
+    const currentUser = getCurrentUser();
 
-  const onChangeMessage = useCallback((message: string) => {
-    setMessage(message.trim());
+    if (currentUser) {
+      return {
+        _id: currentUser.uid,
+        name: currentUser.displayName ?? '',
+        avatar: currentUser.photoURL ?? '',
+      };
+    }
+
+    return undefined;
   }, []);
 
-  const onCreateMessage = useCallback(() => {
-    try {
-      dispatch(setIsLoading({ isLoading: true }));
+  useLayoutEffect(() => {
+    navigation.setOptions({ headerTitle: params.title });
+  }, [navigation, params.title]);
 
-      createMessage({ channelId: params.id, message });
-    } catch (e) {
-      Alert.alert('Create Message Error');
-    } finally {
-      dispatch(setIsLoading({ isLoading: false }));
-    }
-  }, [dispatch, params.id, message]);
+  useEffect(() => {
+    const unsubscribe = database
+      .collection('channels')
+      .doc(params.id)
+      .collection('messages')
+      .orderBy('createdAt', 'desc')
+      .onSnapshot((snapshot) => {
+        setMessages(snapshot.docs.map((doc) => doc.data() as IMessage));
+      });
+
+    return () => unsubscribe();
+  }, [params.id]);
+
+  const containerStyle = useMemo<StyleProp<ViewStyle>>(
+    () => ({
+      width: 44,
+      height: 44,
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginHorizontal: 4,
+    }),
+    []
+  );
+
+  const renderSend = useCallback(
+    (
+      props: Readonly<SendProps<IMessage>> &
+        Readonly<{
+          children?: React.ReactNode;
+        }>
+    ) => {
+      return (
+        <Send {...props} containerStyle={containerStyle} disabled={!props.text}>
+          <MaterialIcons
+            name="send"
+            size={24}
+            color={props.text ? theme.main : theme.gray2}
+          />
+        </Send>
+      );
+    },
+    [containerStyle, theme.main, theme.gray2]
+  );
+
+  const onSend = useCallback(
+    async (messages: IMessage[]) => {
+      const message = messages[0];
+
+      try {
+        await createMessage({ channelId: params.id, message });
+      } catch (e) {
+        Alert.alert('Send Error');
+      }
+    },
+    [params.id]
+  );
 
   return (
     <Container>
-      {isLoading && <Spinner />}
-
-      <Input
-        value={message}
-        onChangeText={onChangeMessage}
-        onSubmitEditing={onCreateMessage}
+      <GiftedChat
+        scrollToBottom
+        alwaysShowSend
+        renderSend={renderSend}
+        messages={messages}
+        user={user}
+        onSend={onSend}
       />
     </Container>
   );

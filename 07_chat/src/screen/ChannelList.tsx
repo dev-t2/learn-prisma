@@ -3,9 +3,9 @@ import { FlatList, ListRenderItem } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styled from '@emotion/native';
 
+import { HomeScreenNavigationProp } from '../navigation/Main';
 import { ChannelType, database } from '../firebase';
 import { ChannelItem } from '../components';
-import { HomeScreenNavigationProp } from '../navigation/Main';
 
 const Container = styled.View(({ theme }) => ({
   flex: 1,

@@ -1,4 +1,6 @@
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import { IMessage } from 'react-native-gifted-chat';
+
 import firebaseConfig from './firebaseConfig';
 
 const app = firebase.initializeApp(firebaseConfig);
@@ -15,6 +17,10 @@ export const signIn = async ({ email, password }: ISignIn) => {
   const { user } = await Auth.signInWithEmailAndPassword(email, password);
 
   return user;
+};
+
+export const getCurrentUser = () => {
+  return Auth.currentUser;
 };
 
 export const uploadStorage = async (photo: string) => {
@@ -109,30 +115,22 @@ export type ChannelType = {
 
 interface ICreateMessage {
   channelId: string;
-  message: string;
+  message: IMessage;
 }
 
 export const createMessage = async ({ channelId, message }: ICreateMessage) => {
-  const newMessage = database
+  const date = Date.now();
+
+  const newMessage = await database
     .collection('channels')
     .doc(channelId)
     .collection('messages')
-    .doc();
-  const date = Date.now();
-
-  await newMessage.set({
-    id: newMessage.id,
-    message,
-    createdAt: date,
-    updatedAt: date,
-  });
+    .doc(`${message._id}`)
+    .set({
+      ...message,
+      createdAt: date,
+      updatedAt: date,
+    });
 
   return newMessage;
-};
-
-export type MessageType = {
-  id: string;
-  message: string;
-  createdAt: number;
-  updatedAt: number;
 };
