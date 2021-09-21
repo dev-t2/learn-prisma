@@ -41,7 +41,7 @@ const StyledInput = styled.TextInput<IStyledInput>(({ theme, isFocus }) => ({
 }));
 
 interface IInput {
-  label: string;
+  label?: string;
   isEditable?: boolean;
   placeholder?: string;
   value: string;
@@ -57,7 +57,7 @@ interface IInput {
 const Input = forwardRef<TextInput, IInput>(
   (
     {
-      label,
+      label = '',
       isEditable = true,
       placeholder,
       secureTextEntry,
@@ -83,7 +83,7 @@ const Input = forwardRef<TextInput, IInput>(
 
     return (
       <Container>
-        <Label isFocus={isFocus}>{label}</Label>
+        {!!label && <Label isFocus={isFocus}>{label}</Label>}
 
         <StyledInput
           ref={ref}

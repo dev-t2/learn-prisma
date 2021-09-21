@@ -63,7 +63,7 @@ const CreateChannel = () => {
     try {
       dispatch(setIsLoading({ isLoading: true }));
 
-      const id = await createChannel({ title, description });
+      const { id } = await createChannel({ title, description });
 
       navigation.replace('Channel', { id, title });
     } catch (error) {

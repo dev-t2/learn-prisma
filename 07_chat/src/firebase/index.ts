@@ -85,24 +85,54 @@ interface ICreateChannel {
 }
 
 export const createChannel = async ({ title, description }: ICreateChannel) => {
-  const channel = database.collection('channels').doc();
+  const newChannel = database.collection('channels').doc();
   const date = Date.now();
 
-  await channel.set({
-    id: channel.id,
+  await newChannel.set({
+    id: newChannel.id,
     title,
     description,
     createdAt: date,
     updatedAt: date,
   });
 
-  return channel.id;
+  return newChannel;
 };
 
 export type ChannelType = {
   id: string;
   title: string;
   description: string;
+  createdAt: number;
+  updatedAt: number;
+};
+
+interface ICreateMessage {
+  channelId: string;
+  message: string;
+}
+
+export const createMessage = async ({ channelId, message }: ICreateMessage) => {
+  const newMessage = database
+    .collection('channels')
+    .doc(channelId)
+    .collection('messages')
+    .doc();
+  const date = Date.now();
+
+  await newMessage.set({
+    id: newMessage.id,
+    message,
+    createdAt: date,
+    updatedAt: date,
+  });
+
+  return newMessage;
+};
+
+export type MessageType = {
+  id: string;
+  message: string;
   createdAt: number;
   updatedAt: number;
 };
