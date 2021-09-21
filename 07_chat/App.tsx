@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { ThemeProvider } from '@emotion/react';
 
 import { theme } from './src/emotion';
-import { Navigation } from './src/navigation';
+import Navigation from './src/navigation';
 
 const App = () => {
   return (
