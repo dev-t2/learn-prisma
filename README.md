@@ -22,6 +22,7 @@
 - Firebase: https://firebase.google.com/?hl=ko
 - Keyboard Aware ScrollView: https://www.npmjs.com/package/react-native-keyboard-aware-scroll-view
 - Moment: https://momentjs.com/
+- Gifted Chat: https://github.com/FaridSafi/react-native-gifted-chat
 - Redux Toolkit: https://soyoung210.github.io/redux-toolkit/
 - Redux Saga: https://redux-saga.js.org/
 - React Native Debugger: https://github.com/jhen0409/react-native-debugger
