@@ -17,10 +17,10 @@
 - Axios: https://www.npmjs.com/package/axios
 - Public API: https://github.com/public-apis/public-apis
 - Google Fonts Icons: https://fonts.google.com/icons
-- Navigation: https://reactnavigation.org/
-- Vector Icons: https://icons.expo.fyi/
-- Firebase: https://firebase.google.com/?hl=ko
-- Keyboard Aware ScrollView: https://www.npmjs.com/package/react-native-keyboard-aware-scroll-view
+- React Navigation: https://reactnavigation.org/
+- Vector Icons: https://docs.expo.dev/guides/icons/
+- Firebase: https://docs.expo.dev/guides/using-firebase/
+- Keyboard Aware ScrollView: https://github.com/APSL/react-native-keyboard-aware-scroll-view
 - Moment: https://momentjs.com/
 - Gifted Chat: https://github.com/FaridSafi/react-native-gifted-chat
 - Redux Toolkit: https://soyoung210.github.io/redux-toolkit/
