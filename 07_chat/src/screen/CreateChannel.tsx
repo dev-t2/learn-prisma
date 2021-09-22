@@ -1,49 +1,35 @@
-import React, {
-  memo,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
-import { Alert, StyleProp, TextInput, ViewStyle } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { Alert, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import styled from '@emotion/native';
 
-import { CreateChannelScreenNavigationProp } from '../navigation/Main';
+import { CreateChannelNavigation } from '../navigation/Main';
 import { createChannel } from '../firebase';
-import { Button, ErrorMessage, Input, Loading } from '../components';
-
-const Container = styled.View(({ theme }) => ({
-  flex: 1,
-  padding: 20,
-  backgroundColor: theme.background,
-}));
+import {
+  Button,
+  ErrorMessage,
+  Input,
+  InsetsContainer,
+  Loading,
+} from '../components';
 
 const CreateChannel = () => {
-  const navigation = useNavigation<CreateChannelScreenNavigationProp>();
+  const navigation = useNavigation<CreateChannelNavigation>();
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [isDisabled, setIsDisabled] = useState(false);
+  const [isValid, setIsValid] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
-  const contentContainerStyle = useMemo<StyleProp<ViewStyle>>(
-    () => ({ flex: 1 }),
-    []
-  );
 
   const descriptionRef = useRef<TextInput>(null);
 
   useEffect(() => {
-    setIsDisabled(!!errorMessage);
-  }, [errorMessage]);
+    setIsValid(!!title && !errorMessage);
+  }, [title, errorMessage]);
 
   const onChangeTitle = useCallback((title: string) => {
     setTitle(title);
-    setErrorMessage(title.trim() ? '' : 'Please enter the title');
+    setErrorMessage(title.trim() ? '' : '채팅방 이름을 입력해주세요');
   }, []);
 
   const onSubmitTitle = useCallback(() => {
@@ -60,49 +46,46 @@ const CreateChannel = () => {
 
       const { id } = await createChannel({ title, description });
 
+      setIsLoading(false);
+
       navigation.replace('Channel', { id, title });
     } catch (error) {
-      Alert.alert('Create Channel Error');
-    } finally {
       setIsLoading(false);
+
+      Alert.alert((error as Error).message);
     }
   }, [title, description, navigation]);
 
   return (
-    <KeyboardAwareScrollView
-      contentContainerStyle={contentContainerStyle}
-      extraScrollHeight={20}
-    >
-      {isLoading && <Loading />}
+    <InsetsContainer>
+      <Loading isLoading={isLoading} />
 
-      <Container>
-        <Input
-          label="Title"
-          placeholder="Title"
-          maxLength={20}
-          returnKeyType="next"
-          value={title}
-          onChangeText={onChangeTitle}
-          onSubmitEditing={onSubmitTitle}
-        />
+      <Input
+        label="채팅방 이름"
+        placeholder="채팅방 이름을 입력해주세요"
+        maxLength={20}
+        returnKeyType="next"
+        value={title}
+        onChangeText={onChangeTitle}
+        onSubmitEditing={onSubmitTitle}
+      />
 
-        <Input
-          ref={descriptionRef}
-          label="Description"
-          placeholder="Description"
-          maxLength={40}
-          value={description}
-          onChangeText={onChangeDescription}
-          onSubmitEditing={onCreateChannel}
-        />
+      <Input
+        ref={descriptionRef}
+        label="추가 정보"
+        placeholder="채팅방에 대한 추가 정보를 입력해주세요"
+        maxLength={40}
+        value={description}
+        onChangeText={onChangeDescription}
+        onSubmitEditing={onCreateChannel}
+      />
 
-        <ErrorMessage>{errorMessage}</ErrorMessage>
+      <ErrorMessage>{errorMessage}</ErrorMessage>
 
-        <Button disabled={isDisabled} onPress={onCreateChannel}>
-          Create
-        </Button>
-      </Container>
-    </KeyboardAwareScrollView>
+      <Button isActive={isValid} onPress={onCreateChannel}>
+        생성하기
+      </Button>
+    </InsetsContainer>
   );
 };
 

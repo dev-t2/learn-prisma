@@ -19,11 +19,8 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/native';
 
-import {
-  ChannelScreenNavigationProp,
-  ChannelScreenRouteProp,
-} from '../navigation/Main';
-import { createMessage, firestore, getCurrentUser } from '../firebase';
+import { ChannelNavigation, ChannelRoute } from '../navigation/Main';
+import { auth, createMessage, firestore } from '../firebase';
 
 const Container = styled.View(({ theme }) => ({
   flex: 1,
@@ -33,19 +30,17 @@ const Container = styled.View(({ theme }) => ({
 const Channel = () => {
   const theme = useTheme();
 
-  const navigation = useNavigation<ChannelScreenNavigationProp>();
-  const { params } = useRoute<ChannelScreenRouteProp>();
+  const navigation = useNavigation<ChannelNavigation>();
+  const { params } = useRoute<ChannelRoute>();
 
   const [messages, setMessages] = useState<IMessage[]>([]);
 
   const user = useMemo<User | undefined>(() => {
-    const currentUser = getCurrentUser();
-
-    if (currentUser) {
+    if (auth.currentUser) {
       return {
-        _id: currentUser.uid,
-        name: currentUser.displayName ?? '',
-        avatar: currentUser.photoURL ?? '',
+        _id: auth.currentUser.uid,
+        name: auth.currentUser.displayName ?? '',
+        avatar: auth.currentUser.photoURL ?? '',
       };
     }
 

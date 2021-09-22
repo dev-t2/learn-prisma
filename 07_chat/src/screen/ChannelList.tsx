@@ -3,7 +3,7 @@ import { FlatList, ListRenderItem } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styled from '@emotion/native';
 
-import { HomeScreenNavigationProp } from '../navigation/Main';
+import { HomeNavigation } from '../navigation/Main';
 import { ChannelType, firestore } from '../firebase';
 import { ChannelItem } from '../components';
 
@@ -13,16 +13,16 @@ const Container = styled.View(({ theme }) => ({
 }));
 
 const ChannelList = () => {
-  const navigation = useNavigation<HomeScreenNavigationProp>();
+  const navigation = useNavigation<HomeNavigation>();
 
-  const [channels, setChannels] = useState<ChannelType[]>([]);
+  const [channelList, setChannelList] = useState<ChannelType[]>([]);
 
   useEffect(() => {
     const unsubscribe = firestore
       .collection('channels')
       .orderBy('createdAt', 'desc')
       .onSnapshot((snapshot) => {
-        setChannels(snapshot.docs.map((doc) => doc.data() as ChannelType));
+        setChannelList(snapshot.docs.map((doc) => doc.data() as ChannelType));
       });
 
     return () => unsubscribe();
@@ -47,10 +47,9 @@ const ChannelList = () => {
   return (
     <Container>
       <FlatList
-        data={channels}
+        data={channelList}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
-        windowSize={3}
       />
     </Container>
   );

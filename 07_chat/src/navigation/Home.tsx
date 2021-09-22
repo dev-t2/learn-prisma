@@ -2,29 +2,29 @@ import React, { memo, useCallback, useEffect, useMemo } from 'react';
 import { StyleProp, TextStyle } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import {
-  BottomTabNavigationOptions,
-  createBottomTabNavigator,
-} from '@react-navigation/bottom-tabs';
-import {
   getFocusedRouteNameFromRoute,
   useNavigation,
   useRoute,
 } from '@react-navigation/native';
+import {
+  BottomTabNavigationOptions,
+  createBottomTabNavigator,
+} from '@react-navigation/bottom-tabs';
 
-import { HomeScreenNavigationProp, HomeScreenRouteProp } from './Main';
+import { HomeNavigation, HomeRoute } from './Main';
 import { ChannelList, Profile } from '../screen';
 import { TabIcon } from '../components';
 
-type HomeStackParamList = {
+type ParamList = {
   List: undefined;
   Profile: undefined;
 };
 
-const { Navigator, Screen } = createBottomTabNavigator<HomeStackParamList>();
+const { Navigator, Screen } = createBottomTabNavigator<ParamList>();
 
 const Home = () => {
-  const navigation = useNavigation<HomeScreenNavigationProp>();
-  const route = useRoute<HomeScreenRouteProp>();
+  const navigation = useNavigation<HomeNavigation>();
+  const route = useRoute<HomeRoute>();
 
   const screenOptions = useMemo<BottomTabNavigationOptions>(
     () => ({

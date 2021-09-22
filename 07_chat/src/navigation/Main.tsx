@@ -10,34 +10,25 @@ import { useTheme } from '@emotion/react';
 import Home from './Home';
 import { Channel, CreateChannel } from '../screen';
 
-type MainStackParamList = {
+type ParamList = {
   Home: undefined;
   CreateChannel: undefined;
   Channel: { id: string; title: string };
 };
 
-export type HomeScreenRouteProp = RouteProp<MainStackParamList, 'Home'>;
-export type HomeScreenNavigationProp = StackNavigationProp<
-  MainStackParamList,
-  'Home'
->;
+export type HomeRoute = RouteProp<ParamList, 'Home'>;
+export type HomeNavigation = StackNavigationProp<ParamList, 'Home'>;
 
-export type CreateChannelScreenRouteProp = RouteProp<
-  MainStackParamList,
-  'CreateChannel'
->;
-export type CreateChannelScreenNavigationProp = StackNavigationProp<
-  MainStackParamList,
+export type CreateChannelRoute = RouteProp<ParamList, 'CreateChannel'>;
+export type CreateChannelNavigation = StackNavigationProp<
+  ParamList,
   'CreateChannel'
 >;
 
-export type ChannelScreenRouteProp = RouteProp<MainStackParamList, 'Channel'>;
-export type ChannelScreenNavigationProp = StackNavigationProp<
-  MainStackParamList,
-  'Channel'
->;
+export type ChannelRoute = RouteProp<ParamList, 'Channel'>;
+export type ChannelNavigation = StackNavigationProp<ParamList, 'Channel'>;
 
-const { Navigator, Screen } = createStackNavigator<MainStackParamList>();
+const { Navigator, Screen } = createStackNavigator<ParamList>();
 
 const Main = () => {
   const theme = useTheme();
@@ -54,10 +45,21 @@ const Main = () => {
     [theme.text, theme.background]
   );
 
+  const createChannelOptions = useMemo<StackNavigationOptions>(
+    () => ({
+      headerTitle: '채팅방 생성',
+    }),
+    []
+  );
+
   return (
     <Navigator screenOptions={screenOptions}>
       <Screen name="Home" component={Home} />
-      <Screen name="CreateChannel" component={CreateChannel} />
+      <Screen
+        name="CreateChannel"
+        component={CreateChannel}
+        options={createChannelOptions}
+      />
       <Screen name="Channel" component={Channel} />
     </Navigator>
   );
