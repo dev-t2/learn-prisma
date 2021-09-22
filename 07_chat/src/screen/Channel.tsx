@@ -101,8 +101,8 @@ const Channel = () => {
 
       try {
         await createMessage({ channelId: params.id, message });
-      } catch (e) {
-        Alert.alert('Send Error');
+      } catch (error) {
+        Alert.alert((error as Error).message);
       }
     },
     [params.id]
@@ -111,9 +111,9 @@ const Channel = () => {
   return (
     <Container>
       <GiftedChat
-        scrollToBottom
         alwaysShowSend
         renderSend={renderSend}
+        placeholder="메세지를 입력해주세요"
         messages={messages}
         user={user}
         onSend={onSend}
