@@ -1,8 +1,6 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { Alert, TextInput } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 
-import { SignUpNavigation } from '../navigation/Auth';
 import { signUp } from '../firebase';
 import { validateEmail } from '../api';
 import {
@@ -18,8 +16,6 @@ const defaultPhoto =
   'https://firebasestorage.googleapis.com/v0/b/expo-chat-64b70.appspot.com/o/face.png?alt=media';
 
 const SignUp = () => {
-  const navigation = useNavigation<SignUpNavigation>();
-
   const [photo, setPhoto] = useState(defaultPhoto);
   const [email, setEmail] = useState('');
   const [displayName, setDisplayName] = useState('');
@@ -102,14 +98,12 @@ const SignUp = () => {
       await signUp({ photo, email, displayName: displayName.trim(), password });
 
       setIsLoading(false);
-
-      navigation.reset({ routes: [{ name: 'SignIn' }] });
     } catch (error) {
       setIsLoading(false);
 
       Alert.alert((error as Error).message);
     }
-  }, [photo, email, displayName, password, navigation]);
+  }, [photo, email, displayName, password]);
 
   return (
     <InsetsContainer isInsets={false}>
@@ -165,7 +159,7 @@ const SignUp = () => {
 
       <ErrorMessage>{errorMessage}</ErrorMessage>
 
-      <Button disabled={!isValid} onPress={onSignUp}>
+      <Button isActive={isValid} onPress={onSignUp}>
         회원가입
       </Button>
     </InsetsContainer>

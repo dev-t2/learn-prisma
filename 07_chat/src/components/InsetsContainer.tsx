@@ -9,10 +9,11 @@ interface IContainer {
   insets: EdgeInsets;
 }
 
-const Container = styled.View<IContainer>(({ isInsets, insets }) => ({
+const Container = styled.View<IContainer>(({ theme, isInsets, insets }) => ({
   flex: 1,
   paddingTop: isInsets ? insets.top : 0,
   paddingBottom: isInsets ? insets.bottom : 0,
+  backgroundColor: theme.background,
 }));
 
 const StyledScrollView = styled.ScrollView({

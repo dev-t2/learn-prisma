@@ -12,7 +12,7 @@ const StyledPressable = styled.Pressable<IStyledPressable>(
     backgroundColor: disabled ? theme.gray2 : theme.main,
     borderRadius: 4,
     padding: 10,
-    marginVertical: 10,
+    marginVertical: 20,
   })
 );
 
@@ -23,13 +23,13 @@ const Title = styled.Text(({ theme }) => ({
 
 interface IButton {
   children: ReactNode;
-  disabled: boolean;
+  isActive?: boolean;
   onPress: () => void;
 }
 
-const Button: FC<IButton> = ({ children, disabled, onPress }) => {
+const Button: FC<IButton> = ({ children, isActive = false, onPress }) => {
   return (
-    <StyledPressable disabled={disabled} onPress={onPress}>
+    <StyledPressable disabled={!isActive} onPress={onPress}>
       <Title>{children}</Title>
     </StyledPressable>
   );

@@ -65,16 +65,19 @@ const Home = () => {
   }, [navigation]);
 
   useEffect(() => {
-    const screenName = getFocusedRouteNameFromRoute(route) ?? 'List';
+    const screenName =
+      getFocusedRouteNameFromRoute(route) === 'Profile'
+        ? '프로필'
+        : '채널 리스트';
 
     navigation.setOptions({
       headerTitle: screenName,
       headerRight: () => {
         return (
-          screenName === 'List' && (
+          screenName === '채널 리스트' && (
             <MaterialIcons
               name="add"
-              size={26}
+              size={24}
               style={style}
               onPress={onCreateChannel}
             />

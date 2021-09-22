@@ -94,7 +94,7 @@ const SignIn = () => {
 
       <ErrorMessage>{errorMessage}</ErrorMessage>
 
-      <Button disabled={!isValid} onPress={onSignIn}>
+      <Button isActive={isValid} onPress={onSignIn}>
         로그인
       </Button>
 

@@ -74,8 +74,6 @@ export const updateUserInfo = async (photo: string) => {
   const photoURL = await uploadStorage(photo);
 
   await auth.currentUser?.updateProfile({ photoURL });
-
-  return auth.currentUser;
 };
 
 export const signOut = async () => {
