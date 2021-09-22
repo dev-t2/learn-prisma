@@ -10,24 +10,18 @@ import { useTheme } from '@emotion/react';
 
 import { SignIn, SignUp } from '../screen';
 
-type AuthStackParamList = {
+type ParamList = {
   SignIn: undefined;
   SignUp: undefined;
 };
 
-export type SignInScreenRouteProp = RouteProp<AuthStackParamList, 'SignIn'>;
-export type SignInScreenNavigationProp = StackNavigationProp<
-  AuthStackParamList,
-  'SignIn'
->;
+export type SignInRoute = RouteProp<ParamList, 'SignIn'>;
+export type SignInNavigation = StackNavigationProp<ParamList, 'SignIn'>;
 
-export type SignUpScreenRouteProp = RouteProp<AuthStackParamList, 'SignUp'>;
-export type SignUpScreenNavigationProp = StackNavigationProp<
-  AuthStackParamList,
-  'SignUp'
->;
+export type SignUpRoute = RouteProp<ParamList, 'SignUp'>;
+export type SignUpNavigation = StackNavigationProp<ParamList, 'SignUp'>;
 
-const { Navigator, Screen } = createStackNavigator<AuthStackParamList>();
+const { Navigator, Screen } = createStackNavigator<ParamList>();
 
 const Auth = () => {
   const theme = useTheme();

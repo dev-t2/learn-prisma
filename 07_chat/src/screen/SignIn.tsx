@@ -2,9 +2,9 @@ import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { Alert, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { SignInScreenNavigationProp } from '../navigation/Auth';
+import { SignInNavigation } from '../navigation/Auth';
 import { signIn } from '../firebase';
-import { deleteWhitespace, validateEmail } from '../api';
+import { validateEmail } from '../api';
 import {
   Button,
   ErrorMessage,
@@ -19,7 +19,7 @@ const logo =
   'https://firebasestorage.googleapis.com/v0/b/expo-chat-64b70.appspot.com/o/logo.png?alt=media';
 
 const SignIn = () => {
-  const navigation = useNavigation<SignInScreenNavigationProp>();
+  const navigation = useNavigation<SignInNavigation>();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -34,11 +34,11 @@ const SignIn = () => {
   }, [email, password, errorMessage]);
 
   const onChangeEmail = useCallback((email: string) => {
-    setEmail(deleteWhitespace(email));
+    setEmail(email.trim());
 
-    const validatedEmail = validateEmail(email);
+    const validatedEmail = validateEmail(email.trim());
 
-    setErrorMessage(validatedEmail ? '' : 'Please verify your email');
+    setErrorMessage(validatedEmail ? '' : '유효한 이메일 주소를 입력해주세요.');
   }, []);
 
   const onSubmitEmail = useCallback(() => {
@@ -46,7 +46,7 @@ const SignIn = () => {
   }, []);
 
   const onChangePassword = useCallback((password: string) => {
-    setPassword(deleteWhitespace(password));
+    setPassword(password.trim());
   }, []);
 
   const onSignIn = useCallback(async () => {
@@ -54,10 +54,12 @@ const SignIn = () => {
       setIsLoading(true);
 
       await signIn({ email, password });
-    } catch (error) {
-      Alert.alert((error as Error).message);
-    } finally {
+
       setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+
+      Alert.alert((error as Error).message);
     }
   }, [email, password]);
 

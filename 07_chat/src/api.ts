@@ -7,12 +7,6 @@ export const validateEmail = (email: string) => {
   return regExp.test(email);
 };
 
-export const deleteWhitespace = (text: string) => {
-  const regExp = /\s/g;
-
-  return text.replace(regExp, '');
-};
-
 export const getDateOrTime = (time: number) => {
   const now = moment().startOf('day');
   const target = moment(time).startOf('day');
