@@ -106,7 +106,7 @@ const SignUp = () => {
   }, [photo, email, displayName, password, navigation]);
 
   return (
-    <InsetsContainer>
+    <InsetsContainer isInsets={false}>
       <Loading isLoading={isLoading} />
 
       <Image isPhoto uri={photo} onChangePhoto={onChangePhoto} />

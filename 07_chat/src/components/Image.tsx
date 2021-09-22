@@ -7,6 +7,7 @@ import styled from '@emotion/native';
 
 const Container = styled.View({
   position: 'relative',
+  marginVertical: 40,
 });
 
 const StyledImage = styled.Image(({ theme }) => ({

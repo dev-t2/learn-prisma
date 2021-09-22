@@ -5,41 +5,46 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import styled from '@emotion/native';
 
 interface IContainer {
+  isInsets: boolean;
   insets: EdgeInsets;
 }
 
-const Container = styled.View<IContainer>(({ theme, insets }) => ({
+const Container = styled.View<IContainer>(({ isInsets, insets }) => ({
   flex: 1,
-  paddingTop: insets.top,
-  paddingBottom: insets.bottom,
-  paddingHorizontal: 20,
-  backgroundColor: theme.background,
+  paddingTop: isInsets ? insets.top : 0,
+  paddingBottom: isInsets ? insets.bottom : 0,
 }));
+
+const StyledScrollView = styled.ScrollView({
+  paddingHorizontal: 20,
+});
 
 interface IInsetsContainer {
   children: ReactNode;
+  isInsets?: boolean;
 }
 
-const InsetsContainer: FC<IInsetsContainer> = ({ children }) => {
+const InsetsContainer: FC<IInsetsContainer> = ({
+  children,
+  isInsets = true,
+}) => {
   const insets = useSafeAreaInsets();
 
   const contentContainerStyle = useMemo<StyleProp<ViewStyle>>(
-    () => ({
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-    }),
+    () => ({ alignItems: 'center' }),
     []
   );
 
   return (
-    <Container insets={insets}>
-      <KeyboardAwareScrollView
-        enableOnAndroid
-        contentContainerStyle={contentContainerStyle}
-      >
-        {children}
-      </KeyboardAwareScrollView>
+    <Container isInsets={isInsets} insets={insets}>
+      <StyledScrollView>
+        <KeyboardAwareScrollView
+          enableOnAndroid
+          contentContainerStyle={contentContainerStyle}
+        >
+          {children}
+        </KeyboardAwareScrollView>
+      </StyledScrollView>
     </Container>
   );
 };
