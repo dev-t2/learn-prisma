@@ -1,9 +1,7 @@
 import firebase from 'firebase/app';
-
 import 'firebase/auth';
 import 'firebase/firestore';
 import 'firebase/storage';
-
 import { IMessage } from 'react-native-gifted-chat';
 
 import firebaseConfig from './firebaseConfig';
@@ -19,13 +17,7 @@ interface ISignIn {
 }
 
 export const signIn = async ({ email, password }: ISignIn) => {
-  const { user } = await auth.signInWithEmailAndPassword(email, password);
-
-  return user;
-};
-
-export const getCurrentUser = () => {
-  return auth.currentUser;
+  await auth.signInWithEmailAndPassword(email, password);
 };
 
 export const uploadStorage = async (photo: string) => {

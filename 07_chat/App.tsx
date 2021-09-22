@@ -8,7 +8,7 @@ import Navigation from './src/navigation';
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <StatusBar style="auto" />
+      <StatusBar style="dark" backgroundColor="#ffffff" />
 
       <Navigation />
     </ThemeProvider>

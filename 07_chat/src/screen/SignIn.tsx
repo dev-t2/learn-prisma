@@ -1,16 +1,6 @@
-import React, {
-  memo,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
-import { Alert, StyleProp, TextInput, ViewStyle } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { Alert, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import styled from '@emotion/native';
 
 import { SignInScreenNavigationProp } from '../navigation/Auth';
 import { signIn } from '../firebase';
@@ -20,30 +10,15 @@ import {
   ErrorMessage,
   Image,
   Input,
+  InsetsContainer,
   Loading,
   TextButton,
 } from '../components';
-
-interface IContainer {
-  insets: EdgeInsets;
-}
-
-const Container = styled.View<IContainer>(({ theme, insets }) => ({
-  flex: 1,
-  alignItems: 'center',
-  justifyContent: 'center',
-  backgroundColor: theme.background,
-  paddingTop: insets.top,
-  paddingBottom: insets.bottom,
-  paddingHorizontal: 20,
-}));
 
 const logo =
   'https://firebasestorage.googleapis.com/v0/b/expo-chat-64b70.appspot.com/o/logo.png?alt=media';
 
 const SignIn = () => {
-  const insets = useSafeAreaInsets();
-
   const navigation = useNavigation<SignInScreenNavigationProp>();
 
   const [email, setEmail] = useState('');
@@ -53,11 +28,6 @@ const SignIn = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const passwordRef = useRef<TextInput>(null);
-
-  const contentContainerStyle = useMemo<StyleProp<ViewStyle>>(
-    () => ({ flex: 1 }),
-    []
-  );
 
   useEffect(() => {
     setIsValid(!!email && !!password && !errorMessage);
@@ -83,10 +53,9 @@ const SignIn = () => {
     try {
       setIsLoading(true);
 
-      // const user = await signIn({ email, password });
       await signIn({ email, password });
-    } catch (e) {
-      Alert.alert('SignIn Error');
+    } catch (error) {
+      Alert.alert((error as Error).message);
     } finally {
       setIsLoading(false);
     }
@@ -97,18 +66,15 @@ const SignIn = () => {
   }, [navigation]);
 
   return (
-    <KeyboardAwareScrollView
-      enableOnAndroid
-      contentContainerStyle={contentContainerStyle}
-    >
-      <Container insets={insets}>
-        {isLoading && <Loading />}
+    <>
+      {isLoading && <Loading />}
 
+      <InsetsContainer>
         <Image uri={logo} />
 
         <Input
-          label="Email"
-          placeholder="Email"
+          label="이메일"
+          placeholder="이메일을 입력해주세요"
           returnKeyType="next"
           value={email}
           onChangeText={onChangeEmail}
@@ -117,24 +83,23 @@ const SignIn = () => {
 
         <Input
           ref={passwordRef}
-          label="Password"
-          placeholder="Password"
+          label="비밀번호"
+          placeholder="비밀번호를 입력해주세요"
           secureTextEntry
           returnKeyType="done"
           value={password}
           onChangeText={onChangePassword}
-          onSubmitEditing={onSignIn}
         />
 
         <ErrorMessage>{errorMessage}</ErrorMessage>
 
         <Button disabled={!isValid} onPress={onSignIn}>
-          SignIn
+          로그인
         </Button>
 
-        <TextButton onPress={onSignUp}>SignUp</TextButton>
-      </Container>
-    </KeyboardAwareScrollView>
+        <TextButton onPress={onSignUp}>회원가입</TextButton>
+      </InsetsContainer>
+    </>
   );
 };
 

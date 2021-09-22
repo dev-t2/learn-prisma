@@ -9,19 +9,19 @@ const Container = styled.View(({ theme }) => ({
   height: '100%',
   alignItems: 'center',
   justifyContent: 'center',
+  backgroundColor: theme.background,
   zIndex: 1,
-  backgroundColor: theme.spinner,
-  opacity: 0.4,
+  opacity: 0.8,
 }));
 
-const Spinner = () => {
+const Loading = () => {
   const theme = useTheme();
 
   return (
     <Container>
-      <ActivityIndicator size="large" color={theme.white} />
+      <ActivityIndicator size="large" color={theme.main} />
     </Container>
   );
 };
 
-export default memo(Spinner);
+export default memo(Loading);
