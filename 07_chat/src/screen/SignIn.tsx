@@ -54,8 +54,6 @@ const SignIn = () => {
       setIsLoading(true);
 
       await signIn({ email, password });
-
-      setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
 

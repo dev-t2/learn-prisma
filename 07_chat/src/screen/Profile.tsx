@@ -40,8 +40,6 @@ const Profile = () => {
       setIsLoading(true);
 
       await signOut();
-
-      setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
 

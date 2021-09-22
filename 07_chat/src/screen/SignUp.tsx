@@ -96,8 +96,6 @@ const SignUp = () => {
       setIsLoading(true);
 
       await signUp({ photo, email, displayName: displayName.trim(), password });
-
-      setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
 

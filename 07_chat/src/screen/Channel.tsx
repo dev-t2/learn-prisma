@@ -112,6 +112,7 @@ const Channel = () => {
     <Container>
       <GiftedChat
         alwaysShowSend
+        keyboardShouldPersistTaps="never"
         renderSend={renderSend}
         placeholder="메세지를 입력해주세요"
         messages={messages}
