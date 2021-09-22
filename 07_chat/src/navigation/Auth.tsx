@@ -27,18 +27,12 @@ const Auth = () => {
   const theme = useTheme();
 
   const screenOptions = useMemo<StackNavigationOptions>(
-    () => ({
-      cardStyle: {
-        backgroundColor: theme.background,
-      },
-    }),
+    () => ({ cardStyle: { backgroundColor: theme.background } }),
     [theme.background]
   );
 
   const signInOptions = useMemo<StackNavigationOptions>(
-    () => ({
-      headerShown: false,
-    }),
+    () => ({ headerShown: false }),
     []
   );
 
@@ -47,12 +41,14 @@ const Auth = () => {
       headerTitleAlign: 'center',
       headerBackTitleVisible: false,
       headerTintColor: theme.text,
+      headerTitle: '회원가입',
       headerLeft: ({ tintColor, onPress }) => (
         <MaterialIcons
           name="keyboard-arrow-left"
           size={30}
           color={tintColor}
           onPress={onPress}
+          style={{ marginLeft: 10 }}
         />
       ),
     }),

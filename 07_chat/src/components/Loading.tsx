@@ -1,26 +1,28 @@
-import React, { memo } from 'react';
-import { ActivityIndicator } from 'react-native';
+import React, { FC, memo } from 'react';
+import { ActivityIndicator, Modal } from 'react-native';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/native';
 
-const Container = styled.View(({ theme }) => ({
-  position: 'absolute',
+const Container = styled.View({
+  flex: 1,
   width: '100%',
-  height: '100%',
   alignItems: 'center',
   justifyContent: 'center',
-  backgroundColor: theme.background,
-  zIndex: 1,
-  opacity: 0.8,
-}));
+});
 
-const Loading = () => {
+interface ILoading {
+  isLoading: boolean;
+}
+
+const Loading: FC<ILoading> = ({ isLoading }) => {
   const theme = useTheme();
 
   return (
-    <Container>
-      <ActivityIndicator size="large" color={theme.main} />
-    </Container>
+    <Modal animationType="fade" transparent visible={isLoading}>
+      <Container>
+        <ActivityIndicator size="large" color={theme.main} />
+      </Container>
+    </Modal>
   );
 };
 

@@ -1,28 +1,24 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { Alert, TextInput } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useNavigation } from '@react-navigation/native';
-import styled from '@emotion/native';
 
-import { SignUpScreenNavigationProp } from '../navigation/Auth';
+import { SignUpNavigation } from '../navigation/Auth';
 import { signUp } from '../firebase';
-import { deleteWhitespace, validateEmail } from '../api';
-import { Button, ErrorMessage, Image, Input, Loading } from '../components';
-
-const Container = styled.View(({ theme }) => ({
-  flex: 1,
-  alignItems: 'center',
-  justifyContent: 'center',
-  backgroundColor: theme.background,
-  paddingVertical: 50,
-  paddingHorizontal: 20,
-}));
+import { validateEmail } from '../api';
+import {
+  Button,
+  ErrorMessage,
+  Image,
+  Input,
+  InsetsContainer,
+  Loading,
+} from '../components';
 
 const defaultPhoto =
   'https://firebasestorage.googleapis.com/v0/b/expo-chat-64b70.appspot.com/o/face.png?alt=media';
 
 const SignUp = () => {
-  const navigation = useNavigation<SignUpScreenNavigationProp>();
+  const navigation = useNavigation<SignUpNavigation>();
 
   const [photo, setPhoto] = useState(defaultPhoto);
   const [email, setEmail] = useState('');
@@ -30,53 +26,51 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [disabled, setDisabled] = useState(true);
+  const [isValid, setIsValid] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const nameRef = useRef<TextInput>(null);
+  const displayNameRef = useRef<TextInput>(null);
   const passwordRef = useRef<TextInput>(null);
   const passwordConfirmRef = useRef<TextInput>(null);
 
   useEffect(() => {
     if (!email) {
-      setErrorMessage('Please enter your email');
+      setErrorMessage('이메일을 입력해주세요');
     } else if (!validateEmail(email)) {
-      setErrorMessage('Please enter a valid email');
+      setErrorMessage('유효한 이메일 주소를 입력해주세요');
     } else if (!displayName) {
-      setErrorMessage('Please enter your display name');
+      setErrorMessage('이름을 입력해주세요');
     } else if (!password) {
-      setErrorMessage('Please enter your password');
+      setErrorMessage('비밀번호를 입력해주세요');
     } else if (password.length < 6) {
-      setErrorMessage('The password must be at least 6 digits');
+      setErrorMessage('비밀번호는 6자리 이상 입력해주세요');
     } else if (!passwordConfirm) {
-      setErrorMessage('Please enter your confirm password');
+      setErrorMessage('비밀번호를 한번 더 입력해주세요');
     } else if (password !== passwordConfirm) {
-      setErrorMessage('It is not the same as password');
+      setErrorMessage('비밀번호와 일치하지 않습니다');
     } else {
       setErrorMessage('');
     }
   }, [email, displayName, password, passwordConfirm]);
 
   useEffect(() => {
-    setDisabled(
-      !(email && displayName && password && passwordConfirm && !errorMessage)
-    );
-  }, [email, displayName, password, passwordConfirm, errorMessage]);
+    setIsValid(!errorMessage);
+  }, [errorMessage]);
 
   const onChangePhoto = useCallback((uri: string) => {
     setPhoto(uri);
   }, []);
 
   const onChangeEmail = useCallback((email: string) => {
-    setEmail(deleteWhitespace(email));
+    setEmail(email.trim());
   }, []);
 
   const onSubmitEmail = useCallback(() => {
-    nameRef.current?.focus();
+    displayNameRef.current?.focus();
   }, []);
 
   const onChangeDisplayName = useCallback((displayName: string) => {
-    setDisplayName(deleteWhitespace(displayName));
+    setDisplayName(displayName.trim());
   }, []);
 
   const onSubmitDisplayName = useCallback(() => {
@@ -84,7 +78,7 @@ const SignUp = () => {
   }, []);
 
   const onChangePassword = useCallback((password: string) => {
-    setPassword(deleteWhitespace(password));
+    setPassword(password.trim());
   }, []);
 
   const onSubmitPassword = useCallback(() => {
@@ -92,7 +86,7 @@ const SignUp = () => {
   }, []);
 
   const onChangePasswordConfirm = useCallback((passwordConfirm: string) => {
-    setPasswordConfirm(deleteWhitespace(passwordConfirm));
+    setPasswordConfirm(passwordConfirm.trim());
   }, []);
 
   const onSignUp = useCallback(async () => {
@@ -101,70 +95,69 @@ const SignUp = () => {
 
       await signUp({ photo, email, displayName, password });
 
-      navigation.reset({ routes: [{ name: 'SignIn' }] });
-    } catch (e) {
-      Alert.alert('SignUp Error');
-    } finally {
       setIsLoading(false);
+
+      navigation.reset({ routes: [{ name: 'SignIn' }] });
+    } catch (error) {
+      setIsLoading(false);
+
+      Alert.alert((error as Error).message);
     }
   }, [photo, email, displayName, password, navigation]);
 
   return (
-    <KeyboardAwareScrollView enableOnAndroid>
-      {isLoading && <Loading />}
+    <InsetsContainer>
+      <Loading isLoading={isLoading} />
 
-      <Container>
-        <Image isPhoto uri={photo} onChangePhoto={onChangePhoto} />
+      <Image isPhoto uri={photo} onChangePhoto={onChangePhoto} />
 
-        <Input
-          label="Email"
-          placeholder="Email"
-          returnKeyType="next"
-          value={email}
-          onChangeText={onChangeEmail}
-          onSubmitEditing={onSubmitEmail}
-        />
+      <Input
+        label="이메일"
+        placeholder="이메일을 입력해주세요"
+        returnKeyType="next"
+        value={email}
+        onChangeText={onChangeEmail}
+        onSubmitEditing={onSubmitEmail}
+      />
 
-        <Input
-          ref={nameRef}
-          label="Name"
-          placeholder="Name"
-          maxLength={4}
-          returnKeyType="next"
-          value={displayName}
-          onChangeText={onChangeDisplayName}
-          onSubmitEditing={onSubmitDisplayName}
-        />
+      <Input
+        ref={displayNameRef}
+        label="닉네임"
+        placeholder="닉네임을 입력해주세요"
+        maxLength={10}
+        returnKeyType="next"
+        value={displayName}
+        onChangeText={onChangeDisplayName}
+        onSubmitEditing={onSubmitDisplayName}
+      />
 
-        <Input
-          ref={passwordRef}
-          label="Password"
-          placeholder="Password"
-          secureTextEntry
-          returnKeyType="next"
-          value={password}
-          onChangeText={onChangePassword}
-          onSubmitEditing={onSubmitPassword}
-        />
+      <Input
+        ref={passwordRef}
+        label="비밀번호"
+        placeholder="비밀번호를 입력해주세요"
+        secureTextEntry
+        returnKeyType="next"
+        value={password}
+        onChangeText={onChangePassword}
+        onSubmitEditing={onSubmitPassword}
+      />
 
-        <Input
-          ref={passwordConfirmRef}
-          label="Password Confirm"
-          placeholder="Password Confirm"
-          secureTextEntry
-          returnKeyType="done"
-          value={passwordConfirm}
-          onChangeText={onChangePasswordConfirm}
-          onSubmitEditing={onSignUp}
-        />
+      <Input
+        ref={passwordConfirmRef}
+        label="비밀번호 확인"
+        placeholder="비밀번호를 한번 더 입력해주세요"
+        secureTextEntry
+        returnKeyType="done"
+        value={passwordConfirm}
+        onChangeText={onChangePasswordConfirm}
+      />
 
-        <ErrorMessage>{errorMessage}</ErrorMessage>
+      <ErrorMessage>{errorMessage}</ErrorMessage>
 
-        <Button disabled={disabled} onPress={onSignUp}>
-          SignUp
-        </Button>
-      </Container>
-    </KeyboardAwareScrollView>
+      <Button disabled={!isValid} onPress={onSignUp}>
+        회원가입
+      </Button>
+    </InsetsContainer>
   );
 };
 
