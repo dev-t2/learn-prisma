@@ -1,4 +1,21 @@
+import { Image } from 'react-native';
+import * as Font from 'expo-font';
+import { Asset } from 'expo-asset';
 import moment from 'moment';
+
+export const preloadFonts = (font: {
+  [fontFamily: string]: Font.FontSource;
+}) => {
+  return Font.loadAsync(font);
+};
+
+export const preloadImages = (source: { [name: string]: string | number }) => {
+  return Object.values(source).map((value) => {
+    return typeof value === 'string'
+      ? Image.prefetch(value)
+      : Asset.fromModule(value).downloadAsync();
+  });
+};
 
 export const validateEmail = (email: string) => {
   const regExp =
