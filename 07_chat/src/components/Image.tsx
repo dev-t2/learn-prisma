@@ -5,10 +5,14 @@ import * as ImagePicker from 'expo-image-picker';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/native';
 
-const Container = styled.View({
+interface IContainer {
+  marginVertical: number;
+}
+
+const Container = styled.View<IContainer>(({ marginVertical }) => ({
   position: 'relative',
-  marginVertical: 40,
-});
+  marginVertical,
+}));
 
 const StyledImage = styled.Image(({ theme }) => ({
   width: 100,
@@ -30,12 +34,18 @@ const StyledPressable = styled.Pressable(({ theme }) => ({
 }));
 
 interface IImage {
+  marginVertical: number;
   uri: string;
   isPhoto?: boolean;
   onChangePhoto?: (uri: string) => void;
 }
 
-const Image: FC<IImage> = ({ uri, isPhoto = false, onChangePhoto }) => {
+const Image: FC<IImage> = ({
+  marginVertical,
+  uri,
+  isPhoto = false,
+  onChangePhoto,
+}) => {
   const theme = useTheme();
 
   const source = useMemo<ImageSourcePropType>(() => ({ uri }), [uri]);
@@ -69,7 +79,7 @@ const Image: FC<IImage> = ({ uri, isPhoto = false, onChangePhoto }) => {
   }, [onChangePhoto]);
 
   return (
-    <Container>
+    <Container marginVertical={marginVertical}>
       <StyledImage source={source} />
 
       {isPhoto && (

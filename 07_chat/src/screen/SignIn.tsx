@@ -30,8 +30,8 @@ const SignIn = () => {
   const passwordRef = useRef<TextInput>(null);
 
   useEffect(() => {
-    setIsValid(!errorMessage);
-  }, [errorMessage]);
+    setIsValid(!!email && !!password && !errorMessage);
+  }, [email, password, errorMessage]);
 
   const onChangeEmail = useCallback((email: string) => {
     setEmail(email.trim());
@@ -71,7 +71,7 @@ const SignIn = () => {
     <InsetsContainer>
       <Loading isLoading={isLoading} />
 
-      <Image uri={logo} />
+      <Image marginVertical={80} uri={logo} />
 
       <Input
         label="이메일"

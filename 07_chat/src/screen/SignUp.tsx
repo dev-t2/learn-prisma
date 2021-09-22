@@ -54,8 +54,14 @@ const SignUp = () => {
   }, [email, displayName, password, passwordConfirm]);
 
   useEffect(() => {
-    setIsValid(!errorMessage);
-  }, [errorMessage]);
+    setIsValid(
+      !!email &&
+        !!displayName &&
+        !!password &&
+        !!passwordConfirm &&
+        !errorMessage
+    );
+  }, [email, displayName, password, passwordConfirm, errorMessage]);
 
   const onChangePhoto = useCallback((uri: string) => {
     setPhoto(uri);
@@ -70,7 +76,7 @@ const SignUp = () => {
   }, []);
 
   const onChangeDisplayName = useCallback((displayName: string) => {
-    setDisplayName(displayName.trim());
+    setDisplayName(displayName);
   }, []);
 
   const onSubmitDisplayName = useCallback(() => {
@@ -93,7 +99,7 @@ const SignUp = () => {
     try {
       setIsLoading(true);
 
-      await signUp({ photo, email, displayName, password });
+      await signUp({ photo, email, displayName: displayName.trim(), password });
 
       setIsLoading(false);
 
@@ -109,7 +115,12 @@ const SignUp = () => {
     <InsetsContainer isInsets={false}>
       <Loading isLoading={isLoading} />
 
-      <Image isPhoto uri={photo} onChangePhoto={onChangePhoto} />
+      <Image
+        marginVertical={40}
+        isPhoto
+        uri={photo}
+        onChangePhoto={onChangePhoto}
+      />
 
       <Input
         label="이메일"
