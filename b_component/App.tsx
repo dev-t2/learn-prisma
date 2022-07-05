@@ -8,15 +8,23 @@
  * @format
  */
 
-import React, { memo } from 'react';
-import { SafeAreaView } from 'react-native';
+import React, { memo, useCallback, useState } from 'react';
+import { Button, SafeAreaView } from 'react-native';
 
 import { Box } from './src/components';
 
 const App = () => {
+  const [visible, setVisible] = useState(true);
+
+  const onPress = useCallback(() => {
+    setVisible(prev => !prev);
+  }, []);
+
   return (
     <SafeAreaView>
-      <Box size="large" backgroundColor="blue" borderRadius={16} />
+      <Button title="Toggle" onPress={onPress} />
+
+      {visible && <Box size="large" backgroundColor="blue" borderRadius={16} />}
     </SafeAreaView>
   );
 };
