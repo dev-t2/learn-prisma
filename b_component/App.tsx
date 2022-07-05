@@ -9,23 +9,24 @@
  */
 
 import React, { memo, useCallback, useState } from 'react';
-import { Button, SafeAreaView } from 'react-native';
 
-import { Box } from './src/components';
+import { Container, Counter } from './src/components';
 
 const App = () => {
-  const [visible, setVisible] = useState(true);
+  const [count, setCount] = useState(0);
 
-  const onPress = useCallback(() => {
-    setVisible(prev => !prev);
+  const onIncrease = useCallback(() => {
+    setCount(prev => prev + 1);
+  }, []);
+
+  const onDecrease = useCallback(() => {
+    setCount(prev => prev - 1);
   }, []);
 
   return (
-    <SafeAreaView>
-      <Button title="Toggle" onPress={onPress} />
-
-      {visible && <Box size="large" backgroundColor="blue" borderRadius={16} />}
-    </SafeAreaView>
+    <Container>
+      <Counter count={count} onIncrease={onIncrease} onDecrease={onDecrease} />
+    </Container>
   );
 };
 
