@@ -7,9 +7,13 @@ interface IGreeting {
 
 const Greeting: FC<IGreeting> = ({ name = 'React Native' }) => {
   return (
-    <View>
-      <Text>Hello {name}</Text>
-    </View>
+    <>
+      <View>
+        <Text>Hello {name}</Text>
+      </View>
+
+      <Text>Extra Text</Text>
+    </>
   );
 };
 
