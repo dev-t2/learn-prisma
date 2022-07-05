@@ -10,12 +10,13 @@
 
 import React, { memo } from 'react';
 import { SafeAreaView } from 'react-native';
+
 import { Greeting } from './src/components';
 
 const App = () => {
   return (
     <SafeAreaView>
-      <Greeting />
+      <Greeting name="Props" />
     </SafeAreaView>
   );
 };
