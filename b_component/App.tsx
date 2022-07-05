@@ -8,7 +8,7 @@
  * @format
  */
 
-import { memo } from 'react';
+import React, { memo } from 'react';
 import { SafeAreaView, Text, View } from 'react-native';
 
 const App = () => {
