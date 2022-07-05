@@ -11,17 +11,12 @@
 import React, { memo } from 'react';
 import { SafeAreaView } from 'react-native';
 
-import { Greeting } from './src/components';
+import { Box } from './src/components';
 
 const App = () => {
-  const name = 'TSX';
-
   return (
     <SafeAreaView>
-      {/* Greeting Component */}
-      <Greeting
-        name={name} // Name Props
-      />
+      <Box />
     </SafeAreaView>
   );
 };

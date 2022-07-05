@@ -1,8 +1,14 @@
 import React, { memo } from 'react';
-import { View } from 'react-native';
+import styled from '@emotion/native';
+
+const StyledBox = styled.View({
+  width: 64,
+  height: 64,
+  backgroundColor: 'black',
+});
 
 const Box = () => {
-  return <View />;
+  return <StyledBox />;
 };
 
 export default memo(Box);
