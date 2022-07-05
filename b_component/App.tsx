@@ -9,14 +9,13 @@
  */
 
 import React, { memo } from 'react';
-import { SafeAreaView, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native';
+import { Greeting } from './src/components';
 
 const App = () => {
   return (
     <SafeAreaView>
-      <View>
-        <Text>Hello React Native</Text>
-      </View>
+      <Greeting />
     </SafeAreaView>
   );
 };
