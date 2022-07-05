@@ -1,16 +1,17 @@
 import React, { FC, memo } from 'react';
-import { ViewStyle } from 'react-native';
+import { ColorValue, ViewStyle } from 'react-native';
 import styled from '@emotion/native';
 
 type Size = 'small' | 'medium' | 'large';
 
 interface IStyledBox {
   size: Size;
+  backgroundColor: ColorValue;
   borderRadius: number;
 }
 
-const StyledBox = styled.View<IStyledBox>(({ size, borderRadius }) => {
-  const medium: ViewStyle = { width: 64, height: 64, backgroundColor: 'black', borderRadius };
+const StyledBox = styled.View<IStyledBox>(({ size, backgroundColor, borderRadius }) => {
+  const medium: ViewStyle = { width: 64, height: 64, backgroundColor, borderRadius };
 
   if (size === 'small') {
     return { ...medium, width: 32, height: 32 };
@@ -25,11 +26,12 @@ const StyledBox = styled.View<IStyledBox>(({ size, borderRadius }) => {
 
 interface IBox {
   size?: Size;
+  backgroundColor?: ColorValue;
   borderRadius?: number;
 }
 
-const Box: FC<IBox> = ({ size = 'medium', borderRadius = 0 }) => {
-  return <StyledBox size={size} borderRadius={borderRadius} />;
+const Box: FC<IBox> = ({ size = 'medium', backgroundColor = 'black', borderRadius = 0 }) => {
+  return <StyledBox size={size} backgroundColor={backgroundColor} borderRadius={borderRadius} />;
 };
 
 export default memo(Box);

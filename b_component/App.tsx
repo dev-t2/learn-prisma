@@ -16,7 +16,7 @@ import { Box } from './src/components';
 const App = () => {
   return (
     <SafeAreaView>
-      <Box size="large" borderRadius={16} />
+      <Box size="large" backgroundColor="blue" borderRadius={16} />
     </SafeAreaView>
   );
 };
