@@ -6,3 +6,5 @@
   - Environment setup: https://reactnative.dev/docs/environment-setup
 - Prettier: https://prettier.io
   - End of Line: https://prettier.io/docs/en/options.html#end-of-line
+- Emotion: https://emotion.sh/docs/introduction
+  - @emotion/native: https://emotion.sh/docs/@emotion/native
