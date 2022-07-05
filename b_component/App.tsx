@@ -16,7 +16,7 @@ import { Greeting } from './src/components';
 const App = () => {
   return (
     <SafeAreaView>
-      <Greeting name="Props" />
+      <Greeting />
     </SafeAreaView>
   );
 };

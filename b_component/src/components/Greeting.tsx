@@ -2,10 +2,10 @@ import React, { FC, memo } from 'react';
 import { Text, View } from 'react-native';
 
 interface IGreeting {
-  name: string;
+  name?: string;
 }
 
-const Greeting: FC<IGreeting> = ({ name }) => {
+const Greeting: FC<IGreeting> = ({ name = 'React Native' }) => {
   return (
     <View>
       <Text>Hello {name}</Text>
