@@ -14,9 +14,14 @@ import { SafeAreaView } from 'react-native';
 import { Greeting } from './src/components';
 
 const App = () => {
+  const name = 'TSX';
+
   return (
     <SafeAreaView>
-      <Greeting />
+      {/* Greeting Component */}
+      <Greeting
+        name={name} // Name Props
+      />
     </SafeAreaView>
   );
 };
