@@ -11,7 +11,9 @@
 import React, { memo, useMemo } from 'react';
 import { StatusBar } from 'react-native';
 import { Edge, SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { ThemeProvider } from '@emotion/react';
 
+import { theme } from './src/theme';
 import { DateHead } from './src/components';
 
 const App = () => {
@@ -20,13 +22,15 @@ const App = () => {
   const today = useMemo(() => new Date(), []);
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView edges={edges}>
-        <StatusBar barStyle="light-content" backgroundColor="#002f6c" />
+    <ThemeProvider theme={theme}>
+      <SafeAreaProvider>
+        <SafeAreaView edges={edges}>
+          <StatusBar barStyle="light-content" backgroundColor={theme.colors.primaryVariant} />
 
-        <DateHead date={today} />
-      </SafeAreaView>
-    </SafeAreaProvider>
+          <DateHead date={today} />
+        </SafeAreaView>
+      </SafeAreaProvider>
+    </ThemeProvider>
   );
 };
 

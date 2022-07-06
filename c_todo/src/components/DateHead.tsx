@@ -6,16 +6,16 @@ interface IContainer {
   marginTop: number;
 }
 
-const Container = styled.View<IContainer>(({ marginTop }) => ({
+const Container = styled.View<IContainer>(({ theme, marginTop }) => ({
   padding: 16,
-  backgroundColor: '#01579b',
+  backgroundColor: theme.colors.primary,
   marginTop,
 }));
 
-const Date = styled.Text({
+const Date = styled.Text(({ theme }) => ({
   fontSize: 24,
-  color: '#fff',
-});
+  color: theme.colors.primaryText,
+}));
 
 interface IDateHead {
   date: Date;
