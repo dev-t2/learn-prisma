@@ -10,3 +10,4 @@
   - @emotion/native: https://emotion.sh/docs/@emotion/native
 - Material Design: https://material.io
   - Color Tool: https://material.io/resources/color
+- react-native-safe-area-context: https://www.npmjs.com/package/react-native-safe-area-context
