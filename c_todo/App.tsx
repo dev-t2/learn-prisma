@@ -9,7 +9,7 @@
  */
 
 import React, { memo, useMemo } from 'react';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, StatusBar } from 'react-native';
 
 import { DateHead } from './src/components';
 
@@ -18,6 +18,8 @@ const App = () => {
 
   return (
     <SafeAreaView>
+      <StatusBar backgroundColor="#002f6c" />
+
       <DateHead date={today} />
     </SafeAreaView>
   );
