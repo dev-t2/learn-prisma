@@ -8,15 +8,17 @@
  * @format
  */
 
-import React, { memo } from 'react';
+import React, { memo, useMemo } from 'react';
 import { SafeAreaView } from 'react-native';
 
 import { DateHead } from './src/components';
 
 const App = () => {
+  const today = useMemo(() => new Date(), []);
+
   return (
     <SafeAreaView>
-      <DateHead />
+      <DateHead date={today} />
     </SafeAreaView>
   );
 };

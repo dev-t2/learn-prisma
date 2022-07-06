@@ -1,9 +1,9 @@
-import React, { memo } from 'react';
+import React, { FC, memo, useMemo } from 'react';
 import styled from '@emotion/native';
 
 const Container = styled.View({
   padding: 16,
-  backgroundColor: '#26a69a',
+  backgroundColor: '#0d47a1',
 });
 
 const Date = styled.Text({
@@ -11,10 +11,18 @@ const Date = styled.Text({
   color: '#fff',
 });
 
-const DateHead = () => {
+interface IDateHead {
+  date: Date;
+}
+
+const DateHead: FC<IDateHead> = ({ date }) => {
+  const formatted = useMemo(() => {
+    return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
+  }, [date]);
+
   return (
     <Container>
-      <Date>2022년 07월 06일</Date>
+      <Date>{formatted}</Date>
     </Container>
   );
 };
