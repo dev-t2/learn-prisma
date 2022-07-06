@@ -9,19 +9,24 @@
  */
 
 import React, { memo, useMemo } from 'react';
-import { SafeAreaView, StatusBar } from 'react-native';
+import { StatusBar } from 'react-native';
+import { Edge, SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import { DateHead } from './src/components';
 
 const App = () => {
+  const edges = useMemo<Edge[]>(() => ['bottom'], []);
+
   const today = useMemo(() => new Date(), []);
 
   return (
-    <SafeAreaView>
-      <StatusBar backgroundColor="#002f6c" />
+    <SafeAreaProvider>
+      <SafeAreaView edges={edges}>
+        <StatusBar barStyle="light-content" backgroundColor="#002f6c" />
 
-      <DateHead date={today} />
-    </SafeAreaView>
+        <DateHead date={today} />
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 };
 
