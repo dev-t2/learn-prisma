@@ -9,14 +9,14 @@
  */
 
 import React, { memo } from 'react';
-import { SafeAreaView, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native';
+
+import { DateHead } from './src/components';
 
 const App = () => {
   return (
     <SafeAreaView>
-      <View>
-        <Text>TodoApp</Text>
-      </View>
+      <DateHead />
     </SafeAreaView>
   );
 };
