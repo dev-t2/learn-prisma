@@ -32,7 +32,7 @@ const StyledImage = styled.Image({});
 const AddTodo = () => {
   const [text, setText] = useState('');
 
-  const onPress = useCallback(() => {
+  const onSubmit = useCallback(() => {
     setText('');
 
     Keyboard.dismiss();
@@ -40,9 +40,15 @@ const AddTodo = () => {
 
   return (
     <Container>
-      <StyledTextInput placeholder="해야 할 일을 입력하세요" value={text} onChangeText={setText} />
+      <StyledTextInput
+        placeholder="해야 할 일을 입력하세요"
+        returnKeyType="done"
+        value={text}
+        onChangeText={setText}
+        onSubmitEditing={onSubmit}
+      />
 
-      <StyledPressable onPress={onPress}>
+      <StyledPressable onPress={onSubmit}>
         <StyledImage source={require('../../assets/icons/add_white.png')} />
       </StyledPressable>
     </Container>
