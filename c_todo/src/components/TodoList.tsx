@@ -1,8 +1,8 @@
-import React, { FC, memo, useMemo } from 'react';
-import { FlatList, StyleProp, Text, View, ViewStyle } from 'react-native';
+import React, { FC, memo, useCallback, useMemo } from 'react';
+import { FlatList, ListRenderItem, StyleProp, ViewStyle } from 'react-native';
 
 import { ITodo } from '../../App';
-import { Empty } from './items';
+import { Empty, TodoItem } from './items';
 
 interface ITodoList {
   todos: ITodo[];
@@ -13,17 +13,19 @@ const TodoList: FC<ITodoList> = ({ todos }) => {
 
   const contentContainerStyle = useMemo<StyleProp<ViewStyle>>(() => ({ flex: 1 }), []);
 
+  const keyExtractor = useCallback((item: ITodo) => item.id.toString(), []);
+
+  const renderItem = useCallback<ListRenderItem<ITodo>>(({ item }) => {
+    return <TodoItem item={item} />;
+  }, []);
+
   return (
     <FlatList
       style={style}
       contentContainerStyle={contentContainerStyle}
       data={todos}
-      keyExtractor={item => item.id.toString()}
-      renderItem={({ item }) => (
-        <View>
-          <Text>{item.text}</Text>
-        </View>
-      )}
+      keyExtractor={keyExtractor}
+      renderItem={renderItem}
       ListEmptyComponent={<Empty />}
     />
   );
