@@ -8,15 +8,26 @@
  * @format
  */
 
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import { StatusBar } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemeProvider } from '@emotion/react';
 
 import { theme } from './src/theme';
-import { AddTodo, Container, DateHead, Empty } from './src/components';
+import { AddTodo, Container, DateHead, TodoList } from './src/components';
+
+export interface ITodo {
+  id: number;
+  text: string;
+  done: boolean;
+}
 
 const App = () => {
+  const [todos] = useState<ITodo[]>([
+    { id: 1, text: 'TypeScript', done: true },
+    { id: 2, text: 'React Native', done: false },
+  ]);
+
   return (
     <ThemeProvider theme={theme}>
       <SafeAreaProvider>
@@ -25,7 +36,7 @@ const App = () => {
 
           <DateHead />
 
-          <Empty />
+          <TodoList todos={todos} />
 
           <AddTodo />
         </Container>
