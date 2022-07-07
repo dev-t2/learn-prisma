@@ -9,6 +9,7 @@
 - Emotion: https://emotion.sh/docs/introduction
   - @emotion/native: https://emotion.sh/docs/@emotion/native
   - Define a Theme: https://emotion.sh/docs/typescript#define-a-theme
+  - Styled Components: https://emotion.sh/docs/styled
 - Material Design: https://material.io
   - Color Tool: https://material.io/resources/color
 - react-native-safe-area-context: https://github.com/th3rdwave/react-native-safe-area-context
