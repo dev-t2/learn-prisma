@@ -10,9 +10,9 @@ const Container = styled.View({
 });
 
 const Check = styled.View(({ theme }) => ({
-  width: 24,
-  height: 24,
-  borderRadius: 12,
+  width: 16,
+  height: 16,
+  borderRadius: 8,
   borderWidth: 1,
   borderColor: theme.colors.primary,
 }));
@@ -21,7 +21,7 @@ const StyledText = styled.Text(({ theme }) => ({
   flex: 1,
   fontSize: 16,
   color: theme.colors.text,
-  marginLeft: 16,
+  marginLeft: 8,
 }));
 
 interface ITodoItem {

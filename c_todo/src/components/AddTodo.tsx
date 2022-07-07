@@ -1,12 +1,12 @@
 import React, { memo, useCallback, useState } from 'react';
-import { Keyboard } from 'react-native';
+import { Image, Keyboard } from 'react-native';
 import styled from '@emotion/native';
 
 const Container = styled.View(({ theme }) => ({
   flexDirection: 'row',
   alignItems: 'center',
-  paddingVertical: 8,
-  paddingHorizontal: 16,
+  paddingVertical: 4,
+  paddingHorizontal: 8,
   borderTopWidth: 1,
   borderBottomWidth: 1,
   borderColor: theme.colors.border,
@@ -26,8 +26,6 @@ const StyledPressable = styled.Pressable(({ theme }) => ({
   backgroundColor: theme.colors.primary,
   borderRadius: 16,
 }));
-
-const StyledImage = styled.Image({});
 
 const AddTodo = () => {
   const [text, setText] = useState('');
@@ -49,7 +47,7 @@ const AddTodo = () => {
       />
 
       <StyledPressable onPress={onSubmit}>
-        <StyledImage source={require('../../assets/icons/add_white.png')} />
+        <Image source={require('../../assets/icons/add_white.png')} resizeMode="contain" />
       </StyledPressable>
     </Container>
   );
