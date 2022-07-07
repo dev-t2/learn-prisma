@@ -22,7 +22,7 @@ const Empty = () => {
   return (
     <Container>
       <StyledImage
-        source={require('../../assets/images/young_and_happy.png')}
+        source={require('../../../assets/images/young_and_happy.png')}
         resizeMode="contain"
       />
 
