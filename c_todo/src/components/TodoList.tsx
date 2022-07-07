@@ -2,7 +2,7 @@ import React, { FC, memo, useMemo } from 'react';
 import { FlatList, StyleProp, Text, View, ViewStyle } from 'react-native';
 
 import { ITodo } from '../../App';
-import { Empty } from './item';
+import { Empty } from './items';
 
 interface ITodoList {
   todos: ITodo[];
