@@ -21,7 +21,10 @@ const StyledText = styled.Text(({ theme }) => ({
 const Empty = () => {
   return (
     <Container>
-      <StyledImage source={require('../../assets/images/young_and_happy.png')} />
+      <StyledImage
+        source={require('../../assets/images/young_and_happy.png')}
+        resizeMode="contain"
+      />
 
       <StyledText>해야 할 일이 없습니다 😎</StyledText>
     </Container>
