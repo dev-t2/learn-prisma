@@ -1,10 +1,10 @@
-import styled from '@emotion/native';
 import React, { memo } from 'react';
+import styled from '@emotion/native';
 
-const Container = styled.View({
+const Container = styled.View(({ theme }) => ({
   height: 64,
-  backgroundColor: 'red',
-});
+  backgroundColor: theme.colors.primary,
+}));
 
 const AddTodo = () => {
   return <Container />;
