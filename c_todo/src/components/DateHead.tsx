@@ -1,4 +1,4 @@
-import React, { FC, memo, useMemo } from 'react';
+import React, { memo, useMemo } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled from '@emotion/native';
 
@@ -12,25 +12,23 @@ const Container = styled.View<IContainer>(({ theme, marginTop }) => ({
   marginTop,
 }));
 
-const Date = styled.Text(({ theme }) => ({
+const StyledText = styled.Text(({ theme }) => ({
   fontSize: 24,
   color: theme.colors.primaryText,
 }));
 
-interface IDateHead {
-  date: Date;
-}
-
-const DateHead: FC<IDateHead> = ({ date }) => {
+const DateHead = () => {
   const { top } = useSafeAreaInsets();
 
   const formattedDate = useMemo(() => {
-    return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
-  }, [date]);
+    const today = new Date();
+
+    return `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
+  }, []);
 
   return (
     <Container marginTop={top}>
-      <Date>{formattedDate}</Date>
+      <StyledText>{formattedDate}</StyledText>
     </Container>
   );
 };

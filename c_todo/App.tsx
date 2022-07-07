@@ -14,12 +14,10 @@ import { Edge, SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-con
 import { ThemeProvider } from '@emotion/react';
 
 import { theme } from './src/theme';
-import { DateHead } from './src/components';
+import { AddTodo, DateHead } from './src/components';
 
 const App = () => {
   const edges = useMemo<Edge[]>(() => ['bottom'], []);
-
-  const today = useMemo(() => new Date(), []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -27,7 +25,9 @@ const App = () => {
         <SafeAreaView edges={edges}>
           <StatusBar barStyle="light-content" backgroundColor={theme.colors.primaryVariant} />
 
-          <DateHead date={today} />
+          <DateHead />
+
+          <AddTodo />
         </SafeAreaView>
       </SafeAreaProvider>
     </ThemeProvider>
