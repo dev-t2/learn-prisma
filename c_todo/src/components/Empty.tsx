@@ -7,15 +7,23 @@ const Container = styled.View({
   justifyContent: 'center',
 });
 
+const StyledImage = styled.Image({
+  width: 240,
+  height: 180,
+  marginBottom: 16,
+});
+
 const StyledText = styled.Text(({ theme }) => ({
-  fontSize: 24,
+  fontSize: 16,
   color: theme.colors.disabled,
 }));
 
 const Empty = () => {
   return (
     <Container>
-      <StyledText>할 일이 없습니다</StyledText>
+      <StyledImage source={require('../../assets/images/young_and_happy.png')} />
+
+      <StyledText>해야 할 일이 없습니다 😎</StyledText>
     </Container>
   );
 };

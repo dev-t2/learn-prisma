@@ -13,8 +13,9 @@ const Container = styled.View<IContainer>(({ theme, marginTop }) => ({
 }));
 
 const StyledText = styled.Text(({ theme }) => ({
-  fontSize: 24,
+  fontSize: 16,
   color: theme.colors.primaryText,
+  fontWeight: 'bold',
 }));
 
 const DateHead = () => {
