@@ -39,6 +39,15 @@ const App = () => {
     [todos],
   );
 
+  const onDelete = useCallback(
+    (id: number) => {
+      const filteredTodos = todos.filter(todo => todo.id !== id);
+
+      setTodos(filteredTodos);
+    },
+    [todos],
+  );
+
   const onInsert = useCallback(
     (text: string) => {
       const ids = todos.map(todo => todo.id);
@@ -58,7 +67,7 @@ const App = () => {
 
           <DateHead />
 
-          <TodoList todos={todos} onUpdate={onUpdate} />
+          <TodoList todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
 
           <AddTodo onInsert={onInsert} />
         </Container>

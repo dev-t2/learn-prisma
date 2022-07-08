@@ -1,4 +1,4 @@
-import React, { FC, memo } from 'react';
+import React, { FC, memo, useCallback } from 'react';
 import { Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useTheme } from '@emotion/react';
@@ -42,15 +42,23 @@ const StyledText = styled.Text<IStyledText>(({ theme, done }) => ({
 const IconPressable = styled.Pressable({
   width: 24,
   height: 24,
+  marginLeft: 16,
 });
 
 interface ITodoItem {
   item: ITodo;
   onUpdate: (id: number) => () => void;
+  onDelete: (id: number) => void;
 }
 
-const TodoItem: FC<ITodoItem> = ({ item, onUpdate }) => {
+const TodoItem: FC<ITodoItem> = ({ item, onUpdate, onDelete }) => {
   const theme = useTheme();
+
+  const onPress = useCallback(() => {
+    if (item.done) {
+      onDelete(item.id);
+    }
+  }, [item.done, onDelete, item.id]);
 
   return (
     <Container>
@@ -62,7 +70,7 @@ const TodoItem: FC<ITodoItem> = ({ item, onUpdate }) => {
 
       <StyledText done={item.done}>{item.text}</StyledText>
 
-      <IconPressable>
+      <IconPressable onPress={onPress}>
         {item.done && <Icon name="delete" size={24} color={theme.colors.delete} />}
       </IconPressable>
     </Container>

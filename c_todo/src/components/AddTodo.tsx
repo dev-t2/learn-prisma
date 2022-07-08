@@ -25,6 +25,7 @@ const StyledPressable = styled.Pressable(({ theme }) => ({
   justifyContent: 'center',
   backgroundColor: theme.colors.primary,
   borderRadius: 16,
+  marginLeft: 8,
 }));
 
 interface IAddTodo {

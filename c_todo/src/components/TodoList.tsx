@@ -7,9 +7,10 @@ import { Empty, Separator, TodoItem } from './items';
 interface ITodoList {
   todos: ITodo[];
   onUpdate: (id: number) => () => void;
+  onDelete: (id: number) => void;
 }
 
-const TodoList: FC<ITodoList> = ({ todos, onUpdate }) => {
+const TodoList: FC<ITodoList> = ({ todos, onUpdate, onDelete }) => {
   const style = useMemo<StyleProp<ViewStyle>>(() => ({ flex: 1 }), []);
 
   const contentContainerStyle = useMemo<StyleProp<ViewStyle>>(() => ({ flex: 1 }), []);
@@ -18,9 +19,9 @@ const TodoList: FC<ITodoList> = ({ todos, onUpdate }) => {
 
   const renderItem = useCallback<ListRenderItem<ITodo>>(
     ({ item }) => {
-      return <TodoItem item={item} onUpdate={onUpdate} />;
+      return <TodoItem item={item} onUpdate={onUpdate} onDelete={onDelete} />;
     },
-    [onUpdate],
+    [onUpdate, onDelete],
   );
 
   const ItemSeparatorComponent = useCallback(() => <Separator />, []);
