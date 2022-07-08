@@ -47,7 +47,7 @@ const AddTodo = () => {
       />
 
       <StyledPressable onPress={onSubmit}>
-        <Image source={require('../../assets/icons/add_white.png')} resizeMode="contain" />
+        <Image source={require('../../assets/icons/add.png')} resizeMode="contain" />
       </StyledPressable>
     </Container>
   );

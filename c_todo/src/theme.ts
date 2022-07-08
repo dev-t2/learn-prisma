@@ -5,7 +5,6 @@ export const theme = {
     primaryText: '#ffffff',
     disabled: '#9e9e9e',
     background: '#ffffff',
-    border: '#bdbdbd',
     text: '#212121',
     separator: '#e0e0e0',
   },

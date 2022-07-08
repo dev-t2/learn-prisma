@@ -15,9 +15,7 @@ const TodoList: FC<ITodoList> = ({ todos }) => {
 
   const keyExtractor = useCallback((item: ITodo) => item.id.toString(), []);
 
-  const renderItem = useCallback<ListRenderItem<ITodo>>(({ item }) => {
-    return <TodoItem item={item} />;
-  }, []);
+  const renderItem = useCallback<ListRenderItem<ITodo>>(({ item }) => <TodoItem item={item} />, []);
 
   const ItemSeparatorComponent = useCallback(() => <Separator />, []);
 
