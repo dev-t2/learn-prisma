@@ -8,13 +8,14 @@
  * @format
  */
 
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import { StatusBar } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemeProvider } from '@emotion/react';
 
 import { theme } from './src/theme';
 import { AddTodo, Container, DateHead, TodoList } from './src/components';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export interface ITodo {
   id: number;
@@ -23,10 +24,30 @@ export interface ITodo {
 }
 
 const App = () => {
-  const [todos, setTodos] = useState<ITodo[]>([
-    { id: 1, text: 'TypeScript', done: true },
-    { id: 2, text: 'React Native', done: false },
-  ]);
+  const [todos, setTodos] = useState<ITodo[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const rawTodos = await AsyncStorage.getItem('todos');
+        const savedTodos: ITodo[] = rawTodos ? JSON.parse(rawTodos) : [];
+
+        setTodos(savedTodos);
+      } catch (e) {
+        console.error(e);
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        await AsyncStorage.setItem('todos', JSON.stringify(todos));
+      } catch (e) {
+        console.error(e);
+      }
+    })();
+  }, [todos]);
 
   const onUpdate = useCallback(
     (id: number) => () => {
