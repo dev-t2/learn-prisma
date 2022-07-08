@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from 'react';
+import React, { FC, memo, useCallback, useState } from 'react';
 import { Image, Keyboard } from 'react-native';
 import styled from '@emotion/native';
 
@@ -27,14 +27,20 @@ const StyledPressable = styled.Pressable(({ theme }) => ({
   borderRadius: 16,
 }));
 
-const AddTodo = () => {
+interface IAddTodo {
+  onInsert: (text: string) => void;
+}
+
+const AddTodo: FC<IAddTodo> = ({ onInsert }) => {
   const [text, setText] = useState('');
 
   const onSubmit = useCallback(() => {
+    onInsert(text);
+
     setText('');
 
     Keyboard.dismiss();
-  }, []);
+  }, [onInsert, text]);
 
   return (
     <Container>

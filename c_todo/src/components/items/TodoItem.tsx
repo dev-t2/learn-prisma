@@ -34,7 +34,7 @@ const StyledText = styled.Text<IStyledText>(({ theme, done }) => ({
   fontSize: 16,
   color: done ? theme.colors.disabled : theme.colors.text,
   textDecorationLine: done ? 'line-through' : undefined,
-  marginLeft: 8,
+  marginLeft: 16,
 }));
 
 interface ITodoItem {

@@ -8,7 +8,7 @@
  * @format
  */
 
-import React, { memo, useState } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import { StatusBar } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemeProvider } from '@emotion/react';
@@ -23,10 +23,21 @@ export interface ITodo {
 }
 
 const App = () => {
-  const [todos] = useState<ITodo[]>([
+  const [todos, setTodos] = useState<ITodo[]>([
     { id: 1, text: 'TypeScript', done: true },
     { id: 2, text: 'React Native', done: false },
   ]);
+
+  const onInsert = useCallback(
+    (text: string) => {
+      const ids = todos.map(todo => todo.id);
+      const id = todos.length > 0 ? Math.max(...ids) + 1 : 1;
+      const todo: ITodo = { id, text, done: false };
+
+      setTodos([...todos, todo]);
+    },
+    [todos],
+  );
 
   return (
     <ThemeProvider theme={theme}>
@@ -38,7 +49,7 @@ const App = () => {
 
           <TodoList todos={todos} />
 
-          <AddTodo />
+          <AddTodo onInsert={onInsert} />
         </Container>
       </SafeAreaProvider>
     </ThemeProvider>
