@@ -10,12 +10,12 @@
 
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import { StatusBar } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemeProvider } from '@emotion/react';
 
 import { theme } from './src/theme';
 import { AddTodo, Container, DateHead, TodoList } from './src/components';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export interface ITodo {
   id: number;
