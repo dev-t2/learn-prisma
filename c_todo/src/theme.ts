@@ -8,6 +8,7 @@ export const theme = {
     border: '#bdbdbd',
     text: '#212121',
     separator: '#e0e0e0',
+    delete: '#b71c1c',
   },
 };
 
