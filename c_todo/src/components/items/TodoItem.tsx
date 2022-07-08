@@ -39,12 +39,13 @@ const StyledText = styled.Text<IStyledText>(({ theme, done }) => ({
 
 interface ITodoItem {
   item: ITodo;
+  onUpdate: (id: number) => () => void;
 }
 
-const TodoItem: FC<ITodoItem> = ({ item }) => {
+const TodoItem: FC<ITodoItem> = ({ item, onUpdate }) => {
   return (
     <Container>
-      <StyledPressable done={item.done}>
+      <StyledPressable done={item.done} onPress={onUpdate(item.id)}>
         {item.done && (
           <Image source={require('../../../assets/icons/check.png')} resizeMode="contain" />
         )}

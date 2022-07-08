@@ -6,16 +6,22 @@ import { Empty, Separator, TodoItem } from './items';
 
 interface ITodoList {
   todos: ITodo[];
+  onUpdate: (id: number) => () => void;
 }
 
-const TodoList: FC<ITodoList> = ({ todos }) => {
+const TodoList: FC<ITodoList> = ({ todos, onUpdate }) => {
   const style = useMemo<StyleProp<ViewStyle>>(() => ({ flex: 1 }), []);
 
   const contentContainerStyle = useMemo<StyleProp<ViewStyle>>(() => ({ flex: 1 }), []);
 
   const keyExtractor = useCallback((item: ITodo) => item.id.toString(), []);
 
-  const renderItem = useCallback<ListRenderItem<ITodo>>(({ item }) => <TodoItem item={item} />, []);
+  const renderItem = useCallback<ListRenderItem<ITodo>>(
+    ({ item }) => {
+      return <TodoItem item={item} onUpdate={onUpdate} />;
+    },
+    [onUpdate],
+  );
 
   const ItemSeparatorComponent = useCallback(() => <Separator />, []);
 

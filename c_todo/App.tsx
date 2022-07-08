@@ -28,6 +28,17 @@ const App = () => {
     { id: 2, text: 'React Native', done: false },
   ]);
 
+  const onUpdate = useCallback(
+    (id: number) => () => {
+      const updatedTodos = todos.map(todo => {
+        return todo.id === id ? { ...todo, done: !todo.done } : todo;
+      });
+
+      setTodos(updatedTodos);
+    },
+    [todos],
+  );
+
   const onInsert = useCallback(
     (text: string) => {
       const ids = todos.map(todo => todo.id);
@@ -47,7 +58,7 @@ const App = () => {
 
           <DateHead />
 
-          <TodoList todos={todos} />
+          <TodoList todos={todos} onUpdate={onUpdate} />
 
           <AddTodo onInsert={onInsert} />
         </Container>
