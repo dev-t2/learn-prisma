@@ -14,4 +14,5 @@
   - Color Tool: https://material.io/resources/color
 - react-native-safe-area-context: https://github.com/th3rdwave/react-native-safe-area-context
 - react-native-vector-icons: https://github.com/oblador/react-native-vector-icons
+  - @types/react-native-vector-icons: https://www.npmjs.com/package/@types/react-native-vector-icons
   - directory: https://oblador.github.io/react-native-vector-icons
