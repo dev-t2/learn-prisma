@@ -1,5 +1,5 @@
 import React, { FC, memo, useCallback } from 'react';
-import { Image } from 'react-native';
+import { Alert, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/native';
@@ -54,11 +54,23 @@ interface ITodoItem {
 const TodoItem: FC<ITodoItem> = ({ item, onUpdate, onDelete }) => {
   const theme = useTheme();
 
-  const onPress = useCallback(() => {
-    if (item.done) {
-      onDelete(item.id);
-    }
-  }, [item.done, onDelete, item.id]);
+  const onAlert = useCallback(
+    ({ id, text, done }: ITodo) =>
+      () => {
+        if (done) {
+          Alert.alert(
+            '정말로 삭제하시겠어요?',
+            `삭제할 내용: ${text}`,
+            [
+              { text: '취소', style: 'cancel' },
+              { text: '삭제', style: 'destructive', onPress: () => onDelete(id) },
+            ],
+            { cancelable: true },
+          );
+        }
+      },
+    [onDelete],
+  );
 
   return (
     <Container>
@@ -70,7 +82,7 @@ const TodoItem: FC<ITodoItem> = ({ item, onUpdate, onDelete }) => {
 
       <StyledText done={item.done}>{item.text}</StyledText>
 
-      <IconPressable onPress={onPress}>
+      <IconPressable onPress={onAlert(item)}>
         {item.done && <Icon name="delete" size={24} color={theme.colors.delete} />}
       </IconPressable>
     </Container>
