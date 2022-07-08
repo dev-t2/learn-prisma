@@ -16,3 +16,4 @@
 - react-native-vector-icons: https://github.com/oblador/react-native-vector-icons
   - @types/react-native-vector-icons: https://www.npmjs.com/package/@types/react-native-vector-icons
   - directory: https://oblador.github.io/react-native-vector-icons
+- Async Storage: https://react-native-async-storage.github.io/async-storage
