@@ -2,7 +2,7 @@ import React, { FC, memo, useCallback, useMemo } from 'react';
 import { FlatList, ListRenderItem, StyleProp, ViewStyle } from 'react-native';
 
 import { ITodo } from '../../App';
-import { Empty, TodoItem } from './items';
+import { Empty, Separator, TodoItem } from './items';
 
 interface ITodoList {
   todos: ITodo[];
@@ -19,6 +19,8 @@ const TodoList: FC<ITodoList> = ({ todos }) => {
     return <TodoItem item={item} />;
   }, []);
 
+  const ItemSeparatorComponent = useCallback(() => <Separator />, []);
+
   return (
     <FlatList
       style={style}
@@ -26,6 +28,7 @@ const TodoList: FC<ITodoList> = ({ todos }) => {
       data={todos}
       keyExtractor={keyExtractor}
       renderItem={renderItem}
+      ItemSeparatorComponent={ItemSeparatorComponent}
       ListEmptyComponent={<Empty />}
     />
   );
