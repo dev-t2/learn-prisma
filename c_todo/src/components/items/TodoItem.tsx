@@ -17,8 +17,8 @@ interface IStyledPressable {
 }
 
 const StyledPressable = styled.Pressable<IStyledPressable>(({ theme, done }) => ({
-  width: 24,
-  height: 24,
+  width: 23,
+  height: 23,
   alignItems: 'center',
   justifyContent: 'center',
   borderWidth: 1,
