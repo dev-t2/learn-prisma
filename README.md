@@ -18,3 +18,4 @@
   - directory: https://oblador.github.io/react-native-vector-icons
 - Async Storage: https://react-native-async-storage.github.io/async-storage
 - React Navigation: https://reactnavigation.org
+  - TypeScript: https://reactnavigation.org/docs/typescript
