@@ -6,7 +6,7 @@ import styled from '@emotion/native';
 import { RootStackNavigationProp } from '../RootStack';
 
 const StyledText = styled.Text({
-  fontSize: 16,
+  fontSize: 24,
   textAlign: 'center',
   marginTop: 16,
 });
@@ -24,15 +24,15 @@ const HomeScreen = () => {
   return (
     <View>
       <Pressable onPress={onPress(1)}>
-        <StyledText>Detail Screen ID 1</StyledText>
+        <StyledText>Route Param ID: 1</StyledText>
       </Pressable>
 
       <Pressable onPress={onPress(2)}>
-        <StyledText>Detail Screen ID 2</StyledText>
+        <StyledText>Route Param ID: 2</StyledText>
       </Pressable>
 
       <Pressable onPress={onPress(3)}>
-        <StyledText>Detail Screen ID 3</StyledText>
+        <StyledText>Route Param ID: 3</StyledText>
       </Pressable>
     </View>
   );
