@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { RouteProp } from '@react-navigation/native';
 import {
   createNativeStackNavigator,
   NativeStackNavigationProp,
@@ -13,6 +14,8 @@ type RootStackParamList = {
 };
 
 export type RootStackNavigationProp = NativeStackNavigationProp<RootStackParamList>;
+
+export type DetailScreenRouteProp = RouteProp<RootStackParamList, 'Detail'>;
 
 const { Navigator, Screen } = createNativeStackNavigator<RootStackParamList>();
 

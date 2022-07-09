@@ -7,14 +7,25 @@ import { RootStackNavigationProp } from './RootStack';
 const HomeScreen = () => {
   const navigation = useNavigation<RootStackNavigationProp>();
 
-  const onPress = useCallback(() => {
-    navigation.navigate('Detail', { id: 1 });
-  }, [navigation]);
+  const onPress = useCallback(
+    (id: number) => () => {
+      navigation.navigate('Detail', { id });
+    },
+    [navigation],
+  );
 
   return (
     <View>
-      <Pressable onPress={onPress}>
-        <Text>Detail Screen</Text>
+      <Pressable onPress={onPress(1)}>
+        <Text>Detail Screen ID 1</Text>
+      </Pressable>
+
+      <Pressable onPress={onPress(2)}>
+        <Text>Detail Screen ID 2</Text>
+      </Pressable>
+
+      <Pressable onPress={onPress(3)}>
+        <Text>Detail Screen ID 3</Text>
       </Pressable>
     </View>
   );
