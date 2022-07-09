@@ -1,10 +1,20 @@
 import React, { memo } from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationProp,
+} from '@react-navigation/native-stack';
 
 import HomeScreen from './HomeScreen';
 import DetailScreen from './DetailScreen';
 
-const { Navigator, Screen } = createNativeStackNavigator();
+type RootStackParamList = {
+  Home: undefined;
+  Detail: { id: number };
+};
+
+export type RootStackNavigationProp = NativeStackNavigationProp<RootStackParamList>;
+
+const { Navigator, Screen } = createNativeStackNavigator<RootStackParamList>();
 
 const RootStack = () => {
   return (
