@@ -1,8 +1,15 @@
 import React, { memo, useCallback } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import styled from '@emotion/native';
 
-import { RootStackNavigationProp } from './RootStack';
+import { RootStackNavigationProp } from '../RootStack';
+
+const StyledText = styled.Text({
+  fontSize: 16,
+  textAlign: 'center',
+  marginTop: 16,
+});
 
 const HomeScreen = () => {
   const navigation = useNavigation<RootStackNavigationProp>();
@@ -17,15 +24,15 @@ const HomeScreen = () => {
   return (
     <View>
       <Pressable onPress={onPress(1)}>
-        <Text>Detail Screen ID 1</Text>
+        <StyledText>Detail Screen ID 1</StyledText>
       </Pressable>
 
       <Pressable onPress={onPress(2)}>
-        <Text>Detail Screen ID 2</Text>
+        <StyledText>Detail Screen ID 2</StyledText>
       </Pressable>
 
       <Pressable onPress={onPress(3)}>
-        <Text>Detail Screen ID 3</Text>
+        <StyledText>Detail Screen ID 3</StyledText>
       </Pressable>
     </View>
   );

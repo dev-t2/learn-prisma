@@ -11,7 +11,7 @@
 import React, { memo } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
-import { RootStack } from './src/screens';
+import RootStack from './src/RootStack';
 
 const App = () => {
   return (
