@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/native';
 
-import { ITodo } from '../../../App';
+import { ITodo } from '../../interfaces/todo';
 
 const Container = styled.View({
   flexDirection: 'row',

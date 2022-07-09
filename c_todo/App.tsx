@@ -10,18 +10,13 @@
 
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import { StatusBar } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemeProvider } from '@emotion/react';
 
+import { ITodo } from './src/interfaces/todo';
+import { getTodosStorage, setTodosStorage } from './src/storages/todosStorage';
 import { theme } from './src/theme';
 import { AddTodo, Container, DateHead, TodoList } from './src/components';
-
-export interface ITodo {
-  id: number;
-  text: string;
-  done: boolean;
-}
 
 const App = () => {
   const [todos, setTodos] = useState<ITodo[]>([]);
@@ -29,8 +24,7 @@ const App = () => {
   useEffect(() => {
     (async () => {
       try {
-        const rawTodos = await AsyncStorage.getItem('todos');
-        const savedTodos: ITodo[] = rawTodos ? JSON.parse(rawTodos) : [];
+        const savedTodos = await getTodosStorage();
 
         setTodos(savedTodos);
       } catch (e) {
@@ -42,7 +36,7 @@ const App = () => {
   useEffect(() => {
     (async () => {
       try {
-        await AsyncStorage.setItem('todos', JSON.stringify(todos));
+        await setTodosStorage(todos);
       } catch (e) {
         console.error(e);
       }

@@ -1,7 +1,7 @@
 import React, { FC, memo, useCallback, useMemo } from 'react';
 import { FlatList, ListRenderItem, StyleProp, ViewStyle } from 'react-native';
 
-import { ITodo } from '../../App';
+import { ITodo } from '../interfaces/todo';
 import { Empty, Separator, TodoItem } from './items';
 
 interface ITodoList {
