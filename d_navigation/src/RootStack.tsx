@@ -21,7 +21,17 @@ const { Navigator, Screen } = createNativeStackNavigator<RootStackParamList>();
 
 const RootStack = () => {
   const homeScreenOptions = useMemo<NativeStackNavigationOptions>(() => {
-    return { title: 'Home Screen' };
+    return {
+      title: 'Home Screen',
+      headerStyle: {
+        backgroundColor: '#0d47a1',
+      },
+      headerTintColor: '#ffffff',
+      headerTitleStyle: {
+        fontSize: 16,
+        fontWeight: 'bold',
+      },
+    };
   }, []);
 
   return (
