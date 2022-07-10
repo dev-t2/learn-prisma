@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useEffect } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import styled from '@emotion/native';
 
@@ -27,6 +27,10 @@ const DetailScreen = () => {
   const { params } = useRoute<DetailScreenRouteProp>();
 
   const navigation = useNavigation<RootStackNavigationProp>();
+
+  useEffect(() => {
+    navigation.setOptions({ title: `상세 화면 - ${params.id}` });
+  }, [navigation, params.id]);
 
   const onNext = useCallback(() => {
     navigation.push('Detail', { id: params.id + 1 });

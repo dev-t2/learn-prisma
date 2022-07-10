@@ -1,7 +1,8 @@
-import React, { memo } from 'react';
+import React, { memo, useMemo } from 'react';
 import { RouteProp } from '@react-navigation/native';
 import {
   createNativeStackNavigator,
+  NativeStackNavigationOptions,
   NativeStackNavigationProp,
 } from '@react-navigation/native-stack';
 
@@ -19,9 +20,13 @@ export type DetailScreenRouteProp = RouteProp<RootStackParamList, 'Detail'>;
 const { Navigator, Screen } = createNativeStackNavigator<RootStackParamList>();
 
 const RootStack = () => {
+  const homeScreenOptions = useMemo<NativeStackNavigationOptions>(() => {
+    return { title: '홈 화면' };
+  }, []);
+
   return (
     <Navigator>
-      <Screen name="Home" component={HomeScreen} />
+      <Screen name="Home" component={HomeScreen} options={homeScreenOptions} />
       <Screen name="Detail" component={DetailScreen} />
     </Navigator>
   );
