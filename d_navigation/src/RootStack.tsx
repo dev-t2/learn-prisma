@@ -21,7 +21,7 @@ const { Navigator, Screen } = createNativeStackNavigator<RootStackParamList>();
 
 const RootStack = () => {
   const homeScreenOptions = useMemo<NativeStackNavigationOptions>(() => {
-    return { title: '홈 화면' };
+    return { title: 'Home Screen' };
   }, []);
 
   return (

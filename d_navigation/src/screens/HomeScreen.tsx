@@ -24,15 +24,7 @@ const HomeScreen = () => {
   return (
     <View>
       <Pressable onPress={onPress(1)}>
-        <StyledText>Route Param ID: 1</StyledText>
-      </Pressable>
-
-      <Pressable onPress={onPress(2)}>
-        <StyledText>Route Param ID: 2</StyledText>
-      </Pressable>
-
-      <Pressable onPress={onPress(3)}>
-        <StyledText>Route Param ID: 3</StyledText>
+        <StyledText>Detail Screen</StyledText>
       </Pressable>
     </View>
   );

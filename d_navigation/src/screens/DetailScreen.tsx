@@ -6,21 +6,17 @@ import { DetailScreenRouteProp, RootStackNavigationProp } from '../RootStack';
 
 const Container = styled.View({
   flex: 1,
+  flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'center',
 });
 
-const StyledText = styled.Text({
-  fontSize: 24,
-});
-
-const PressableContainer = styled.View({
-  flexDirection: 'row',
-  marginTop: 8,
-});
-
 const StyledPressable = styled.Pressable({
   paddingHorizontal: 8,
+});
+
+const StyledText = styled.Text({
+  fontSize: 24,
 });
 
 const DetailScreen = () => {
@@ -29,7 +25,7 @@ const DetailScreen = () => {
   const navigation = useNavigation<RootStackNavigationProp>();
 
   useEffect(() => {
-    navigation.setOptions({ title: `상세 화면 - ${params.id}` });
+    navigation.setOptions({ title: `Detail Screen - ${params.id}` });
   }, [navigation, params.id]);
 
   const onNext = useCallback(() => {
@@ -46,21 +42,17 @@ const DetailScreen = () => {
 
   return (
     <Container>
-      <StyledText>ID: {params.id}</StyledText>
+      <StyledPressable onPress={onNext}>
+        <StyledText>Next</StyledText>
+      </StyledPressable>
 
-      <PressableContainer>
-        <StyledPressable onPress={onNext}>
-          <StyledText>Next</StyledText>
-        </StyledPressable>
+      <StyledPressable onPress={onBack}>
+        <StyledText>Back</StyledText>
+      </StyledPressable>
 
-        <StyledPressable onPress={onBack}>
-          <StyledText>Back</StyledText>
-        </StyledPressable>
-
-        <StyledPressable onPress={onHome}>
-          <StyledText>Home</StyledText>
-        </StyledPressable>
-      </PressableContainer>
+      <StyledPressable onPress={onHome}>
+        <StyledText>Home</StyledText>
+      </StyledPressable>
     </Container>
   );
 };
