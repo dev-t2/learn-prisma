@@ -1,9 +1,8 @@
-import React, { memo } from 'react';
-import { Pressable } from 'react-native';
-import { useRoute } from '@react-navigation/native';
+import React, { memo, useCallback } from 'react';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import styled from '@emotion/native';
 
-import { DetailScreenRouteProp } from '../RootStack';
+import { DetailScreenRouteProp, RootStackNavigationProp } from '../RootStack';
 
 const Container = styled.View({
   flex: 1,
@@ -12,17 +11,29 @@ const Container = styled.View({
 });
 
 const StyledText = styled.Text({
-  fontSize: 32,
+  fontSize: 24,
+});
+
+const StyledPressable = styled.Pressable({
+  marginTop: 8,
 });
 
 const DetailScreen = () => {
   const { params } = useRoute<DetailScreenRouteProp>();
 
+  const navigation = useNavigation<RootStackNavigationProp>();
+
+  const onPress = useCallback(() => {
+    navigation.navigate('Detail', { id: params.id + 1 });
+  }, [navigation, params.id]);
+
   return (
     <Container>
-      <Pressable>
-        <StyledText>ID: {params.id}</StyledText>
-      </Pressable>
+      <StyledText>ID: {params.id}</StyledText>
+
+      <StyledPressable onPress={onPress}>
+        <StyledText>Next Screen</StyledText>
+      </StyledPressable>
     </Container>
   );
 };
