@@ -14,8 +14,13 @@ const StyledText = styled.Text({
   fontSize: 24,
 });
 
-const StyledPressable = styled.Pressable({
+const PressableContainer = styled.View({
+  flexDirection: 'row',
   marginTop: 8,
+});
+
+const StyledPressable = styled.Pressable({
+  paddingHorizontal: 8,
 });
 
 const DetailScreen = () => {
@@ -23,17 +28,35 @@ const DetailScreen = () => {
 
   const navigation = useNavigation<RootStackNavigationProp>();
 
-  const onPress = useCallback(() => {
-    navigation.navigate('Detail', { id: params.id + 1 });
+  const onNext = useCallback(() => {
+    navigation.push('Detail', { id: params.id + 1 });
   }, [navigation, params.id]);
+
+  const onBack = useCallback(() => {
+    navigation.pop();
+  }, [navigation]);
+
+  const onHome = useCallback(() => {
+    navigation.popToTop();
+  }, [navigation]);
 
   return (
     <Container>
       <StyledText>ID: {params.id}</StyledText>
 
-      <StyledPressable onPress={onPress}>
-        <StyledText>Next Screen</StyledText>
-      </StyledPressable>
+      <PressableContainer>
+        <StyledPressable onPress={onNext}>
+          <StyledText>Next</StyledText>
+        </StyledPressable>
+
+        <StyledPressable onPress={onBack}>
+          <StyledText>Back</StyledText>
+        </StyledPressable>
+
+        <StyledPressable onPress={onHome}>
+          <StyledText>Home</StyledText>
+        </StyledPressable>
+      </PressableContainer>
     </Container>
   );
 };
