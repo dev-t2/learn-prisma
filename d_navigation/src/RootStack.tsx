@@ -7,6 +7,7 @@ import {
 } from '@react-navigation/native-stack';
 
 import { DetailScreen, HomeScreen } from './screens';
+import { HeaderLeft, HeaderRight, HeaderTitle } from './components';
 
 type RootStackParamList = {
   Home: undefined;
@@ -34,10 +35,20 @@ const RootStack = () => {
     };
   }, []);
 
+  const DetailScreenOptions = useMemo<NativeStackNavigationOptions>(() => {
+    return {
+      headerBackVisible: false,
+      headerTitleAlign: 'center',
+      headerLeft: () => <HeaderLeft />,
+      headerTitle: ({ children }) => <HeaderTitle>{children}</HeaderTitle>,
+      headerRight: () => <HeaderRight />,
+    };
+  }, []);
+
   return (
     <Navigator>
       <Screen name="Home" component={HomeScreen} options={homeScreenOptions} />
-      <Screen name="Detail" component={DetailScreen} />
+      <Screen name="Detail" component={DetailScreen} options={DetailScreenOptions} />
     </Navigator>
   );
 };
