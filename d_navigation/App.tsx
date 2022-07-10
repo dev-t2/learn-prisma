@@ -11,12 +11,12 @@
 import React, { memo } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
-import RootStack from './src/RootStack';
+import { RootDrawer } from './src/screens';
 
 const App = () => {
   return (
     <NavigationContainer>
-      <RootStack />
+      <RootDrawer />
     </NavigationContainer>
   );
 };

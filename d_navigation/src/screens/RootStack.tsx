@@ -6,8 +6,8 @@ import {
   NativeStackNavigationProp,
 } from '@react-navigation/native-stack';
 
-import { DetailScreen, HeaderlessScreen, HomeScreen } from './screens';
-import { HeaderLeft, HeaderRight, HeaderTitle } from './components';
+import { DetailScreen, HeaderlessScreen, HomeScreen } from './stack';
+import { HeaderLeft, HeaderRight, HeaderTitle } from '../components';
 
 type RootStackParamList = {
   Home: undefined;
@@ -22,7 +22,7 @@ export type DetailScreenRouteProp = RouteProp<RootStackParamList, 'Detail'>;
 const { Navigator, Screen } = createNativeStackNavigator<RootStackParamList>();
 
 const RootStack = () => {
-  const homeScreenOptions = useMemo<NativeStackNavigationOptions>(() => {
+  const HomeScreenOptions = useMemo<NativeStackNavigationOptions>(() => {
     return {
       title: 'Home Screen',
       headerStyle: {
@@ -54,7 +54,7 @@ const RootStack = () => {
 
   return (
     <Navigator>
-      <Screen name="Home" component={HomeScreen} options={homeScreenOptions} />
+      <Screen name="Home" component={HomeScreen} options={HomeScreenOptions} />
       <Screen name="Detail" component={DetailScreen} options={DetailScreenOptions} />
       <Screen name="Headerless" component={HeaderlessScreen} options={HeaderlessScreenOptions} />
     </Navigator>

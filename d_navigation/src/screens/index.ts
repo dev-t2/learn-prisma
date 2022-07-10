@@ -1,3 +1,2 @@
-export { default as DetailScreen } from './DetailScreen';
-export { default as HeaderlessScreen } from './HeaderlessScreen';
-export { default as HomeScreen } from './HomeScreen';
+export { default as RootDrawer } from './RootDrawer';
+export { default as RootStack } from './RootStack';
