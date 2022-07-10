@@ -6,12 +6,13 @@ import {
   NativeStackNavigationProp,
 } from '@react-navigation/native-stack';
 
-import { DetailScreen, HomeScreen } from './screens';
+import { DetailScreen, HeaderlessScreen, HomeScreen } from './screens';
 import { HeaderLeft, HeaderRight, HeaderTitle } from './components';
 
 type RootStackParamList = {
   Home: undefined;
   Detail: { id: number };
+  Headerless: undefined;
 };
 
 export type RootStackNavigationProp = NativeStackNavigationProp<RootStackParamList>;
@@ -45,10 +46,17 @@ const RootStack = () => {
     };
   }, []);
 
+  const HeaderlessScreenOptions = useMemo<NativeStackNavigationOptions>(() => {
+    return {
+      headerShown: false,
+    };
+  }, []);
+
   return (
     <Navigator>
       <Screen name="Home" component={HomeScreen} options={homeScreenOptions} />
       <Screen name="Detail" component={DetailScreen} options={DetailScreenOptions} />
+      <Screen name="Headerless" component={HeaderlessScreen} options={HeaderlessScreenOptions} />
     </Navigator>
   );
 };

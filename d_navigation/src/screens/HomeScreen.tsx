@@ -14,17 +14,25 @@ const StyledText = styled.Text({
 const HomeScreen = () => {
   const navigation = useNavigation<RootStackNavigationProp>();
 
-  const onPress = useCallback(
+  const onDetail = useCallback(
     (id: number) => () => {
       navigation.navigate('Detail', { id });
     },
     [navigation],
   );
 
+  const onHeaderless = useCallback(() => {
+    navigation.push('Headerless');
+  }, [navigation]);
+
   return (
     <View>
-      <Pressable onPress={onPress(1)}>
+      <Pressable onPress={onDetail(1)}>
         <StyledText>Detail Screen</StyledText>
+      </Pressable>
+
+      <Pressable onPress={onHeaderless}>
+        <StyledText>Headerless Screen</StyledText>
       </Pressable>
     </View>
   );
