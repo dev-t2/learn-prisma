@@ -21,4 +21,5 @@
   - TypeScript: https://reactnavigation.org/docs/typescript
   - Native Stack Navigator: https://reactnavigation.org/docs/native-stack-navigator
   - Drawer Navigator: https://reactnavigation.org/docs/drawer-navigator
+  - React Native Reanimated: https://docs.swmansion.com/react-native-reanimated
   - Bottom Tabs Navigator: https://reactnavigation.org/docs/bottom-tab-navigator
