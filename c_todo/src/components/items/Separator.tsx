@@ -1,5 +1,5 @@
-import styled from '@emotion/native';
 import React, { memo } from 'react';
+import styled from '@emotion/native';
 
 const Container = styled.View(({ theme }) => ({
   height: 1,
