@@ -15,7 +15,7 @@ import { ThemeProvider } from '@emotion/react';
 
 import { ITodo } from './src/interfaces/todo';
 import { getTodosStorage, setTodosStorage } from './src/storages/todosStorage';
-import theme from './src/theme';
+import { theme } from './src/theme';
 import { AddTodo, Container, DateHead, TodoList } from './src/components';
 
 const App = () => {
