@@ -6,5 +6,7 @@
     - [Validation](https://docs.nestjs.com/techniques/validation)
   - OpenAPI
     - [Introduction](https://docs.nestjs.com/openapi/introduction)
+  - Recipes
+    - [Prisma](https://docs.nestjs.com/recipes/prisma)
 - [Express Basic Auth](https://github.com/LionC/express-basic-auth)
 - [Prisma](https://www.prisma.io)
