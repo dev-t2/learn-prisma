@@ -24,7 +24,10 @@ async function bootstrap() {
 
   app.useGlobalFilters(new HttpExceptionFilter());
 
-  app.use(['/docs', '/docs-json'], basicAuth({ challenge: true, users: { austin: 'P@ssw0rd' } }));
+  app.use(
+    ['/docs', '/docs-json'],
+    basicAuth({ challenge: true, users: { [process.env.ADMIN_NAME]: process.env.ADMIN_PASSWORD } }),
+  );
 
   const config = new DocumentBuilder()
     .setTitle('Todos API')
@@ -36,7 +39,7 @@ async function bootstrap() {
 
   SwaggerModule.setup('docs', app, document);
 
-  await app.listen(3000);
+  await app.listen(process.env.PORT);
 }
 
 bootstrap();

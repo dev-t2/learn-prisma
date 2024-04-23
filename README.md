@@ -13,3 +13,4 @@
     - [Prisma](https://docs.nestjs.com/recipes/prisma)
 - [Express Basic Auth](https://github.com/LionC/express-basic-auth)
 - [Prisma](https://www.prisma.io)
+- [Joi](https://github.com/hapijs/joi)
