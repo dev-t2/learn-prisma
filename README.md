@@ -14,3 +14,6 @@
 - [Express Basic Auth](https://github.com/LionC/express-basic-auth)
 - [Prisma](https://www.prisma.io)
 - [Joi](https://github.com/hapijs/joi)
+- [Amazon RDS](https://aws.amazon.com/rds)
+- [PostgreSQL](https://www.postgresql.org)
+- [pgAdmin](https://www.pgadmin.org)
