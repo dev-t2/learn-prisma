@@ -30,8 +30,8 @@ async function bootstrap() {
   );
 
   const config = new DocumentBuilder()
-    .setTitle('Todos API')
-    .setDescription('Todos API Description')
+    .setTitle('Learn Prisma API')
+    .setDescription('Learn Prisma API Description')
     .setVersion('1.0')
     .build();
 
