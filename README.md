@@ -16,3 +16,4 @@
 - [Amazon RDS](https://aws.amazon.com/rds)
 - [pgAdmin](https://www.pgadmin.org)
 - [Prisma](https://www.prisma.io)
+  - [Prisma Schema Reference](https://www.prisma.io/docs/orm/reference/prisma-schema-reference)
