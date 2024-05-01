@@ -1,6 +1,5 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
-import { faker } from '@faker-js/faker';
+import { faker } from '@faker-js/faker/locale/ko';
 
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateUserDto } from './users.dto';
@@ -24,11 +23,19 @@ export class UsersRepository {
 
   async createUsers() {
     try {
-      const data: Prisma.UserCreateManyInput[] = new Array(100)
-        .fill(null)
-        .map(() => ({ email: faker.internet.email() }));
+      const queries = new Array(100).fill(null).map(() => {
+        return this.prismaService.user.create({
+          data: {
+            email: faker.internet.email(),
+            userInfo: { create: { phoneNumber: faker.phone.number().replaceAll('-', '') } },
+          },
+          include: { userInfo: true },
+        });
+      });
 
-      return await this.prismaService.user.createMany({ data, skipDuplicates: true });
+      const users = await this.prismaService.$transaction(queries);
+
+      return { users };
     } catch (e) {
       console.error(e);
 
