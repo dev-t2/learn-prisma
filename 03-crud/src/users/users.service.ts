@@ -10,4 +10,8 @@ export class UsersService {
   async createUser(createUserDto: CreateUserDto) {
     return await this.usersRepository.createUser(createUserDto);
   }
+
+  async createUsers() {
+    return await this.usersRepository.createUsers();
+  }
 }
