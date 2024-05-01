@@ -1,5 +1,8 @@
-import { PickType } from '@nestjs/swagger';
+import { IntersectionType, PickType } from '@nestjs/swagger';
 
-import { User } from './user.entity';
+import { User, UserInfo } from './entities';
 
-export class CreateUserDto extends PickType(User, ['email'] as const) {}
+export class CreateUserDto extends IntersectionType(
+  PickType(User, ['email'] as const),
+  PickType(UserInfo, ['phoneNumber'] as const),
+) {}

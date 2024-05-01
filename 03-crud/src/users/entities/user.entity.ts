@@ -1,8 +1,10 @@
-import { User as UserModel } from '@prisma/client';
 import { ApiProperty } from '@nestjs/swagger';
+import { User as UserModel } from '@prisma/client';
 import { IsEmail, IsPositive } from 'class-validator';
 
-export class User implements UserModel {
+import { Common } from 'src/common/entities';
+
+export class User extends Common implements UserModel {
   @ApiProperty({ required: true, description: 'ID' })
   @IsPositive()
   id: number;
