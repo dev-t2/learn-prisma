@@ -7,11 +7,19 @@ import { CreateUserDto } from './users.dto';
 export class UsersService {
   constructor(private readonly usersRepository: UsersRepository) {}
 
+  async createUsers() {
+    return await this.usersRepository.createUsers();
+  }
+
   async createUser(createUserDto: CreateUserDto) {
     return await this.usersRepository.createUser(createUserDto);
   }
 
-  async createUsers() {
-    return await this.usersRepository.createUsers();
+  async deleteUsers() {
+    return await this.usersRepository.deleteUsers();
+  }
+
+  async deleteUser(id: number) {
+    return await this.usersRepository.deleteUser(id);
   }
 }

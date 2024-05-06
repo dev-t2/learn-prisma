@@ -8,19 +8,6 @@ import { CreateUserDto } from './users.dto';
 export class UsersRepository {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async createUser({ email, phoneNumber }: CreateUserDto) {
-    try {
-      return await this.prismaService.user.create({
-        data: { email, userInfo: { create: { phoneNumber } } },
-        include: { userInfo: true },
-      });
-    } catch (e) {
-      console.error(e);
-
-      throw new InternalServerErrorException();
-    }
-  }
-
   async createUsers() {
     try {
       const queries = new Array(100).fill(null).map(() => {
@@ -36,6 +23,39 @@ export class UsersRepository {
       const users = await this.prismaService.$transaction(queries);
 
       return { users };
+    } catch (e) {
+      console.error(e);
+
+      throw new InternalServerErrorException();
+    }
+  }
+
+  async createUser({ email, phoneNumber }: CreateUserDto) {
+    try {
+      return await this.prismaService.user.create({
+        data: { email, userInfo: { create: { phoneNumber } } },
+        include: { userInfo: true },
+      });
+    } catch (e) {
+      console.error(e);
+
+      throw new InternalServerErrorException();
+    }
+  }
+
+  async deleteUsers() {
+    try {
+      return await this.prismaService.user.deleteMany({ where: { id: { in: [3, 4, 5] } } });
+    } catch (e) {
+      console.error(e);
+
+      throw new InternalServerErrorException();
+    }
+  }
+
+  async deleteUser(id: number) {
+    try {
+      return await this.prismaService.user.delete({ where: { id } });
     } catch (e) {
       console.error(e);
 
