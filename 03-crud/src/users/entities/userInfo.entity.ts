@@ -12,6 +12,6 @@ export class UserInfo extends Common implements UserInfoModal {
 
   @ApiProperty({ required: true, description: 'Phone Number' })
   @Transform(({ value }: { value: string }) => value.replaceAll('-', ''))
-  @IsMobilePhone('ko-KR', undefined, {})
+  @IsMobilePhone('ko-KR')
   phoneNumber: string;
 }
