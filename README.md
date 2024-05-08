@@ -26,6 +26,7 @@
     - [Observability & Logging](https://www.prisma.io/docs/orm/prisma-client/observability-and-logging)
       - [Logging](https://www.prisma.io/docs/orm/prisma-client/observability-and-logging/logging)
   - [Reference](https://www.prisma.io/docs/orm/reference)
+    - [Prisma Client API](https://www.prisma.io/docs/orm/reference/prisma-client-reference)
     - [Prisma Schema](https://www.prisma.io/docs/orm/reference/prisma-schema-reference)
     - [Prisma CLI](https://www.prisma.io/docs/orm/reference/prisma-cli-reference)
 - [Faker](https://github.com/faker-js/faker)
