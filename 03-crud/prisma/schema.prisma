@@ -18,6 +18,7 @@ model User {
 model UserInfo {
   userId      Int      @id
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  age         Int?      
   phoneNumber String   @unique
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

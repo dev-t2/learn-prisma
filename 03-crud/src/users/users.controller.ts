@@ -1,9 +1,9 @@
-import { Controller, Post, Body, Delete, Param } from '@nestjs/common';
+import { Controller, Post, Body, Delete, Param, Patch } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 import { ParsePositiveIntPipe } from 'src/common/pipes';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './users.dto';
+import { CreateUserDto, UpdateUserDto } from './users.dto';
 
 @ApiTags('Users')
 @Controller('users')
@@ -18,6 +18,14 @@ export class UsersController {
   @Delete()
   async deleteUsers() {
     return await this.usersService.deleteUsers();
+  }
+
+  @Patch(':id')
+  async updateUser(
+    @Param('id', ParsePositiveIntPipe) id: number,
+    @Body() updateUserDto: UpdateUserDto,
+  ) {
+    return await this.usersService.updateUser(id, updateUserDto);
   }
 
   @Delete(':id')

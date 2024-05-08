@@ -6,3 +6,5 @@ export class CreateUserDto extends IntersectionType(
   PickType(User, ['email'] as const),
   PickType(UserInfo, ['phoneNumber'] as const),
 ) {}
+
+export class UpdateUserDto extends PickType(User, ['email'] as const) {}
