@@ -1,9 +1,9 @@
 import { Controller, Post, Body, Delete, Param } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
+import { ParsePositiveIntPipe } from 'src/common/pipes';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './users.dto';
-import { ParsePositiveIntPipe } from 'src/common/pipes';
 
 @ApiTags('Users')
 @Controller('users')
