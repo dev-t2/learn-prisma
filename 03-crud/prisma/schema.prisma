@@ -1,10 +1,12 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  schemas  = ["public", "statistics"]
 }
 
 model User {
@@ -13,13 +15,23 @@ model User {
   userInfo  UserInfo?
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+
+  @@schema("public")
 }
 
 model UserInfo {
   userId      Int      @id
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   phoneNumber String   @unique
-  age         Int?      
+  age         Int?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+
+  @@schema("public")
+}
+
+model Statistics {
+  id Int @id @default(autoincrement())
+
+  @@schema("statistics")
 }
