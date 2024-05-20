@@ -1,9 +1,9 @@
-import { Controller, Post, Body, Delete, Param, Patch } from '@nestjs/common';
+import { Controller, Post, Body, Delete, Param, Patch, Get, Query } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 import { ParsePositiveIntPipe } from 'src/common/pipes';
 import { UsersService } from './users.service';
-import { CreateUserDto, UpdateUserDto } from './users.dto';
+import { CreateUserDto, FindUsersDto, UpdateUserDto } from './users.dto';
 
 @ApiTags('Users')
 @Controller('users')
@@ -13,6 +13,11 @@ export class UsersController {
   @Post()
   async createUser(@Body() createUserDto: CreateUserDto) {
     return await this.usersService.createUser(createUserDto);
+  }
+
+  @Get()
+  async findUsers(@Query() findUsersDto: FindUsersDto) {
+    return await this.usersService.findUsers(findUsersDto);
   }
 
   @Delete()

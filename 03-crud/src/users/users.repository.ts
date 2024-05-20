@@ -2,7 +2,7 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { faker } from '@faker-js/faker/locale/ko';
 
 import { PrismaService } from 'src/prisma/prisma.service';
-import { CreateUserDto, UpdateUserDto } from './users.dto';
+import { CreateUserDto, FindUsersDto, UpdateUserDto } from './users.dto';
 
 @Injectable()
 export class UsersRepository {
@@ -35,6 +35,20 @@ export class UsersRepository {
       return await this.prismaService.user.create({
         data: { email, userInfo: { create: { phoneNumber } } },
         include: { userInfo: true },
+      });
+    } catch (e) {
+      console.error(e);
+
+      throw new InternalServerErrorException();
+    }
+  }
+
+  async findUsers({ page, take }: FindUsersDto) {
+    try {
+      return await this.prismaService.user.findMany({
+        orderBy: { id: 'asc' },
+        skip: take * (page - 1),
+        take,
       });
     } catch (e) {
       console.error(e);

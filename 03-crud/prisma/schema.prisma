@@ -10,11 +10,12 @@ datasource db {
 }
 
 model User {
-  id        Int       @id @default(autoincrement())
-  email     String    @unique
-  userInfo  UserInfo?
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  id         Int         @id @default(autoincrement())
+  email      String      @unique
+  userInfo   UserInfo?
+  statistics Statistics?
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
 
   @@schema("public")
 }
@@ -31,7 +32,8 @@ model UserInfo {
 }
 
 model Statistics {
-  id Int @id @default(autoincrement())
+  id   Int  @id @default(autoincrement())
+  user User @relation(fields: [id], references: [id], onDelete: Cascade)
 
   @@schema("statistics")
 }

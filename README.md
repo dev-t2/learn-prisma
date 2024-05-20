@@ -24,6 +24,7 @@
   - [Prisma Client](https://www.prisma.io/docs/orm/prisma-client)
     - [Queries](https://www.prisma.io/docs/orm/prisma-client/queries)
       - [CRUD](https://www.prisma.io/docs/orm/prisma-client/queries/crud)
+      - [Pagination](https://www.prisma.io/docs/orm/prisma-client/queries/pagination)
       - [Transactions and Batch Queries](https://www.prisma.io/docs/orm/prisma-client/queries/transactions)
     - [Observability & Logging](https://www.prisma.io/docs/orm/prisma-client/observability-and-logging)
       - [Logging](https://www.prisma.io/docs/orm/prisma-client/observability-and-logging/logging)
