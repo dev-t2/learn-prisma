@@ -10,12 +10,12 @@ export class UserInfo extends Common implements UserInfoModal {
   @IsPositive()
   userId: number;
 
-  @ApiProperty({ required: true, description: 'Age' })
-  @IsPositive()
-  age: number;
-
   @ApiProperty({ required: true, description: 'Phone Number' })
   @Transform(({ value }: { value: string }) => value.replaceAll('-', ''))
   @IsMobilePhone('ko-KR')
   phoneNumber: string;
+
+  @ApiProperty({ required: true, description: 'Age' })
+  @IsPositive()
+  age: number;
 }
