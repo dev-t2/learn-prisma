@@ -46,9 +46,28 @@ export class UsersRepository {
   async findUsers({ page, take }: FindUsersDto) {
     try {
       return await this.prismaService.user.findMany({
+        // where: {
+        //   // email: {
+        //   //   // contains: 'gmail.com',
+        //   //   // not: { contains: 'gmail.com' },
+        //   // },
+        //   // userInfo: {
+        //   //   // userId: 10,
+        //   //   // userId: { in: [10, 20, 30] },
+        //   //   // userId: { notIn: [1, 3, 5] },
+        //   //   // userId: { gt: 10 },
+        //   //   // userId: { gte: 10 },
+        //   //   // userId: { lt: 10 },
+        //   //   // userId: { lte: 10 },
+        //   //   //phoneNumber: { contains: '040' },
+        //   // },
+        //   // AND: [{ id: { gte: 10 } }, { email: { contains: 'gmail' } }],
+        //   // OR: [{ email: { contains: 'naver' } }, { email: { contains: 'gmail' } }],
+        // },
         orderBy: { id: 'asc' },
         skip: take * (page - 1),
         take,
+        select: { id: true, email: true, userInfo: { select: { phoneNumber: true, age: true } } },
       });
     } catch (e) {
       console.error(e);
