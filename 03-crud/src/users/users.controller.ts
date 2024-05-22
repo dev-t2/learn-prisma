@@ -25,6 +25,11 @@ export class UsersController {
     return await this.usersService.deleteUsers();
   }
 
+  @Get(':id')
+  async findUser(@Param('id', ParsePositiveIntPipe) id: number) {
+    return await this.usersService.findUser(id);
+  }
+
   @Patch(':id')
   async updateUser(
     @Param('id', ParsePositiveIntPipe) id: number,

@@ -57,6 +57,20 @@ export class UsersRepository {
     }
   }
 
+  async findUser(id: number) {
+    try {
+      return await this.prismaService.user.findUnique({
+        where: { id },
+        // include: { userInfo: true },
+        select: { id: true, email: true, userInfo: { select: { phoneNumber: true, age: true } } },
+      });
+    } catch (e) {
+      console.error(e);
+
+      throw new InternalServerErrorException();
+    }
+  }
+
   async updateUser(id: number, { email }: UpdateUserDto) {
     try {
       return await this.prismaService.user.update({

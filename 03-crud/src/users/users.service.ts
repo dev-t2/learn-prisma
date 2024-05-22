@@ -19,6 +19,10 @@ export class UsersService {
     return await this.usersRepository.findUsers(findUsersDto);
   }
 
+  async findUser(id: number) {
+    return await this.usersRepository.findUser(id);
+  }
+
   async updateUser(id: number, updateUserDto: UpdateUserDto) {
     return await this.usersRepository.updateUser(id, updateUserDto);
   }
