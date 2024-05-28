@@ -72,7 +72,6 @@ export class UsersRepository {
 
       const [users, totalUsers] = await this.prismaService.$transaction([
         this.prismaService.user.findMany({
-          orderBy: { id: 'asc' },
           skip: take * (page - 1),
           take,
           select: { id: true, email: true, userInfo: { select: { phoneNumber: true, age: true } } },
@@ -98,14 +97,17 @@ export class UsersRepository {
       //   select: { id: true, email: true, userInfo: { select: { phoneNumber: true, age: true } } },
       // });
 
-      await this.prismaService.$transaction(async (tx) => {
-        const user = await tx.user.findUnique({ where: { id }, select: { id: true, email: true } });
+      return await this.prismaService.$transaction(async (prisma) => {
+        const user = await prisma.user.findUnique({
+          where: { id },
+          select: { id: true, email: true },
+        });
 
         if (!user?.email.includes('naver')) {
           throw new BadRequestException();
         }
 
-        return await tx.user.findUnique({
+        return await prisma.user.findUnique({
           where: { id: user.id + 1 },
           select: { id: true, email: true, userInfo: { select: { phoneNumber: true, age: true } } },
         });
