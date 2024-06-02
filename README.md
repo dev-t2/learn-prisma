@@ -17,6 +17,8 @@
 - [pgAdmin](https://www.pgadmin.org)
 - [Prisma](https://www.prisma.io)
   - [Prisma Schema](https://www.prisma.io/docs/orm/prisma-schema)
+    - [Overview](https://www.prisma.io/docs/orm/prisma-schema/overview)
+      - [Generators](https://www.prisma.io/docs/orm/prisma-schema/overview/generators)
     - [Data Model](https://www.prisma.io/docs/orm/prisma-schema/data-model)
       - [Relations](https://www.prisma.io/docs/orm/prisma-schema/data-model/relations)
         - [Referential Actions](https://www.prisma.io/docs/orm/prisma-schema/data-model/relations/referential-actions)
