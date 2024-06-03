@@ -35,3 +35,5 @@
     - [Prisma Schema](https://www.prisma.io/docs/orm/reference/prisma-schema-reference)
     - [Prisma CLI](https://www.prisma.io/docs/orm/reference/prisma-cli-reference)
 - [Faker](https://github.com/faker-js/faker)
+- [Redis](https://redis.io)
+  - [Releases](https://github.com/microsoftarchive/redis/releases)
