@@ -7,6 +7,7 @@
   - Techniques
     - [Configuration](https://docs.nestjs.com/techniques/configuration)
     - [Validation](https://docs.nestjs.com/techniques/validation)
+    - [Caching](https://docs.nestjs.com/techniques/caching)
   - OpenAPI
     - [Introduction](https://docs.nestjs.com/openapi/introduction)
   - Recipes
@@ -35,5 +36,3 @@
     - [Prisma Schema](https://www.prisma.io/docs/orm/reference/prisma-schema-reference)
     - [Prisma CLI](https://www.prisma.io/docs/orm/reference/prisma-cli-reference)
 - [Faker](https://github.com/faker-js/faker)
-- [Redis](https://redis.io)
-  - [Releases](https://github.com/microsoftarchive/redis/releases)

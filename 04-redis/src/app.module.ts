@@ -1,5 +1,6 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { CacheModule } from '@nestjs/cache-manager';
 import Joi from 'joi';
 
 import { HttpLoggerMiddleware } from './common/middlewares';
@@ -19,6 +20,7 @@ import { UsersModule } from './users/users.module';
       validationOptions: { abortEarly: true },
     }),
     PrismaModule,
+    CacheModule.register({ isGlobal: true }),
     UsersModule,
   ],
 })

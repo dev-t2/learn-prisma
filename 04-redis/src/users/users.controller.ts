@@ -25,6 +25,26 @@ export class UsersController {
     return await this.usersService.deleteUsers();
   }
 
+  @Post('faker')
+  async createUsers() {
+    return await this.usersService.createUsers();
+  }
+
+  @Post('redis')
+  async createRedis() {
+    return await this.usersService.createRedis();
+  }
+
+  @Get('redis')
+  async findRedis() {
+    return await this.usersService.findRedis();
+  }
+
+  @Delete('redis')
+  async deleteRedis() {
+    return await this.usersService.deleteRedis();
+  }
+
   @Get(':id')
   async findUser(@Param('id', ParsePositiveIntPipe) id: number) {
     return await this.usersService.findUser(id);
@@ -41,10 +61,5 @@ export class UsersController {
   @Delete(':id')
   async deleteUser(@Param('id', ParsePositiveIntPipe) id: number) {
     return await this.usersService.deleteUser(id);
-  }
-
-  @Post('faker')
-  async createUsers() {
-    return await this.usersService.createUsers();
   }
 }
