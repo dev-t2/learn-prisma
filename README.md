@@ -7,7 +7,6 @@
   - Techniques
     - [Configuration](https://docs.nestjs.com/techniques/configuration)
     - [Validation](https://docs.nestjs.com/techniques/validation)
-    - [Caching](https://docs.nestjs.com/techniques/caching)
   - OpenAPI
     - [Introduction](https://docs.nestjs.com/openapi/introduction)
   - Recipes
